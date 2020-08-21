@@ -1,0 +1,21 @@
+# ALIASES
+# LS
+alias ls='ls -a --color=auto'
+# WIFI
+alias con="nmcli dev wifi con"
+
+# OPEN KEY FILES
+alias af='nvim ~/.config/zsh/zalias'
+alias bs='nvim ~/.config/bspwm/bspwmrc'
+alias sx='nvim ~/.config/sxhkd/sxhkdrc'
+alias zs='nvim ~/.zshrc'
+alias xi='nvim ~/.xinitrc'
+alias pi='nvim ~/.config/picom/picom.conf'
+alias al='nvim ~/.config/alacritty/alacritty.yml'
+alias xl='nvim ~/.local/share/xorg/Xorg.0.log'
+alias pb='nvim ~/.config/polybar/config'
+alias dn='nvim ~/.config/wal/templates/dunstrc'
+alias vr='nvim ~/.config/nvim/init.vim' 
+
+# WIKIS
+
