@@ -34,7 +34,7 @@ set render-loading-fg "{color15}"
 # General Settings
 set selection-clipboard clipboard
 set page-padding 0
-set font "Hack Nerd Font 12"
+set font "Iosevka 16"
 set adjust-open "width"
 set guioptions ""
 set statusbar-basename false

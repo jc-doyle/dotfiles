@@ -58,6 +58,5 @@ font:
   # by DPI and the specified value is always added at both opposing sides.
 window:
   padding:
-    x: 25 
-    y: 25
-
+    x: 20 
+    y: 20

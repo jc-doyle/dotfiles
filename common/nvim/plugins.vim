@@ -1,14 +1,24 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
+" Themes
+Plug 'arcticicestudio/nord-vim'
+Plug 'dylanaraps/wal.vim'
+
+" Surrounds
+Plug 'tpope/vim-surround'
+Plug 'https://github.com/jiangmiao/auto-pairs'
+
+" Go
+Plug 'fatih/vim-go'
 
 " Fugitive
-Plug 'tpope/fugitive'
+"Plug 'tpope/fugitive'
 
 " VimWiki
 Plug 'vimwiki/vimwiki'
 
-" Nord
+" Themes
 Plug 'arcticicestudio/nord-vim'
 
 " Lightline
@@ -27,25 +37,29 @@ Plug 'voldikss/vim-floaterm'
 " CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Autopairs
-Plug 'jiangmiao/auto-pairs'
-
-" Ranger
-Plug 'kevinhwang91/rnvimr'
+" Colors
+Plug 'ap/vim-css-color'
 
 " Prettier
-"Plug 'prettier/vim-prettier', {
-"  \ 'do': 'yarn install',
-"  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 "Rust
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 
 " UltiSnips
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " VimTex
 Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim'
+
+" PlantUML
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'aklt/plantuml-syntax'
+Plug 'tyru/open-browser.vim'
 
 call plug#end()
 

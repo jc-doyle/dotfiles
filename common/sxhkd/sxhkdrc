@@ -7,6 +7,12 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	pactl set-sink-volume 0 -5%
 
+super equal
+	pactl set-sink-volume 0 +5% 
+
+super minus
+	pactl set-sink-volume 0 -5%
+
 XF86AudioMute
 	pactl set-sink-mute 0 toggle	
 
@@ -28,7 +34,7 @@ super + Return
 
 # program launcher
 super + Shift_R 
-	rofi -show run
+	rofi -show run -display-run ""
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -67,16 +73,16 @@ super + {a,s,d,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+super + ctrl + {s}
+	bspc node -g {sticky}
 
 #
 # focus/swap
 #
 
 # focus the next/previous node in the current desktop
-super + {k,j}
-	bspc node -f {next,prev}.local
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -102,34 +108,31 @@ super + BackSpace
 # preselect
 #
 
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
 # preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+#super + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
+#super + ctrl + space
+#	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+#super + ctrl + shift + space
+#	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
 #
-
-# expand a window by moving one of its side outward
-super + shift + {h,j,k,l}
-	bspc node -z {left 20 0,bottom 0 20,top 0 20,right 20 0}
-
-# contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# expand/contract a window 
+# resize windows i3 style
+#
+super + ctrl + {h,j,k,l}
+	;zsh ~/.config/sxhkd/resize {x -, y +, y -, x +}
 
 # move a floating window
-super + {Left,Down,Up,Right}
+super + alt + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# rotate node
+super + alt + shift + {j,k}
+    bspc node @/ -C {forward,backward}

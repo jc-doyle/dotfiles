@@ -9,7 +9,7 @@ configuration {
 /*	bw: 1;*/
 /*	location: 0;*/
 	padding: 0;
-	yoffset: -454;
+	yoffset: -451;
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
 /*	show-icons: false;*/

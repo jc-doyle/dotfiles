@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "500x20-190+10"
+    geometry = "500x24-190+12"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -61,10 +61,10 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0 
+    frame_width = 2 
 
     # Defines color of the frame around the notification window.
-    frame_color = "{color7}"
+    frame_color = "{color8}"
 
     # Define a color for the separator.
     # possible values are:
@@ -90,7 +90,7 @@
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 0
+    line_height = 5
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -126,7 +126,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "%s"
+    format = "%s / %b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -163,7 +163,7 @@
     icon_position = off
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 32
+    max_icon_size = 0
 
     # Paths to default icons.
     #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
@@ -248,7 +248,7 @@
     # dunst will attempt to calculate an appropriate dpi value for each monitor
     # using the resolution and physical size. This might be useful in setups
     # where there are multiple screens with very different dpi values.
-    per_monitor_dpi = false
+    per_monitor_dpi = true
 
 [shortcuts]
 
@@ -267,7 +267,7 @@
     # On the US keyboard layout "grave" is normally above TAB and left
     # of "1". Make sure this key actually exists on your keyboard layout,
     # e.g. check output of 'xmodmap -pke'
-    history = ctrl+grave
+    history = mod4+tab
 
     # Context menu.
     context = ctrl+shift+period

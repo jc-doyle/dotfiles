@@ -1,3 +1,6 @@
+" Nord
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
 " Lightline
 let g:lightline = {
       \ 'colorscheme': 'betternord',
@@ -39,11 +42,9 @@ let g:lightline.mode_map = {
     \ 't': 'T',
     \ }
 
-" Ranger
-let g:rnvimr_ex_enable = 1
 
 " VimWiki
-let g:vimwiki_list = [{'path': '~/mathematics/wiki/index.wiki',
+"let g:vimwiki_list = [{'path': '~/mathematics/wiki/index.wiki',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Prettier
@@ -58,7 +59,6 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
-
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -84,9 +84,31 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? coc#_select_confirm() :
+"      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"let g:coc_snippet_next = '<tab>'
+
 " VimTex
 
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
+set conceallevel=1
 let g:tex_conceal='abdmg'
+hi Conceal ctermbg=none
+
+" UltiSnips
+
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+

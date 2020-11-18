@@ -1,10 +1,7 @@
 # ALIASES
-# LS
-alias ls='ls -a --color=auto'
-# WIFI
-alias con="nmcli dev wifi con"
+alias A="cat -s .config/zsh/zalias"
 
-# OPEN KEY FILES
+# Key Files 
 alias af='nvim ~/.config/zsh/zalias'
 alias bs='nvim ~/.config/bspwm/bspwmrc'
 alias sx='nvim ~/.config/sxhkd/sxhkdrc'
@@ -17,5 +14,16 @@ alias pb='nvim ~/.config/polybar/config'
 alias dn='nvim ~/.config/wal/templates/dunstrc'
 alias vr='nvim ~/.config/nvim/init.vim' 
 
-# WIKIS
+# Mail
+alias mail="TERM=screen-256color neomutt"
 
+# Utilities
+alias con="nmcli dev wifi con"
+alias ls='ls -a --color=auto'
+
+# Npm
+alias npi="npm install -g"
+
+# Switching
+alias mobile='.config/autorandr/mobile/postswitch'
+alias docked='.config/autorandr/docked/postswitch'

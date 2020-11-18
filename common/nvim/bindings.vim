@@ -1,8 +1,9 @@
 let g:mapleader = "\<Space>"
 
+" Leave Surroundings
+inoremap <C-e> <C-o><S-TAB>
 " Line number toggle
 nnoremap <Leader>n :set invnumber<CR>
-
 " Close buffer
 nnoremap <Leader>q :bd<CR>
 
@@ -25,33 +26,31 @@ inoremap <c-u> <ESC>viwUi
 nnoremap <c-u> viwU<Esc>
 
 " TAB in general mode will move to text buffer
-nnoremap <TAB> :bnext<CR>
+nnoremap <silent> <TAB> :bnext<CR>
+nnoremap <silent> <s-TAB> :bprevious<CR>
 " SHIFT-TAB will go back
-nnoremap <S-TAB> :bprevious<CR>
 
 " Alternate way to save
 nnoremap <C-s> :w<CR>
 " Alternate way to quit
 nnoremap <C-Q> :wq!<CR>
 " <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
 
 " Ranger
-nmap <Leader>r :RnvimrToggle<CR>
+nmap <Leader>r :FloatermNew lf<CR>
 
 " CoC
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -68,7 +67,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
+" On mouse hover
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 

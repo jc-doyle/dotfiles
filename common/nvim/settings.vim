@@ -1,92 +1,61 @@
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'betternord',
-      \ 'active': {
-      \   'left': [ [ 'mode' ],
-      \             [ 'filename' ] ],
-      \   'right': [ 
-      \              [ 'percent' ],
-      \              [ 'filetype'] ]
-      \ }, 
-      \ 'tabline': {
-      \   'left': [ ['buffers'] ],
-      \   'right': [ [] ]
-      \ },
-      \ 'component': {
-	    \ 'mode': '  %{lightline#mode()}  ',
-      \ 'percent': ' %2p%% '  
-      \ }, 
-      \ 'component_expand': {
-      \   'buffers': 'lightline#bufferline#buffers'
-      \ },
-      \ 'component_type': {
-      \   'buffers': 'tabsel'
-      \ },
-      \ }
-let g:lightline.tabline_subseparator = { 'left': '', 'right': '' }
+set noshowmode
+set termguicolors
+colorscheme nord
 
-let g:lightline.mode_map = {
-    \ 'n' : 'N',
-    \ 'i' : 'I',
-    \ 'R' : 'R',
-    \ 'v' : 'V',
-    \ 'V' : 'V',
-    \ "\<C-v>": 'V',
-    \ 'c' : 'C',
-    \ 's' : 'S',
-    \ 'S' : 'S',
-    \ "\<C-s>": 'S',
-    \ 't': 'T',
-    \ }
+" set leader key
+set ttyfast
+syntax enable                           " Enables syntax highlighing
+set hidden                              " Required to keep multiple buffers open multiple buffers
+set nowrap                              " Display long lines as just one line
+set encoding=utf-8                      " The encoding displayed
+set pumheight=10                        " Makes popup menu smaller
+set fileencoding=utf-8                  " The encoding written to file
+"set ruler              			            " Show the cursor position all the time
+set cmdheight=1                         " More space for displaying messages
+set iskeyword+=-                      	" treat dash separated words as a word text object"
+set mouse=a                             " Enable your mouse
+set splitbelow                          " Horizontal splits will automatically be below
+set splitright                          " Vertical splits will automatically be to the right
+set t_Co=256                            " Support 256 colors
+set conceallevel=0                      " So that I can see `` in markdown files
+set tabstop=2                           " Insert 2 spaces for a tab
+set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
+set expandtab                           " Converts tabs to spaces
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+"set laststatus=0                        " Always display the status line
+set nu                             " Line numbers
+set numberwidth=1
+set cursorline                          " Enable highlighting of the current line
+set background=dark                     " tell vim what the background color looks like
+set showtabline=2                       " Always show tabs
+set noshowmode                          " We don't need to see things like -- INSERT -- anymore
+set nobackup                            " This is recommended by coc
+set nowritebackup                       " This is recommended by coc
+set timeoutlen=500                      " By default timeoutlen is 1000 ms
+set formatoptions=cro                  " Stop newline continution of comments
+set clipboard=unnamedplus               " Copy paste between vim and everything else
+"set autochdir                           " Your working directory will always
+set regexpengine=1
+set redrawtime=10000
+syntax sync minlines=256
+set synmaxcol=256
+set scl=no
 
-" Ranger
-let g:rnvimr_ex_enable = 1
+" Spell Check
+"set spelllang=en
+"set spellfile
 
-" VimWiki
-let g:vimwiki_list = [{'path': '~/mathematics/wiki/index.wiki',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
 
-" Prettier
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
-" Coc
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" VimTex
-
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-let g:tex_conceal='abdmg'
+let g:python3_host_prog = expand("/usr/bin/python")

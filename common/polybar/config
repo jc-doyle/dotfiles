@@ -3,9 +3,10 @@
 
 [colors]
 
-background = ${xrdb:color0:#222}
-foreground = ${xrdb:color7:#222}
-highlight = ${xrdb:color4:#222}
+background = ${xrdb:color1:#222}
+foreground = ${xrdb:color6:#222}
+border = ${xrdb:color5:#222}
+highlight = ${xrdb:color12:#222}
 
 ;--------------------------------------------------------------------
 
@@ -14,8 +15,8 @@ enable-ipc = true
 font-0=Cozette:size=8:antialias=true;2
 
 padding = 2
-border-size = 0
-border-color = ${colors.foreground}
+border-size = 1 
+border-color = ${colors.border}
 
 height = 25
 
@@ -93,25 +94,25 @@ type = internal/bspwm
 reverse-scroll = false
 enable-click = true
 
-ws-icon-0 = 1;ф
-ws-icon-1 = 2;β
-ws-icon-2 = 3;λ
-ws-icon-3 = 4;φ
-ws-icon-4 = 5;Θ
-ws-icon-5 = 6;Ω
-ws-icon-6 = 7;Ԑ
-ws-icon-7 = 8;δ
+;ws-icon-0 = 1;ф
+;ws-icon-1 = 2;β
+;ws-icon-2 = 3;λ
+;ws-icon-3 = 4;φ
+;ws-icon-4 = 5;Θ
+;ws-icon-5 = 6;Ω
+;ws-icon-6 = 7;Ԑ
+;ws-icon-7 = 8;δ
 
-label-focused = %icon%
+label-focused = ■
 label-focused-underline = ${colors.highlight}
 label-focused-foreground = ${colors.highlight}
 label-focused-padding = 1
 
-label-occupied = %icon%
+label-occupied = ■ 
 label-occupied-foreground = ${colors.highlight}
 label-occupied-padding = 1
 
-label-empty = %icon%
+label-empty = □ 
 label-empty-padding = 1
 
 label-separator = " "

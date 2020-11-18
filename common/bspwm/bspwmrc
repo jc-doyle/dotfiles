@@ -3,7 +3,7 @@
 #killall -q redshift 
 sxhkd &
 redshift &
-piof bspswallow || bspswallow &
+# pidof bspswallow || bspswallow &
 # Wallpaper & Colour Scheme
 feh --bg-scale /home/jonty/wallpapers/nord.jpg 
 wal -R
@@ -17,14 +17,17 @@ amixer set Master 40%
 # Monitors & Screens
 bspc monitor eDP1 -d 1 2 3 4 5 6 7 8
 autorandr -c
-
-bspc config border_width        0 
-bspc config window_gap          12
+bspc config focused_border_color '#81a1c1'
+bspc config normal_border_color '#4c566a'
+bspc config border_width        2
+bspc config window_gap          14
 
 bspc config remove_unplugged_monitors true
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config single_monocle       true
+bspc config gapless_monocle      false
 bspc config focus_follows_pointer true
 
+bspc rule -a Zathura state=tiled
