@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/jonty/other/dotfiles/config/zsh/plugins/pure'
+let g:netrw_dirhist_5='/home/jonty/projects/vuebasics'
+let g:netrw_dirhist_4='/home/jonty/projects/vuebasics/src'
+let g:netrw_dirhist_3='/home/jonty/projects/vuebasics'
+let g:netrw_dirhist_2='/usr/share/dbus-1/services'
+let g:netrw_dirhist_1='/home/jonty/.config/nvim/plugged/goyo.vim'

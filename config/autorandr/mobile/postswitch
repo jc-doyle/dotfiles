@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+pkill picom
+
+bspc monitor eDP1 -d 5 4 3 2 1 6 7 8
+
+
+$HOME/.config/polybar/polymobile.sh
+
+picom &
+
+notify-send "Mobile"

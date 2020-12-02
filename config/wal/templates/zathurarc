@@ -1,0 +1,43 @@
+# Recolor
+set recolor true
+
+# Main Colors
+set recolor-lightcolor "{color0}"
+set recolor-darkcolor "#FDFDFD"
+set default-bg "{color0}"
+
+# Input Bar and Completion Colors
+set inputbar-bg "{color0}"
+set inputbar-fg "{color7}"
+set completion-bg "{color0}"
+set completion-fg "{color7}"
+set completion-group-bg "{color0}"
+set completion-group-fg "{color7}"
+set completion-highlight-bg "{color7}"
+set completion-highlight-fg "{color0}"
+
+# Notification and GUI Colors
+set notification-bg "{color0}"
+set notification-fg "{color7}"
+set notification-error-bg "{color1}"
+set notification-warning-bg "{color1}"
+set notification-warning-fg "{color15}"
+set statusbar-bg "{color0}"
+set statusbar-fg "{color7}"
+set index-bg "{color0}"
+set index-fg "{color7}"
+set index-active-bg "{color7}"
+set index-active-fg "{color0}"
+set render-loading-bg "{color0}"
+set render-loading-fg "{color15}"
+
+# General Settings
+set selection-clipboard clipboard
+set page-padding 0
+set font "Iosevka 16"
+set adjust-open "width"
+set guioptions ""
+set statusbar-basename false
+
+# Mappings
+map <C-s> toggle_statusbar 

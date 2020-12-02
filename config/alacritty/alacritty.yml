@@ -1,0 +1,102 @@
+# ----ALACRITTY CONFIG----
+
+# FONTS
+font:
+  # Normal (roman) font face
+  normal:
+    # Font family
+    #
+    # Default: Hack Nerd Font
+
+    #   - (Linux/BSD) monospace
+    #   - (Windows) Consolas
+    family: Iosevka
+
+    # The `style` can be specified to pick a specific face.
+    style: Regular
+
+  # Bold font face
+  bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: Iosevka 
+
+    # The `style` can be specified to pick a specific face.
+    style: Bold
+
+  # Italic font face
+  italic:
+    # Font family
+    #
+    # If the italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: Iosevka
+
+    # The `style` can be specified to pick a specific face.
+    style: Italic
+
+  # Bold italic font face
+  bold_italic:
+    # Font family
+    #
+    # If the bold italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: Iosevka
+
+    # The `style` can be specified to pick a specific face.
+    style: Bold Italic
+
+  # Point size
+  size: 14
+
+# PADDING
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+window:
+  padding:
+    x: 20 
+    y: 20
+
+# %%base16_template: alacritty##default %%
+# Base16 Bolar - alacritty color config
+# Jonty Doyle
+colors:
+  # Default colors
+  primary:
+    background: '0xF2F1EF'
+    foreground: '0x3F3E3E'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0xF2F1EF'
+    cursor: '0x3F3E3E'
+
+  # Normal colors
+  normal:
+    black:   '0xF2F1EF'
+    red:     '0x5E96A8'
+    green:   '0x87AE7D'
+    yellow:  '0x9981B2'
+    blue:    '0xBB9999'
+    magenta: '0x94647E'
+    cyan:    '0x65806E'
+    white:   '0x3F3E3E'
+
+  # Bright colors
+  bright:
+    black:   '0x969491'
+    red:     '0xEE7980'
+    green:   '0xE9E6E1'
+    yellow:  '0xCFCDC8'
+    blue:    '0x515151'
+    magenta: '0x322E2E'
+    cyan:    '0x786B8D'
+    white:   '0x232020'
+
+draw_bold_text_with_bright_colors: false
+
+# %%base16_template_end%%
