@@ -1,7 +1,0 @@
-[user]
-	name = JC-Doyle
-	email = doyle.jonty@gmail.com
-[core]
-	editor = nvim
-[credential]
-	helper = cache
