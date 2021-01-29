@@ -4,10 +4,10 @@
 ; %%base16_template: polybar##default %%
 [colors]
 
-background = #F2F1EF
-foreground = #322E2E
-border = #969491
-highlight = #5E96A8
+background = #2E3440
+foreground = #ECEFF4
+border = #4C566A
+highlight = #BF616A
 
 ; %%base16_template_end%%
 ;--------------------------------------------------------------------
@@ -164,9 +164,9 @@ exec-if = "pgrep spotify"
 format-padding = 1
 tail = true
 interval = 1
-click-left = playerctl play-pause spotify
-click-right = playerctl next spotify
-click-middle = playerctl previous spotify
+click-left = playerctl play-pause -p spotify
+click-right = playerctl next -p spotify
+click-middle = playerctl previous -p spotify
 
 ;--------------------------------------------------------------------
 

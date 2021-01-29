@@ -4,7 +4,7 @@ alias A="cat -s .config/zsh/alias.zsh"
 # Key Files 
 alias af='nvim ~/.config/zsh/alias.zsh'
 alias gl='nvim ~/.config/zsh/globals.zsh'
-alias zs='nvim ~/.zshrc'
+alias zs='nvim ~/.zprofile'
 
 alias bs='nvim ~/.config/bspwm/bspwmrc'
 alias sx='nvim ~/.config/sxhkd/sxhkdrc'
@@ -21,7 +21,9 @@ alias mail="TERM=screen-256color neomutt"
 
 # Utilities
 alias con="nmcli dev wifi con"
-alias ls='ls -a --color=auto'
+alias ls='ls -a --color=auto --format=vertical --sort=version'
+alias feh='feh -B "#2e3440" --scale-down'
+alias wallpaper='.scripts/setbg.sh'
 
 # Npm
 alias npi="npm install -g"

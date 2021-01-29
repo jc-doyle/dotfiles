@@ -49,7 +49,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 14
+  size: 15
 
 # PADDING
   # Window padding (changes require restart)
@@ -62,40 +62,40 @@ window:
     y: 20
 
 # %%base16_template: alacritty##default %%
-# Base16 Bolar - alacritty color config
-# Jonty Doyle
+# Base16 Nord - alacritty color config
+# arcticicestudio
 colors:
   # Default colors
   primary:
-    background: '0xF2F1EF'
-    foreground: '0x3F3E3E'
+    background: '0x2E3440'
+    foreground: '0xE5E9F0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0xF2F1EF'
-    cursor: '0x3F3E3E'
+    text: '0x2E3440'
+    cursor: '0xE5E9F0'
 
   # Normal colors
   normal:
-    black:   '0xF2F1EF'
-    red:     '0x5E96A8'
-    green:   '0x87AE7D'
-    yellow:  '0x9981B2'
-    blue:    '0xBB9999'
-    magenta: '0x94647E'
-    cyan:    '0x65806E'
-    white:   '0x3F3E3E'
+    black:   '0x2E3440'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x88C0D0'
+    white:   '0xE5E9F0'
 
   # Bright colors
   bright:
-    black:   '0x969491'
-    red:     '0xEE7980'
-    green:   '0xE9E6E1'
-    yellow:  '0xCFCDC8'
-    blue:    '0x515151'
-    magenta: '0x322E2E'
-    cyan:    '0x786B8D'
-    white:   '0x232020'
+    black:   '0x4C566A'
+    red:     '0xD08770'
+    green:   '0x3B4252'
+    yellow:  '0x434C5E'
+    blue:    '0xD8DEE9'
+    magenta: '0xECEFF4'
+    cyan:    '0x5E81AC'
+    white:   '0x8FBCBB'
 
 draw_bold_text_with_bright_colors: false
 

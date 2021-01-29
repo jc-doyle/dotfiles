@@ -18,7 +18,7 @@ XF86AudioMute
 
 # PlayerCtl Commands
 super + {space,comma,period}
-	playerctl {play-pause,previous,next} spotify
+	playerctl {play-pause,previous,next} -p spotify
 
 # Backlight Movements
 XF86MonBrightnessUp
@@ -31,6 +31,9 @@ XF86MonBrightnessDown
 # terminal emulator
 super + Return
 	alacritty	
+
+super + backslash
+  alacritty --hold -e 'lf'
 
 # program launcher
 super + Shift_R 

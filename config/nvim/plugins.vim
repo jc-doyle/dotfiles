@@ -2,28 +2,28 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
 
+" Coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
+
 " Aesthetics
-Plug 'arcticicestudio/nord-vim'
-Plug 'dylanaraps/wal.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'mhinz/vim-startify'
-Plug 'ap/vim-css-color'
 
 " Functionality
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
-Plug 'https://github.com/jiangmiao/auto-pairs'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'ap/vim-css-color'
+Plug 'godlygeek/tabular'
+Plug 'liuchengxu/vim-which-key'
+Plug 'tpope/vim-commentary'
+Plug 'sidofc/mkdx'
 Plug 'voldikss/vim-floaterm'
-
-" Language Support
-Plug 'tpope/fugitive'
-Plug 'fatih/vim-go'
+Plug 'tpope/vim-fugitive'
 
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
@@ -34,8 +34,5 @@ Plug 'tyru/open-browser.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 call plug#end()
-
-
