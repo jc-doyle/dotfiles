@@ -6,7 +6,6 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 setopt INC_APPEND_HISTORY
-
 # General
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
@@ -16,7 +15,7 @@ fpath+="$HOME/.config/zsh/plugins/pure"
 autoload -U promptinit; promptinit
 prompt pure
 setopt interactive_comments
-PROMPT='%(?.%F{magenta}▧ .%F{red}▧ )%f '
+PROMPT='%(?.%F{magenta}⊳.%F{red}⊳)%f '
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -32,21 +31,29 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# ZLE hooks for prompt's vi mode status
-function zle-line-init zle-keymap-select {
-	# Change the cursor style depending on keymap mode.
-	case $KEYMAP {
-		vicmd)
-			printf '\e[0 q' # Box.
-			;;
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-		viins|main)
-			printf '\e[6 q' # Vertical bar.
-			;;
-	}
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+# Pidswallow
+[ -n "$DISPLAY" ]  && command -v xdo >/dev/null 2>&1 && xdo id > /tmp/term-wid-"$$"
+trap "( rm -f /tmp/term-wid-"$$" )" EXIT HUP
+
+# ZLE hooks for prompt's vi mode status
+# function zle-line-init zle-keymap-select {
+# 	# Change the cursor style depending on keymap mode.
+# 	case $KEYMAP {
+# 		vicmd)
+# 			printf '\e[0 q' # Box.
+# 			;;
+# 		viins|main)
+# 			printf '\e[6 q' # Vertical bar.
+# 			;;
+# 	}
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 # Less Colors
 export LESS=-R
@@ -57,3 +64,8 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[1;35m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;32m'
+
+# Plugins
+source "$XDG_CONFIG_HOME/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "$XDG_CONFIG_HOME/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" 
+

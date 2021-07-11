@@ -1,22 +1,24 @@
 let SessionLoad = 1
-let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/
+silent tabonly
+cd ~/other/dotfiles/config/nvim/plugged/nvim-treesitter
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +4 other/dotfiles/config/nvim/init.vim
-badd +25 other/dotfiles/config/nvim/plugins.vim
-badd +4 other/dotfiles/config/nvim/plug-config/coc.vim
-badd +10 other/dotfiles/config/nvim/plug-config/ultisnips.vim
-badd +88 other/dotfiles/config/nvim/snips/tex.snippets
-badd +3 other/dotfiles/config/nvim/plug-config/floaterm.vim
-badd +84 other/dotfiles/config/nvim/colors/nord.vim
+badd +9 ~/other/dotfiles/config/nvim/plug-config/nerdtree.vim
+badd +20 ~/other/dotfiles/config/nvim/init.vim
+badd +266 ~/other/dotfiles/config/nvim/colors/nord.vim
+badd +14 ~/other/dotfiles/config/nvim/plugins.vim
+badd +20 ~/other/dotfiles/config/nvim/keymaps/which-key.vim
+badd +8 ~/other/dotfiles/config/nvim/keymaps/mappings.vim
+badd +24 ~/other/dotfiles/config/nvim/settings.vim
+badd +0 ~/other/dotfiles/config/nvim/coc-settings.json
 argglobal
 %argdel
-edit other/dotfiles/config/nvim/colors/nord.vim
+edit ~/other/dotfiles/config/nvim/coc-settings.json
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -24,24 +26,23 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-setlocal fdm=manual
+setlocal fdm=marker
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 179 - ((20 * winheight(0) + 18) / 36)
+setlocal nofen
+let s:l = 46 - ((27 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-179
-normal! 030|
+46
+normal! 08|
 lcd ~/other/dotfiles/config/nvim
 tabnext 1
-if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
@@ -50,7 +51,8 @@ let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
-let &so = s:so_save | let &siso = s:siso_save
+let &g:so = s:so_save | let &g:siso = s:siso_save
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

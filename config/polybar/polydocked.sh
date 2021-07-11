@@ -7,3 +7,4 @@ polybar -q wsdockedmain	&
 polybar -q wsdockedright &
 polybar -q traydockedmain &
 polybar -q traydockedright &
+polybar -q pomodoro &

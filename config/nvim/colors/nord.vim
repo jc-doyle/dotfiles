@@ -168,6 +168,7 @@ call s:hi("Underline", "", "", "", "", s:underline, "")
 call s:hi("ColorColumn", "", s:nord1_gui, "NONE", s:nord1_term, "", "")
 call s:hi("Cursor", s:nord5_gui, s:nord1_gui, "", "NONE", "", "")
 call s:hi("CursorLine", "", s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+call s:hi("Conceal", s:nord15_gui, "NONE", "NONE", "NONE", "NONE", "")
 call s:hi("Error", s:nord11_gui, "NONE", "", s:nord11_term, "", "")
 call s:hi("iCursor", s:nord0_gui, s:nord15_gui, "", "NONE", "", "")
 call s:hi("LineNr", s:nord3_gui, "NONE", s:nord3_term, "NONE", "", "")
@@ -223,21 +224,21 @@ if g:nord_cursor_line_number_background == 0
 else
   call s:hi("CursorLineNr", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
 endif
-call s:hi("Folded", s:nord3_gui, s:nord1_gui, s:nord3_term, s:nord1_term, s:bold, "")
-call s:hi("FoldColumn", s:nord3_gui, s:nord0_gui, s:nord3_term, "NONE", "", "")
+call s:hi("Folded", s:nord3_gui_bright, "NONE", s:nord3_term, s:nord1_term, s:italic, "")
+call s:hi("FoldColumn", s:nord15_gui, s:nord0_gui, s:nord3_term, "NONE", "", "")
 call s:hi("SignColumn", s:nord1_gui, s:nord0_gui, s:nord1_term, "NONE", "", "")
 
 "+--- Navigation ---+
 call s:hi("Directory", s:nord8_gui, "", s:nord8_term, "NONE", "", "")
 
 "+--- Prompt/Status ---+
-call s:hi("EndOfBuffer", s:nord1_gui, "", s:nord1_term, "NONE", "", "")
+call s:hi("EndOfBuffer", s:nord0_gui, "", s:nord1_term, "NONE", "", "")
 call s:hi("ErrorMsg", s:nord11_gui, "NONE", "NONE", s:nord11_term, "", "")
 call s:hi("MoreMsg", s:nord9_gui, "", s:nord8_term, "", "", "")
 call s:hi("Question", s:nord4_gui, "", "NONE", "", "", "")
 if g:nord_uniform_status_lines == 0
-  call s:hi("StatusLine", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
-  call s:hi("StatusLineNC", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+  call s:hi("StatusLine", s:nord8_gui, s:nord0_gui, s:nord8_term, s:nord3_term, "NONE", "")
+  call s:hi("StatusLineNC", s:nord4_gui, s:nord0_gui, "NONE", s:nord1_term, "NONE", "")
   call s:hi("StatusLineTerm", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
   call s:hi("StatusLineTermNC", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
 else
@@ -407,12 +408,6 @@ call s:hi("htmlLink", s:nord4_gui, "", "", "", "NONE", "NONE")
 hi! link htmlBold Bold
 hi! link htmlEndTag htmlTag
 hi! link htmlItalic Italic
-hi! link htmlH1 markdownH1
-hi! link htmlH2 markdownH1
-hi! link htmlH3 markdownH1
-hi! link htmlH4 markdownH1
-hi! link htmlH5 markdownH1
-hi! link htmlH6 markdownH1
 hi! link htmlSpecialChar SpecialChar
 hi! link htmlTag Keyword
 hi! link htmlTagN htmlTag
@@ -445,19 +440,20 @@ call s:hi("markdownCodeDelimiter", s:nord7_gui, "", s:nord7_term, "", "", "")
 call s:hi("markdownFootnote", s:nord7_gui, "", s:nord7_term, "", "", "")
 call s:hi("markdownId", s:nord7_gui, "", s:nord7_term, "", "", "")
 call s:hi("markdownIdDeclaration", s:nord7_gui, "", s:nord7_term, "", "", "")
-call s:hi("markdownH1", s:nord6_gui, "", s:nord9_term, "", s:bold, "")
-call s:hi("markdownH2", s:nord9_gui, "", s:nord9_term, "", s:bold, "")
+call s:hi("markdownH1", s:nord9_gui, "", s:nord9_term, "", s:bold, "")
+call s:hi("markdownH2", s:nord9_gui, "", s:nord9_term, "", s:italic, "")
 call s:hi("markdownH3", s:nord9_gui, "", s:nord9_term, "", "", "")
 call s:hi("markdownLinkText", s:nord9_gui, "", s:nord8_term, "", "", "")
 call s:hi("markdownUrl", s:nord4_gui, "", "NONE", "", "NONE", "")
 call s:hi("markdownHeadingDelimiter", s:nord3_gui, "", s:nord7_term, "", "", "")
 call s:hi("markdownHeadingDelimiter", s:nord3_gui, "", s:nord7_term, "", "", "")
 call s:hi("markdownHeadingDelimiter", s:nord3_gui, "", s:nord7_term, "", "", "")
+call s:hi("markdownHeadingDelimiter", s:nord3_gui, "", s:nord7_term, "", "", "")
 
-call s:hi("mkdxListItem", s:nord15_gui, "", s:nord7_term, "", s:bold, "")
-call s:hi("mkdxCheckboxEmpty", s:nord3_gui, "", s:nord7_term, "", "", "")
-call s:hi("mkdxCheckboxPending", s:nord3_gui_bright, "", s:nord7_term, "", "", "")
-call s:hi("mkdxCheckboxComplete", s:nord14_gui, "", s:nord7_term, "", "", "")
+call s:hi("mkdxTableDelimiter", s:nord3_gui, "", s:nord7_term, "", "", "")
+call s:hi("mkdxTableHeadDelimiter", s:nord3_gui, "", s:nord7_term, "", "", "")
+call s:hi("mkdxTableHeader", s:nord7_gui, "", s:nord7_term, "", "", "")
+
 
 hi! link markdownBold Bold
 hi! link markdownBoldDelimiter Keyword
@@ -572,6 +568,8 @@ call s:hi("CocWarningSign", s:nord13_gui, "", s:nord13_term, "", "", "")
 call s:hi("CocErrorSign" , s:nord11_gui, "", s:nord11_term, "", "", "")
 call s:hi("CocInfoSign" , s:nord15_gui, "", s:nord8_term, "", "", "")
 call s:hi("CocHintSign" , s:nord10_gui, "", s:nord10_term, "", "", "")
+call s:hi("CocHintFloat" , s:nord3_gui, "", s:nord8_term, "", "", "")
+call s:hi("CocHintFloat" , s:nord3_gui, "", s:nord8_term, "", "", "")
 
 " Nvim LSP
 " > neovim/nvim-lsp
@@ -604,6 +602,9 @@ call s:hi("gitcommitSelectedFile", s:nord14_gui, "", s:nord14_term, "", "", "")
 " > junegunn/vim-plug
 call s:hi("plugDeleted", s:nord11_gui, "", "", s:nord11_term, "", "")
 
+" NerdTree
+call s:hi("NERDTreeFlags", s:nord3_gui, "", "", s:nord11_term, "", "")
+call s:hi("NERDTreeDir", s:nord9_gui, "", "", s:nord11_term, s:bold, "")
 "+--- Languages ---+
 " Haskell
 " > neovimhaskell/haskell-vim
@@ -669,14 +670,24 @@ call s:hi("mkdCode", s:nord7_gui, "", s:nord7_term, "", "", "")
 call s:hi("mkdFootnote", s:nord8_gui, "", s:nord8_term, "", "", "")
 call s:hi("mkdRule", s:nord10_gui, "", s:nord10_term, "", "", "")
 call s:hi("mkdLineBreak", s:nord9_gui, "", s:nord9_term, "", "", "")
+
+call s:hi("mkdListItem", s:nord15_gui, "", s:nord7_term, "", s:italic, "")
+call s:hi("mkdListItemLine", s:nord4_gui, "", s:nord7_term, "", "", "")
+call s:hi("mkdHeading", s:nord3_gui, "", s:nord7_term, "", "", "")
+
+call s:hi("htmlH1", s:nord9_gui, "", s:nord7_term, "", s:bold, "")
+call s:hi("htmlH2", s:nord15_gui, "", s:nord7_term, "", s:italic, "")
+
+
+hi! link htmlH4 htmlH5
+hi! link htmlH4 htmlH6
+
 hi! link mkdBold Bold
 hi! link mkdItalic Italic
 hi! link mkdString Keyword
 hi! link mkdCodeStart mkdCode
 hi! link mkdCodeEnd mkdCode
 hi! link mkdBlockquote Comment
-hi! link mkdListItem Keyword
-hi! link mkdListItemLine Normal
 hi! link mkdFootnotes mkdFootnote
 hi! link mkdLink markdownLinkText
 hi! link mkdURL markdownUrl

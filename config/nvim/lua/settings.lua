@@ -1,0 +1,25 @@
+local opt = vim.opt
+
+opt.termguicolors = true
+opt.hidden = true
+opt.ignorecase = true
+opt.splitbelow = true
+opt.splitright = true
+opt.mouse = "a"
+opt.signcolumn = "number"
+opt.clipboard = "unnamedplus"
+opt.cmdheight = 1
+opt.pumheight = 10
+opt.updatetime = 250
+opt.timeoutlen = 200
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.number = true
+opt.numberwidth = 2
+opt.scrolloff = 5
+opt.background = "light"
+opt.relativenumber = true
+opt.showmode = false
+opt.completeopt = "menuone,noselect"
+opt.guicursor="n-v:block-Cursor,i-ci-c:ver10-iCursor,r:hor10-iCursor"
+opt.shortmess="filnxtToOFc"

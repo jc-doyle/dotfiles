@@ -4,10 +4,12 @@
 ; %%base16_template: polybar##default %%
 [colors]
 
-background = #2E3440
-foreground = #ECEFF4
-border = #4C566A
-highlight = #BF616A
+background-dark = #CCCAC9
+background-light = #E8E6E4
+foreground-dark = #3B3B3B
+foreground-light = #908D8D
+border = #CCCAC9
+highlight = #384C7F
 
 ; %%base16_template_end%%
 ;--------------------------------------------------------------------
@@ -17,13 +19,13 @@ enable-ipc = true
 font-0=Cozette:size=8:antialias=true;2
 
 padding = 2
-border-size = 1 
+border-size = 0 
 border-color = ${colors.border}
 
 height = 25
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.background-light}
+foreground = ${colors.foreground-dark}
 override-redirect=false
 offset-y = 10
 
@@ -59,12 +61,25 @@ monitor = eDP1
 [bar/music]
 inherit = bar/base
 enable-ipc = true
-width = 25%
+width = 20%
 
-offset-x = 37.5%
+offset-x = 40%
 
 modules-center = spotify
 
+;--------------------------------------
+
+[bar/pomodoro]
+inherit = bar/base
+enable-ipc = true
+width = 4%
+
+offset-x = 35.5%
+modules-center = pomodoro
+
+background = ${colors.background-dark}
+foreground = ${colors.foreground-dark}
+dim-value = 0.8
 ;--------------------------------------
 
 [bar/traymobile]
@@ -111,10 +126,11 @@ label-focused-foreground = ${colors.highlight}
 label-focused-padding = 1
 
 label-occupied = ■ 
-label-occupied-foreground = ${colors.highlight}
+label-occupied-foreground = ${colors.foreground-light}
 label-occupied-padding = 1
 
 label-empty = □ 
+label-empty-foreground = ${colors.foreground-light}
 label-empty-padding = 1
 
 label-separator = " "
@@ -170,6 +186,23 @@ click-middle = playerctl previous -p spotify
 
 ;--------------------------------------------------------------------
 
+[module/pomodoro]
+type = custom/script
+
+exec = .scripts/polypomo
+tail = true
+
+label = %output%
+click-left = .scripts/polypomo toggle
+click-right = .scripts/polypomo end
+click-middle = .scripts/polypomo lock
+scroll-up = .scripts/polypomo time +60
+scroll-down = .scripts/polypomo time -60
+
+font-0 = Cozette:size=8:antialias=true;2
+font-1 = Noto Emoji:scale=15:antialias=false;0
+
+;--------------------------------------------------------------------
 [settings]
 ;screenchange-reload = true
 ;compositing-background = xor

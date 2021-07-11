@@ -1,0 +1,4 @@
+source /usr/share/octave/site/m/startup/octaverc;
+pkg prefix ~/.local/share/octave/packages ~/.local/share/octave/packages;
+pkg local_list /home/jonty/.local/share/octave/octave_packages;
+PS1 ('\[\033[00;34m\] λ ➙ \[\033[0m\]');

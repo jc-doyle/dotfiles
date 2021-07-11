@@ -7,15 +7,11 @@ let g:which_key_map =  {}
 " Define a separator
 let g:which_key_sep = '∈'
 
+let g:which_key_hspace = 7
+
 
 " Not a fan of floating windows for this
 let g:which_key_use_floating_win = 0
-
-" Change the colors if you want
-highlight default link WhichKey          Float
-highlight default link WhichKeySeperator LineNr
-highlight default link WhichKeyGroup     Statement
-highlight default link WhichKeyDesc      Boolean
 
 " Hide status line
 autocmd! FileType which_key
@@ -24,37 +20,25 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 
 " Single mappings
-let g:which_key_map[','] = [ 'Startify'              , 'start screen' ]
-let g:which_key_map['q'] = [ ':bd!'                  , 'close']
-let g:which_key_map['e'] = [ ':CocCommand explorer'  , 'explorer' ]
+let g:which_key_map[','] = [ 'Startify'              , 'start' ]
+let g:which_key_map['q'] = [ ':bd!'                  , 'quit']
+let g:which_key_map['e'] = [ ':NERDTreeToggle'  , 'explorer' ]
 let g:which_key_map['f'] = [ ':BLines'               , 'find' ]
-let g:which_key_map['F'] = [ ':Files ~'              , 'home files' ]
-let g:which_key_map['k'] = [ ':CocDisable'           , 'kill coc' ]
-let g:which_key_map['R'] = [ ':source $MYVIMRC'      , 'reload' ]
-let g:which_key_map['r'] = [ ':CocEnable'            , 'restore coc' ]
+let g:which_key_map['F'] = [ ':Files ~'              , 'files ~' ]
+let g:which_key_map['t'] = [ ':FloatermToggle'              , 'terminal' ]
+let g:which_key_map['R'] = [ ':source $MYVIMRC'      , 'format' ]
+let g:which_key_map['S'] = [ ':source $MYVIMRC'      , 'source' ]
+let g:which_key_map['r'] = [ ':FloatermNew --height=0.9 --width=0.9 lf', 'lf' ]
 let g:which_key_map['l'] = [ ':VimtexErrors'         , 'log' ]
-let g:which_key_map['w'] = [ ':w'                    , 'write' ]
-let g:which_key_map['i'] = [ 'VimtexTocOpen'         , 'index' ]
-let g:which_key_map['b'] = [ 'VimtexCompile'         , 'build' ]
-let g:which_key_map['p'] = [ 'VimtexView'            , 'preview' ]
-let g:which_key_map.c = 'count'
-let g:which_key_map.u = 'undo'
-
-" let g:which_key_map['B'] = [ ':Buffers'              , 'buffers' ]
+let g:which_key_map['o'] = 'which_key_ignore'
+let g:which_key_map['O'] = 'which_key_ignore'
+let g:which_key_map['c'] = [':let @/ = ""'               , 'clear seach']
+let g:which_key_map['p'] = [ ':Files'              , 'Files' ]
 " let g:which_key_map['c'] = [ 'VimtexCountWords'      , 'count' ]
 " let g:which_key_map['u'] = [ 'UndotreeToggle'        , 'undo' ]
-let g:which_key_map['z'] = [ 'Goyo'                  , 'zen' ]
-let g:which_key_map['.'] = [ ':e $MYVIMRC'           , 'vimrc' ]
 " let g:which_key_map[';'] = [ ':Commands'             , 'commands' ]
 " let g:which_key_map['d'] = [ ':bd'                   , 'delete buffer']
 " let g:which_key_map['c'] = [ ':VimtexCountWords'     , 'count' ]
-" let g:which_key_map.t = 'terminal'
-" let g:which_key_map['S'] = [ ':SSave'                , 'save session' ]
-" let g:which_key_map.x = 'clean'
-" let g:which_key_map['c'] = [ ':VimtexCountWords<CR>'      , 'count' ]
-" let g:which_key_map['x'] = [ ':VimtexClean<CR>'           , 'clean' ]
-" let g:which_key_map.u = 'undo'
-
 
 " let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 " let g:which_key_map['n'] = [ ':tabnew'                    , 'new buffer' ]
@@ -69,11 +53,11 @@ let g:which_key_map['.'] = [ ':e $MYVIMRC'           , 'vimrc' ]
 
 " Group mappings
 
-" Pandoc
-let g:which_key_map.P = {
-      \ 'name' : '+pandoc' ,
-      \ 'w' : [':Pandoc docx'           , 'to word from open'],
-      \ 'm' : [':Pandoc md'             , 'to markdown from open'],
+" Notes Movement
+let g:which_key_map.w = {
+      \ 'name' : '+go' ,
+      \ 'w' : ['<Plug>(waikikiFollowLink)'           , 'forward'],
+      \ 'u' : ['<Plug>(waikikiGoUp)'           , 'index'],
       \ 'h' : [':Pandoc html'           , 'to html from open'],
       \ 'l' : [':Pandoc latex'          , 'to latex from open'],
       \ 'p' : [':Pandoc pdf'            , 'to pdf from open'],
@@ -83,61 +67,69 @@ let g:which_key_map.P = {
       " \ 'm' : [':SDelete!'              , 'to markdown from file'],
 
 " Templates
-let g:which_key_map.t = {
-      \ 'name' : '+templates' ,
-      \ 'p' : [':read ~/.config/nvim/templates/PhilPaper.tex'           , 'PhilPaper.tex'],
-      \ 'l' : [':read ~/.config/nvim/templates/Letter.tex'           , 'Letter.tex'],
-      \ 'g' : [':read ~/.config/nvim/templates/Glossary.tex'           , 'Glossary.tex'],
-      \ 'h' : [':read ~/.config/nvim/templates/HandOut.tex'           , 'HandOut.tex'],
-      \ 'b' : [':read ~/.config/nvim/templates/PhilBeamer.tex'           , 'PhilBeamer.tex'],
-      \ 's' : [':read ~/.config/nvim/templates/SubFile.tex'           , 'SubFile.tex'],
-      \ 'r' : [':read ~/.config/nvim/templates/Root.tex'           , 'Root.tex'],
-      \ 'm' : [':read ~/.config/nvim/templates/MultipleAnswer.tex'           , 'MultipleAnswer.tex'],
-      \ }
-
-" Sessions
-let g:which_key_map.S = {
-      \ 'name' : '+session' ,
-      \ 's' : [':SSave'                , 'save session'],
-      \ 'd' : [':SDelete!'              , 'delete session'],
-      \ }
+" let g:which_key_map.t = {
+"       \ 'name' : '+templates' ,
+"       \ 'p' : [':read ~/.config/nvim/templates/PhilPaper.tex'           , 'PhilPaper.tex'],
+"       \ 'l' : [':read ~/.config/nvim/templates/Letter.tex'           , 'Letter.tex'],
+"       \ 'g' : [':read ~/.config/nvim/templates/Glossary.tex'           , 'Glossary.tex'],
+"       \ 'h' : [':read ~/.config/nvim/templates/HandOut.tex'           , 'HandOut.tex'],
+"       \ 'b' : [':read ~/.config/nvim/templates/PhilBeamer.tex'           , 'PhilBeamer.tex'],
+"       \ 's' : [':read ~/.config/nvim/templates/SubFile.tex'           , 'SubFile.tex'],
+"       \ 'r' : [':read ~/.config/nvim/templates/Root.tex'           , 'Root.tex'],
+"       \ 'm' : [':read ~/.config/nvim/templates/MultipleAnswer.tex'           , 'MultipleAnswer.tex'],
+"       \ }
 
 " Markdown
 let g:which_key_map.m = {
       \ 'name' : '+markdown' ,
-      \ 'p' : ['<Plug>MarkdownPreview'               , 'preview'],
-      \ 'F' : ['zA'                                  , 'fold all'],
-      \ 'f' : ['za'                                  , 'fold current'],
-      \ 'k' : ['<Plug>MarkdownPreviewStop'           , 'kill'],
-      \ 's' : [':call markdown#SwitchStatus()<CR>'   , 'select'],
+      \ 'F'    : ['zA'                                  , 'fold all'],
+      \ 'f'    : ['za'                                  , 'fold current'],
+      \ 'k'    : ['<Plug>MarkdownPreviewStop'           , 'kill'],
+      \ 'x'    : ['<Plug>(mkdx-checkbox-next-n)'  , 'checkbox next'],
+      \ 'c'    : ['<Plug>(mkdx-toggle-checkbox-n)'  , 'checkbox toggle'],
+      \ 'l'    : ['<Plug>(mkdx-toggle-list-v)'  , 'list toggle'],
+      \ 'T'    : ['<Plug>(mkdx-gen-or-upd-toc)'  , 'toc'],
       \ }
-      " \ 'm' : ['<Plug>MarkdownPreviewToggle'     , 'toggle'],
+      " \ 'm'  : ['<Plug>MarkdownPreviewToggle'     , 'toggle'],
 
-" y is for you surround
 let g:which_key_map.s = {
-      \ 'name' : '+surround' ,
-      \ 's' : ['<Plug>Ysurround'         , 'surround'],
-      \ 'c' : ['<Plug>Csurround'         , 'change'],
-      \ 'd' : ['<Plug>Dsurround'         , 'delete'],
-      \ 'k' : ['dss'                     , 'kill'],
+      \ 'name' : '+settings' ,
+      \ 'n' : [':set nu! rnu!'         , 'line toggle'],
+      \ 's' : [':setlocal spell!'         , 'spell'],
+      \ 'h' : [':set conceallevel=2'         , 'conceal'],
+      \ 'c' : [':set conceallevel=0'         , 'show-all'],
+      \ 'z' : [':Goyo|Limelight 0.6'         , 'zen + dim'],
+      \ 'q' : [':Goyo|Limelight!'         , 'zen'],
+      \ 'p' : [':SoftPencil'         , 'soft-pencil'],
       \ }
 
+let g:which_key_map.z = {
+      \ 'name' : '+files' ,
+      \ 'i' : [':e ~/other/dotfiles/config/nvim/init.vim'         , 'vimrc'],
+      \ 'w' : [':e ~/other/dotfiles/config/nvim/keymaps/which-key.vim'   , 'which-key'],
+      \ 'C' : [':e ~/other/dotfiles/config/nvim/colors/aeloa.vim'         , 'colors'],
+      \ 'l' : [':e ~/other/dotfiles/config/lf/lfrc'         , 'lfrc'],
+      \ 'b' : [':e ~/other/dotfiles/config/bspwm/bspwmrc'         , 'bspwmrc'],
+      \ 'z' : [':e ~/other/dotfiles/config/zsh/.zshrc'         , 'zshrc'],
+      \ 'p' : [':e ~/other/dotfiles/config/polybar/config'         , 'polybar'],
+      \ ',' : [':e ~/other/dotfiles/config/picom/picom.conf'         , 'picom'],
+      \ 'c' : [':e ~/other/dotfiles/config/nvim/coc-settings.json'         , 'coc'],
+      \ }
 
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
+      \ 's' : [':SSave'                , 'save session'],
+      \ 'd' : [':SDelete!'              , 'delete session'],
       \ 'y' : [':CocList -A --normal yank'  , 'yank display'],
       \ 'k' : [':VimtexClean'               , 'kill aux files'],
-      \ 'h' : [':let @/ = ""'               , 'remove search highlight'],
-      \ 'v' : [':Vista!!'                   , 'tag viewer'],
-      \ 'n' : [':set nonumber!'             , 'line-numbers'],
       \ 'b' : [':terminal bibexport -o %:r.bib %:r.aux'  , 'bib export'],
-      \ 'r' : [':set norelativenumber!'     , 'relative line nums'],
       \ ';' : [ ':Commands'             , 'commands' ],
-      \ 'g' : [':e ~/.config/nvim/templates/Glossary.tex'                   , 'edit glossary'],
-      \ 's' : [':e ~/.config/nvim/snips/tex.snippets'                   , 'edit snippets'],
+      \ 'i' : [ ':PlugInstall'             , 'install' ],
+      \ 'u' : [ ':PlugUpdate'             , 'update' ],
+      \ 'c' : [ ':PlugClean'             , 'clean' ],
+      \ 'h' :  'highlight group',
       \ }
-
 
       " \ 't' : [':FloatermToggle'         , 'terminal'],
       " \ 'c' : [':ColorizerToggle'        , 'colorizer'],
@@ -187,38 +179,17 @@ let g:which_key_map.a = {
 "       \ 'z' : [':FZF'          , 'FZF'],
 "       \ }
 
-" h is for GitHub
-let g:which_key_map.h = {
-      \ 'name' : '+github-cli' ,
-      \ 'h' : [':FloatermNew! gh help'              , 'help'],
-      \ 'i' : [':FloatermNew! gh issue create'      , 'create issue'],
-      \ 'k' : [':FloatermKill!'                     , 'kill terminals'],
-      \ 'l' : [':FloatermNew! gh issue list'        , 'list issues'],
-      \ 'r' : [':FloatermNew! gh reference'         , 'reference'],
-      \ 'v' : [':FloatermNew! gh repo view -w'      , 'view repo'],
-      \ }
-
 " g is for git
-let g:which_key_map.g = {
+let g:which_key_map.G = {
       \ 'name' : '+git' ,
       \ 'a' : [':Git add .'                        , 'add all'],
       \ 'A' : [':Git add %'                        , 'add current'],
       \ 'b' : [':Git blame'                        , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
       \ 'c' : [':Git commit'                       , 'commit'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'G' : [':GGrep'                            , 'git grep'],
-      \ 's' : [':Gstatus'                          , 'status'],
-      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
       \ 'l' : [':Git log'                          , 'log'],
       \ 'P' : [':Git push'                         , 'push'],
       \ 'p' : [':Git pull'                         , 'pull'],
-      \ 'r' : [':GRemove'                          , 'remove'],
-      \ 'g' : [':FloatermNew lazygit'              , 'lazygit'],
-      \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
-      \ 'v' : [':GV'                               , 'view commits'],
-      \ 'V' : [':GV!'                              , 'view buffer commits'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
       \ }
 
   " nmap ghp <Plug>(GitGutterPreviewHunk)

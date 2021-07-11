@@ -1,15 +1,15 @@
 // %%base16_template: rofi##mine %%
 /**
- * Base16 Nord Theme 
+ * Base16 Light Theme 
  *
  * Author
- *  Scheme: arcticicestudio
+ *  Scheme: Jonty Doyle
  */
 * {
-    accent: #D8DEE9;
-    background: #2E3440;
-    foreground: #8FBCBB;
-    border-color: #434C5E;
+    accent: #908D8D;
+    background: #F8F6F4;
+    foreground: #1F1F1F;
+    border-color: #E8E6E4;
 
 
     active-background: @accent;

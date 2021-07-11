@@ -1,4 +1,4 @@
-# Current Config 
+# Current Config
 
 ## To Do
 

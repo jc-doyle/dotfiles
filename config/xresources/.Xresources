@@ -1,31 +1,31 @@
-# Monitor Fixes
+! Monitor Fixes
 Xft.dpi: 96
 
-# Fonts & Other
+! Fonts & Other
 URxvt*termName:                 rxvt-256color
 URxvt*font:                     xft:Iosevka:style=regular:pixelsize=14
 URxvt.clipboard.autocopy:       true
 
-# %%base16_template: xresources##default-256 %%
-! Base16 Nord
-! Scheme: arcticicestudio
+! %%base16_template: xresources##default %%
+! Base16 Light
+! Scheme: Jonty Doyle
 
-#define base00 #2E3440
-#define base01 #3B4252
-#define base02 #434C5E
-#define base03 #4C566A
-#define base04 #D8DEE9
-#define base05 #E5E9F0
-#define base06 #ECEFF4
-#define base07 #8FBCBB
-#define base08 #BF616A
-#define base09 #D08770
-#define base0A #EBCB8B
-#define base0B #A3BE8C
-#define base0C #88C0D0
-#define base0D #81A1C1
-#define base0E #B48EAD
-#define base0F #5E81AC
+#define base00 #F8F6F4
+#define base01 #F4F2EF
+#define base02 #E8E6E4
+#define base03 #CCCAC9
+#define base04 #908D8D
+#define base05 #5B5B5B
+#define base06 #3B3B3B
+#define base07 #1F1F1F
+#define base08 #4E81A6
+#define base09 #DD6783
+#define base0A #5EAE9B
+#define base0B #A367B3
+#define base0C #34806E
+#define base0D #CE365B
+#define base0E #384C7F
+#define base0F #912C93
 
 *foreground:   base05
 #ifdef background_opacity
@@ -36,30 +36,21 @@ URxvt.clipboard.autocopy:       true
 *cursorColor:  base05
 
 *color0:       base00
-*color1:       base08
-*color2:       base0B
-*color3:       base0A
-*color4:       base0D
-*color5:       base0E
-*color6:       base0C
-*color7:       base05
+*color1:       base09
+*color2:       base0A
+*color3:       base0B
+*color4:       base08
+*color5:       base05
+*color6:       base06
+*color7:       base07
 
-*color8:       base03
-*color9:       base08
-*color10:      base0B
-*color11:      base0A
-*color12:      base0D
-*color13:      base0E
-*color14:      base0C
-*color15:      base07
+*color8:       base04
+*color9:       base0D
+*color10:      base0C
+*color11:      base0F
+*color12:      base0E
+*color13:      base02
+*color14:      base03
+*color15:      base04
 
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-*color16:      base09
-*color17:      base0F
-*color18:      base01
-*color19:      base02
-*color20:      base04
-*color21:      base06
-
-# %%base16_template_end%%
+! %%base16_template_end%%

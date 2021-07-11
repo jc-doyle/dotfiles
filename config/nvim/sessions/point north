@@ -1,0 +1,62 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +2 pointnorth/layouts/default.vue
+badd +25 pointnorth/pages/index.vue
+badd +18 pointnorth/pages/team.vue
+badd +7 pointnorth/pages/projects/_project/index.vue
+badd +31 pointnorth/components/ProjectIntro.vue
+badd +78 pointnorth/components/SvgHome.vue
+badd +26 pointnorth/components/ProjectGallery.vue
+badd +10 pointnorth/store/projects.js
+badd +71 pointnorth/components/SvgHeader.vue
+badd +12 pointnorth/components/Sidebar.vue
+badd +6 pointnorth/components/Menu.vue
+argglobal
+%argdel
+$argadd pointnorth/layouts/default.vue
+edit pointnorth/components/ProjectIntro.vue
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=GetVueFold(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 40 - ((28 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+40
+normal! 04|
+lcd ~/
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=filnxtToOFcI
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

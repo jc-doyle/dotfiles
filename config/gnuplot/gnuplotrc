@@ -1,0 +1,7 @@
+set xlabel "x"
+set ylabel "y"
+set zlabel "z"
+
+set isosamples 30
+set samples 100
+set terminal qt font "SF Pro Displ Display:12"

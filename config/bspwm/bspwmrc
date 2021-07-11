@@ -2,8 +2,11 @@
 # Init Programs
 #killall -q redshift 
 sxhkd &
-redshift &
-# pidof bspswallow || bspswallow &
+redshift -l -55.33:25.23 -t 6500:5200 &
+syncthing -no-browser &
+mountvula &
+#pgrep bspswallow || bspswallow &
+
 # Wallpaper & Colour Scheme
 feh --bg-scale /home/jonty/.cache/wallpaper/current.jpg
 wal -R

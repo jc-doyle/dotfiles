@@ -1,4 +1,7 @@
 # ----ALACRITTY CONFIG----
+key_bindings:
+  - { key: Return, mods: Shift, chars: "\x1b[13;2u" }
+  - { key: Return, mods: Control, chars: "\x1b[13;5u" }
 
 # FONTS
 font:
@@ -21,7 +24,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Iosevka 
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -52,51 +55,55 @@ font:
   size: 15
 
 # PADDING
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
+# Window padding (changes require restart)
+#
+# Blank space added around the window in pixels. This padding is scaled
+# by DPI and the specified value is always added at both opposing sides.
 window:
   padding:
-    x: 20 
+    x: 20
     y: 20
 
 # %%base16_template: alacritty##default %%
-# Base16 Nord - alacritty color config
-# arcticicestudio
+# Base16 Light
+# Jonty Doyle
 colors:
   # Default colors
   primary:
-    background: '0x2E3440'
-    foreground: '0xE5E9F0'
+    background: '0xF8F6F4'
+    foreground: '0x3B3B3B'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2E3440'
-    cursor: '0xE5E9F0'
+    text: '0xF8F6F4'
+    cursor: '0x5B5B5B'
 
   # Normal colors
   normal:
-    black:   '0x2E3440'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
-    magenta: '0xB48EAD'
-    cyan:    '0x88C0D0'
-    white:   '0xE5E9F0'
+    black:   '0xF8F6F4'
+    red:     '0xDD6783'
+    green:   '0x5EAE9B'
+    yellow:  '0xA367B3'
+    blue:    '0x4E81A6'
+    magenta: '0x5B5B5B'
+    cyan:    '0x3B3B3B'
+    white:   '0x1F1F1F'
 
   # Bright colors
   bright:
-    black:   '0x4C566A'
-    red:     '0xD08770'
-    green:   '0x3B4252'
-    yellow:  '0x434C5E'
-    blue:    '0xD8DEE9'
-    magenta: '0xECEFF4'
-    cyan:    '0x5E81AC'
-    white:   '0x8FBCBB'
+    black:   '0x908D8D'
+    red:     '0xCE365B'
+    green:   '0x34806E'
+    yellow:  '0x912C93'
+    blue:    '0x384C7F'
+    magenta: '0xCCCAC9'
+    cyan:    '0xE8E6E4'
+    white:   '0xF4F2EF'
 
 draw_bold_text_with_bright_colors: false
 
 # %%base16_template_end%%
+
+cursor:
+  style:
+    shape: Beam
