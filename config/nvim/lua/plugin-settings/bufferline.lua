@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.cmd("let bufferline = get(g:, 'bufferline', {})")
 
 vim.cmd("let bufferline = get(g:, 'bufferline', {})")

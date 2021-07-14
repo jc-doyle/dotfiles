@@ -1,11 +1,11 @@
-local Color, colors, Group, groups, styles = require'colorbuddy'.setup()
+local Color, colors, Group, groups, styles = require 'colorbuddy'.setup()
 local none = styles.NONE
 local bold = styles.bold
 local italic = styles.italic
 local underline = styles.underline
 local vim = vim
 
-vim.g.colors_name='default'
+vim.g.colors_name = 'default'
 
 local template = require("colors/colors")
 
@@ -21,12 +21,12 @@ Color.new('base6', template.base6)
 Color.new('base7', template.base7)
 Color.new('base8', template.base8)
 Color.new('base9', template.base9)
-Color.new('base10',template.base10)
-Color.new('base11',template.base11)
-Color.new('base12',template.base12)
-Color.new('base13',template.base13)
-Color.new('base14',template.base14)
-Color.new('base15',template.base15)
+Color.new('base10', template.base10)
+Color.new('base11', template.base11)
+Color.new('base12', template.base12)
+Color.new('base13', template.base13)
+Color.new('base14', template.base14)
+Color.new('base15', template.base15)
 
 -- HIGHLIGHTS
 -- Base Components
@@ -34,12 +34,11 @@ Group.new('Bold', colors.none, colors.none, bold)
 Group.new('Italic', colors.none, colors.none, italic)
 Group.new('Underline', colors.none, colors.none, underline)
 
-
 Group.new('Normal', colors.base5, colors.base0, none)
 Group.new('Cursor', colors.base0, colors.base8, none)
 Group.new('CursorLine', colors.none, colors.base1, none)
-Group.new('CursorLineNr', colors.base3, colors.base0, none)
-Group.new('CursorColumn', colors.none, colors.base1, none)
+Group.new('CursorLineNr', colors.base4, colors.none, none)
+Group.new('CursorColumn', colors.base3, colors.base0, none)
 Group.new('Conceal', colors.base15, colors.none, none)
 Group.new('Error', colors.base11, colors.none, none)
 Group.new('iCursor', colors.base0, colors.base9, none)
@@ -47,7 +46,7 @@ Group.new('Pmenu', colors.base5, colors.base2, none)
 Group.new('PmenuSbar', colors.base8, colors.base2, none)
 Group.new('PmenuSel', colors.base0, colors.base8, bold)
 Group.new('PmenuThumb', colors.base8, colors.base8, none)
-Group.new('LineNr', colors.base0, colors.none, none)
+Group.new('LineNr', colors.base2, colors.none, none)
 
 Group.new("MatchParen", colors.base9, colors.none)
 Group.new("NonText", colors.base2, colors.none)
@@ -56,7 +55,7 @@ Group.new("SpellBad", colors.base13, colors.none)
 Group.new("SpellCap", colors.base13, colors.none)
 Group.new("SpellLocal", colors.base5, colors.none)
 Group.new("SpellRare", colors.base6, colors.none)
-Group.new("Visual", colors.base6, colors.base2)
+Group.new("Visual", colors.none, colors.base2)
 Group.new("VisualNOS", colors.base2, colors.none)
 Group.new("healthError", colors.base11, colors.none)
 Group.new("healthSuccess", colors.base14, colors.none)
@@ -66,7 +65,7 @@ Group.new("Folded", colors.base3, colors.none)
 Group.new("FoldColumn", colors.base15, colors.none)
 Group.new("SignColumn", colors.base1, colors.none)
 Group.new("Directory", colors.base8, colors.none)
-Group.new("EndOfBuffer", colors.base0, colors.none)
+Group.new("EndOfBuffer", colors.base1, colors.none)
 Group.new("ErrorMsg", colors.base11, colors.none)
 Group.new("MoreMsg", colors.base9, colors.none)
 Group.new("Question", colors.base4, colors.none)
@@ -76,8 +75,8 @@ Group.new("StatusLineTerm", colors.base8, colors.none)
 Group.new("StatusLineTermNC", colors.base4, colors.none)
 Group.new("WarningMsg", colors.base13, colors.none)
 Group.new("WildMenu", colors.base15, colors.none)
-Group.new("IncSearch", colors.base6, colors.none)
-Group.new("Search", colors.base1, colors.none)
+Group.new("Search", colors.none, colors.base2)
+Group.new("IncSearch", colors.base1, colors.base11)
 Group.new("VertSplit", colors.base0, colors.none)
 
 -- Tabline
@@ -132,10 +131,38 @@ Group.new("Todo", colors.base13, colors.none)
 Group.new("Type", colors.base9, colors.none)
 Group.new("Typedef", colors.base10, colors.none)
 
-Group.new("NvimTreeNormal", colors.base5, colors.base1)
-Group.new("NvimTreeIndentMarker", colors.base5, colors.none)
-Group.new("NvimTreeFolderIcon", colors.base8, colors.none)
-Group.new("NvimTreeFolderName", colors.base6, colors.none, bold)
+Group.new("NvimTreeNormal", colors.base6, colors.base1)
+Group.new("NvimTreeIndentMarker", colors.base3, colors.none)
+Group.new("NvimTreeFolderIcon", colors.base14, colors.none)
+Group.new("NvimTreeFolderName", colors.base14, colors.none)
+Group.new("NvimTreeOpenedFolderName", colors.base14, colors.none, italic)
 Group.new("NvimTreeRootFolder", colors.base1, colors.none)
+
 -- Group.new("NvimTreeOpened", colors.base5, colors.base1)
 
+Group.new("FloatermBorder", colors.base8, colors.base0)
+
+Group.new("LspDiagnosticsSignError", colors.base13, colors.base0)
+Group.new("LspDiagnosticsSignWarning", colors.base9, colors.base0)
+Group.new("LspDiagnosticsSignInformation", colors.base10, colors.base0)
+Group.new("LspDiagnosticsSignHint", colors.base3, colors.base0)
+
+Group.new("LspDiagnosticsVirtualTextWarning", colors.base9, colors.base0)
+Group.new("LspDiagnosticsVirtualTextError", colors.base13, colors.base0)
+Group.new("LspDiagnosticsVirtualTextInformation", colors.base10, colors.base0)
+Group.new("LspDiagnosticsVirtualTextHint", colors.base3, colors.base0)
+
+Group.new("IndentBlanklineChar", colors.base2, colors.none)
+Group.new("IndentBlanklineContextChar", colors.base3, colors.none, bold)
+
+Group.new("GitSignsAdd", colors.base10, colors.none)
+Group.new("GitSignsAddNr", colors.base10, colors.none)
+Group.new("GitSignsAddLn", colors.base7, colors.base10)
+
+Group.new("GitSignsChange", colors.base11, colors.none)
+Group.new("GitSignsChangeNr", colors.base11, colors.none)
+Group.new("GitSignsChangeLn", colors.base7, colors.base11)
+
+Group.new("GitSignsDelete", colors.base9, colors.none)
+Group.new("GitSignsDeleteNr", colors.base9, colors.none)
+Group.new("GitSignsDeleteLn", colors.base7, colors.base9)

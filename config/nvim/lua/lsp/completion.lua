@@ -9,8 +9,9 @@ require'compe'.setup {
   resolve_timeout = 800;
   incomplete_delay = 400;
   max_abbr_width = 20;
-  max_kind_width = 10;
+  max_kind_width = 15;
   max_menu_width = 100;
+  
   documentation = {
     border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
     winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
@@ -21,16 +22,17 @@ require'compe'.setup {
   };
 
   source = {
-    path = true;
-    buffer = {kind = "﬘", true};
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    ultisnips = true;
-    luasnip = true;
-    treesitter = true;
+    path = {kind = "", menu = "x", true};
+    buffer = {kind = "﬘",menu = "", true};
+    calc = {kind = "",menu = "", true};
+    nvim_lsp = {menu = "", true};
+    ultisnips = {menu = "", true};
+    nvim_lua = {menu = "", false};
+    luasnip = {menu = "", true};
+    treesitter = {kind = "",menu = "", true};
   };
 }
+
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)

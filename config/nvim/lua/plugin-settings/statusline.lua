@@ -1,118 +1,113 @@
-local vim = vim
-local galaxyline = require('galaxyline')
+local colors = require('../colors/colors')
+local mode = require('../utils/statusline/mode')
+local lsp = require('../utils/statusline/lsp')
 
-
-local section = galaxyline.section
-
-local colors = require("../colors/colors")
-
-local mode_color = function()
-  local mode_colors = {
-    n = colors.base8,
-    i = colors.base11,
-    c = colors.base10,
-    V = colors.base10,
-    [''] = colors.base10,
-    v = colors.base10,
-    R = colors.base9,
-  }
-
-  local color = mode_colors[vim.fn.mode()]
-
-  if color == nil then
-    color = colors.red
-  end
-
-  return color
-end
-
-section.left[1] = {
-  ViMode = {
-    provider = function()
-      vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color())
-      return ' '
-    end,
-    separator = '',
-    highlight = {colors.base0, colors.base8},
-    separator_highlight = {colors.base4, colors.base0 },
-  }
+local components = {
+	left = {active = {}, inactive = {}},
+	mid = {active = {}, inactive = {}},
+	right = {active = {}, inactive = {}}
 }
 
+-- Vi Mode
+table.insert(components.left.active, {
+	provider = function()
+		return mode.print_mode()
+	end,
 
-section.left[2] = {
-    current_dir = {
-        provider = function()
-            local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-            return "   " .. dir_name .. "  "
-        end,
-        highlight = {colors.base5, colors.base2},
-        separator = "",
-        separator_highlight = {colors.base8, colors.base0}
-    }
+	hl = function()
+		local val = {}
+		val.name = mode.get_mode_highlight_name()
+		val.fg = 'base0'
+		val.bg = mode.get_mode_color()
+		return val
+	end,
+})
+
+-- LSP Indicator
+table.insert(components.left.active, {
+	provider = function()
+		return lsp.icon()
+	end,
+
+	hl = function()
+		local val = {}
+		val.bg = 'base0'
+		val.fg = 'base5'
+		return val
+	end,
+
+	right_sep = {
+		str = "|",
+		hl = {fg = 'base2'},
+	},
+
+	enabled = function()
+		return lsp.is_active()
+	end
+})
+
+-- Folder Name
+table.insert(components.left.active, {
+	provider = function()
+		return '  ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	end,
+	hl = function()
+		local val = {}
+		val.fg = 'base4'
+		return val
+	end,
+})
+
+-- Git Info
+table.insert(components.right.active, {
+	provider = 'git_branch',
+	hl = function()
+		local val = {}
+		val.fg = 'base4'
+		return val
+	end,
+})
+
+-- Line %
+table.insert(components.right.active, {
+	provider = function()
+		local curr_line = vim.fn.line('.')
+		local lines = vim.fn.line('$')
+
+		local percent = vim.fn.round(curr_line / lines * 100)
+
+		if percent < 10 then
+			return "      "
+		elseif curr_line == lines then
+			return "      "
+		else
+			return string.format('  %2d%%%%  ', percent)
+		end
+	end,
+	hl = function()
+		local val = {}
+		val.name = mode.get_mode_highlight_name()
+		val.fg = 'base0'
+		val.bg = mode.get_mode_color()
+		return val
+	end,
+})
+
+local properties = {
+	force_inactive = {
+		filetypes = {
+			'NvimTree',
+			'packer',
+		},
+		buftypes = {'terminal'},
+		bufnames = {}
+	}
 }
 
-section.right[1] = {
-  GitIcon = {
-    provider = function() return ' ' end,
-    condition = require('galaxyline.condition').check_git_workspace,
-    highlight = {colors.base4,colors.base0},
-  }
-}
-
-section.right[3] = {
-     line_percentage = {
-        provider = function()
-            local current_line = vim.fn.line(".")
-            local total_line = vim.fn.line("$")
-            local result, _ = math.modf((current_line / total_line) * 100)
-            -- return "   " .. result .. "%  "
-            return string.format("   %2d%%  ", result) 
-        end,
-    highlight = {colors.base5,colors.base2},
-    }
-}
-
-section.right[4] = {
-  ViMode = {
-    provider = function()
-      -- vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color())
-      return ' '
-    end,
-    separator = '',
-    highlight = {colors.base0, colors.base8},
-    separator_highlight = {colors.base4, colors.base0 },
-  }
-}
-
--- section.right[1] = {
---     ShowLspClient = {
---     provider = get_lsp_client,
---     condition = function()
---       local tbl = { ["dashboard"] = true, [" "] = true }
---       if tbl[vim.bo.filetype] then
---         return false
---       end
---       return true
---     end,
---     icon = "  ",
---     highlight = "StatusLineNC",
---   },
--- }
---
-section.short_line_left[1] = {
-  BufferType = {
-    provider = 'FileTypeName',
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.base2,colors.base0,}
-  }
-}
-
-section.short_line_right[1] = {
-  BufferIcon = {
-    provider= 'BufferIcon',
-    highlight = {colors.base2,colors.base0}
-  }
-}
-
-
+require('feline').setup({
+	default_bg = colors.base0,
+	default_fg = colors.base4,
+	colors = colors,
+	components = components,
+	properties = properties,
+})
