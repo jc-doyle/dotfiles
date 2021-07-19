@@ -2,7 +2,6 @@ local vim = vim
 
 vim.cmd("let bufferline = get(g:, 'bufferline', {})")
 
-vim.cmd("let bufferline = get(g:, 'bufferline', {})")
 vim.cmd("let bufferline.animation = v:true")
 vim.cmd("let bufferline.auto_hide = v:false")
 vim.cmd("let bufferline.closable = v:true")

@@ -1,23 +1,30 @@
 -- Colors (Injected)
+local util = require("colors.util")
+
 -- %%base16_template: neovim##default %%
 local template = {
-  base0 = "#F8F6F4",
-  base1 = "#F4F2EF",
-  base2 = "#E8E6E4",
-  base3 = "#CCCAC9",
-  base4 = "#908D8D",
-  base5 = "#5B5B5B",
-  base6 = "#3B3B3B",
-  base7 = "#1F1F1F",
-  base8 = "#4E81A6",
-  base9 = "#DD6783",
-  base10 = "#5EAE9B",
-  base11 = "#A367B3",
-  base12 = "#34806E",
-  base13 = "#CE365B",
-  base14 = "#384C7F",
-  base15 = "#912C93",
+  base0 = "#2E3647",
+  base1 = "#3A4458",
+  base2 = "#53607A",
+  base3 = "#7887A6",
+  base4 = "#D7E1F5",
+  base5 = "#EBF1FA",
+  base6 = "#9ADBFF",
+  base7 = "#FF6A8E",
+  base8 = "#8FFFBC",
+  base9 = "#E8FFA6",
+  base10 = "#FF92AC",
+  base11 = "#FDAFFF",
+  base12 = "#94F2FF",
+  base13 = "#B7E1FF",
+  base14 = "#9CABDF",
+  base15 = "#9CA6FF",
 }
+
 -- %%base16_template_end%%
+
+-- bg = util.from_hex(template.base0).dark(0.2)
+
+-- table.insert(template, bg)
 
 return template

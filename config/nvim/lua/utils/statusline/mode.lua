@@ -7,11 +7,13 @@ M.colors = {
 	r = 'base11',
 	c = 'base11',
 	t = 'base10',
+	s = 'base8',
 }
 
 local mode_icons = {
 	['n'] = '   ',
 	['i'] = '   ',
+	['s'] = '   ',
 	['v'] = '   ',
 	['r'] = '   ',
 	['c'] = '   ',

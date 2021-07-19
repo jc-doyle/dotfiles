@@ -9,7 +9,6 @@ function M.is_active()
 end
 
 function M.icon()
-	-- return " 歷 "
 	return "  "
 end
 

@@ -58,9 +58,65 @@ table.insert(components.left.active, {
 	end,
 })
 
+table.insert(components.mid.active, {
+	provider = lsp.diagnostic_info,
+	hl = function()
+		local val = {}
+		val.fg = 'base5'
+		return val
+	end,
+	enabled = function()
+		return lsp.is_active() and lsp.diagnostics_exist("Information")
+	end
+})
+
+table.insert(components.mid.active, {
+	provider = lsp.diagnostic_hints,
+	hl = function()
+		local val = {}
+		val.fg = 'base3'
+		return val
+	end,
+	enabled = function()
+		return lsp.is_active() and lsp.diagnostics_exist("Hint")
+	end
+})
+
+table.insert(components.mid.active, {
+	provider = lsp.diagnostic_warnings,
+	hl = function()
+		local val = {}
+		val.fg = 'base01'
+		return val
+	end,
+	enabled = function()
+		return lsp.is_active() and lsp.diagnostics_exist("Warning")
+	end
+})
+
+table.insert(components.mid.active, {
+	provider = lsp.diagnostic_errors,
+	hl = function()
+		local val = {}
+		val.fg = 'base9'
+		return val
+	end,
+	enabled = function()
+		return lsp.is_active() and lsp.diagnostics_exist("Error")
+	end
+})
+
 -- Git Info
 table.insert(components.right.active, {
-	provider = 'git_branch',
+	provider = function()
+		local gsd = vim.b.gitsigns_status_dict
+
+		if gsd and gsd.head and #gsd.head > 0 then
+			return gsd.head .. '  '
+		else
+			return ''
+		end
+	end,
 	hl = function()
 		local val = {}
 		val.fg = 'base4'
@@ -93,12 +149,25 @@ table.insert(components.right.active, {
 	end,
 })
 
+table.insert(components.left.inactive, {
+	provider = function()
+		return ''
+
+		--[[ local winlength = vim.fn.winwidth(0)
+		return string.rep("─", winlength) ]]
+	end,
+	hl = function()
+		local val = {}
+		val.fg = 'base2'
+		val.bg = 'base0'
+		val.style = 'underline'
+		return val
+	end,
+})
+
 local properties = {
 	force_inactive = {
-		filetypes = {
-			'NvimTree',
-			'packer',
-		},
+		filetypes = {'packer', 'NvimTree'},
 		buftypes = {'terminal'},
 		bufnames = {}
 	}

@@ -5,6 +5,10 @@ return packer.startup(function()
 	use "wbthomason/packer.nvim"
 	use "kyazdani42/nvim-web-devicons"
 	use "tjdevries/colorbuddy.nvim"
+	use "tpope/vim-fugitive"
+	use "hrsh7th/vim-vsnip"
+	use "rafamadriz/friendly-snippets"
+
 	use {
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -55,6 +59,10 @@ return packer.startup(function()
 			require("plugin-settings.treesitter")
 		end
 	}
+	use "nvim-treesitter/nvim-treesitter-textobjects"
+	use "nvim-treesitter/playground"
+	use "nvim-treesitter/nvim-treesitter-refactor"
+	use "windwp/nvim-ts-autotag"
 
 	use {
 		"b3nj5m1n/kommentary",
@@ -101,7 +109,7 @@ return packer.startup(function()
 	}
 
 	use {
-		"dstein64/nvim-scrollview",
+		"Xuyuanp/scrollbar.nvim",
 		config = function()
 			require("plugin-settings.scrollbar")
 		end
@@ -128,27 +136,6 @@ return packer.startup(function()
 		end
 	}
 
-	--         -- git stuff
-	--         use {
-	--             "lewis6991/gitsigns.nvim",
-	--             event = "BufRead",
-	--             config = function()
-	--                 require("gitsigns-nvim").config()
-	--             end
-	--         }
-
-	--         -- misc plugins
-
-	--         use {"andymass/vim-matchup", event = "CursorMoved"}
-
-	--         use {
-	--             "terrortylor/nvim-comment",
-	--             cmd = "CommentToggle",
-	--             config = function()
-	--                 require("nvim_comment").setup()
-	--             end
-	--         }
-
 	--         use {
 	--             "glepnir/dashboard-nvim",
 	--             cmd = {
@@ -163,7 +150,7 @@ return packer.startup(function()
 	--             end
 	--         }
 
-	--         use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
+	use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
 
 	--         -- load autosave only if its globally enabled
 	--         use {
@@ -176,7 +163,6 @@ return packer.startup(function()
 	--             end
 	--         }
 
-	--         -- smooth scroll
 	use {
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",

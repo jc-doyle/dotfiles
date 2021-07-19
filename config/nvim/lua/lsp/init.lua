@@ -17,8 +17,6 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
 
-	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
 	-- Mappings.
 	local opts = {noremap = true, silent = true}
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -96,28 +94,6 @@ local on_attach = function(client, bufnr)
 	end
 end
 
--- Configure lua language server for neovim development
-local lua_settings = {
-	Lua = {
-		runtime = {
-			-- LuaJIT in the case of Neovim
-			version = 'LuaJIT',
-			path = vim.split(package.path, ';'),
-		},
-		diagnostics = {
-			-- Get the language server to recognize the `vim` global
-			globals = {'vim'},
-		},
-		workspace = {
-			-- Make the server aware of Neovim runtime files
-			library = {
-				[vim.fn.expand('$VIMRUNTIME/lua')] = true,
-				[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-			},
-		},
-	}
-}
-
 -- config that activates keymaps and enables snippet support
 local function make_config()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -131,7 +107,7 @@ local function make_config()
 	}
 end
 
--- lsp-install
+-- Server Config
 local function setup_servers()
 	require 'lspinstall'.setup()
 
@@ -145,23 +121,33 @@ local function setup_servers()
 
 		-- language specific config
 		if server == "lua" then
-			config.settings = lua_settings
+			config.settings = require("lsp/servers/lua")
 		end
 		require 'lspconfig' [server].setup(config)
 	end
 end
 
+-- Setup Servers
 setup_servers()
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require 'lspinstall'.post_install_hook = function()
-	setup_servers()
+-- UI Settings
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics,
+	{
+		underline = true,
+		signs = false,
+		virtual_text = {prefix = "▩ ", spacing = 2},
+		update_in_insert = false
+	}
+)
 
-	-- reload installed servers
-	vim.cmd("bufdo e")
-
-	-- this triggers the FileType autocmd that starts the server
-end
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
+	{
+		-- Use a sharp border with `FloatBorder` highlights
+		border = "single"
+	}
+)
 
 vim.lsp.protocol.CompletionItemKind = {
 	" Text",
@@ -190,15 +176,3 @@ vim.lsp.protocol.CompletionItemKind = {
 	" Operator",
 	" TypeParameter",
 }
-
-local signs = {
-	Error = " ",
-	Warning = " ",
-	Hint = " ",
-	Information = " "
-}
-
-for type, icon in pairs(signs) do
-	local hl = "LspDiagnosticsSign" .. type
-	vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = ""})
-end

@@ -1,6 +1,16 @@
-local vim = vim
+vim.g.scrollbar_shape = {head = ' ', body = ' ', tail = ' '}
+vim.g.scrollbar_highlight = {
+	head = 'Scrollbar',
+	body = 'Scrollbar',
+	tail = 'Scrollbar'
+}
+vim.g.scrollbar_right_offset = 0
 
-vim.g.scrollview_excluded_filetypes = {'NvimTree'}
-vim.g.scrollview_current_only = 1
-vim.g.scrollview_column = 1
-vim.g.scrollview_winblend = 20
+vim.cmd([[
+  augroup ScrollbarInit
+  autocmd!
+  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+  augroup end
+]])
