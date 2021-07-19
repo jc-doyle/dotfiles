@@ -2,10 +2,13 @@
 map gc cd ~/university/compsci
 map gs cd ~/university/stats
 map gm cd ~/university/maths
+
 map gT cd ~/.local/share/Trash/
+map gl cd ~/.local/share/
 
 map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config
+map gN cd ~/.config/nvim/lua/
 
 # General Settings
 set icons
@@ -34,7 +37,6 @@ cmd chmod ${{
       chmod $ans $file
     done
 }}
-
 
 # Open
 cmd open ${{

@@ -7,25 +7,25 @@ URxvt*font:                     xft:Iosevka:style=regular:pixelsize=14
 URxvt.clipboard.autocopy:       true
 
 ! %%base16_template: xresources##default %%
-! Base16 Light
+! Base16 Dark
 ! Scheme: Jonty Doyle
 
-#define base00 #F8F6F4
-#define base01 #F4F2EF
-#define base02 #E8E6E4
-#define base03 #CCCAC9
-#define base04 #908D8D
-#define base05 #5B5B5B
-#define base06 #3B3B3B
-#define base07 #1F1F1F
-#define base08 #4E81A6
-#define base09 #DD6783
-#define base0A #5EAE9B
-#define base0B #A367B3
-#define base0C #34806E
-#define base0D #CE365B
-#define base0E #384C7F
-#define base0F #912C93
+#define base00 #2E3647
+#define base01 #3A4458
+#define base02 #53607A
+#define base03 #7887A6
+#define base04 #D7E1F5
+#define base05 #EBF1FA
+#define base06 #9ADBFF
+#define base07 #FF6A8E
+#define base08 #8FFFBC
+#define base09 #E8FFA6
+#define base0A #FF92AC
+#define base0B #FDAFFF
+#define base0C #94F2FF
+#define base0D #B7E1FF
+#define base0E #9CABDF
+#define base0F #9CA6FF
 
 *foreground:   base05
 #ifdef background_opacity

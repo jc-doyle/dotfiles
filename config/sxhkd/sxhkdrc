@@ -7,10 +7,10 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	pactl set-sink-volume 0 -5%
 
-super equal
-	pactl set-sink-volume 0 +5% 
+# super equal
+# 	pactl set-sink-volume 0 +5% 
 
-super minus pactl set-sink-volume 0 -5%
+# super minus pactl set-sink-volume 0 -5%
 
 XF86AudioMute
 	pactl set-sink-mute 0 toggle	
@@ -51,6 +51,10 @@ super + Escape
 # Screen shot
 super + {_,shift} + p
   gscreenshot {_,-sn}
+
+# Color Picker
+super + shift + c
+  xcolor -s
 
 # calendar
 super + c

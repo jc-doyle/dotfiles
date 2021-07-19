@@ -4,12 +4,12 @@
 ; %%base16_template: polybar##default %%
 [colors]
 
-background-dark = #CCCAC9
-background-light = #E8E6E4
-foreground-dark = #3B3B3B
-foreground-light = #908D8D
-border = #CCCAC9
-highlight = #384C7F
+background-dark = #7887A6
+background-light = #53607A
+foreground-dark = #9ADBFF
+foreground-light = #D7E1F5
+border = #7887A6
+highlight = #9CABDF
 
 ; %%base16_template_end%%
 ;--------------------------------------------------------------------

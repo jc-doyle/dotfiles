@@ -1,15 +1,15 @@
 // %%base16_template: rofi##mine %%
 /**
- * Base16 Light Theme 
+ * Base16 Dark Theme 
  *
  * Author
  *  Scheme: Jonty Doyle
  */
 * {
-    accent: #908D8D;
-    background: #F8F6F4;
-    foreground: #1F1F1F;
-    border-color: #E8E6E4;
+    accent: #D7E1F5;
+    background: #2E3647;
+    foreground: #FF6A8E;
+    border-color: #53607A;
 
 
     active-background: @accent;
