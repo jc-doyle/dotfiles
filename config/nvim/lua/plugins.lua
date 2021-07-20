@@ -7,7 +7,11 @@ return packer.startup(function()
 	use "tjdevries/colorbuddy.nvim"
 	use "tpope/vim-fugitive"
 	use "hrsh7th/vim-vsnip"
+	use "tpope/vim-surround"
 	use "rafamadriz/friendly-snippets"
+
+	use "nvim-lua/plenary.nvim"
+	use "nvim-lua/popup.nvim"
 
 	use {
 		"lewis6991/gitsigns.nvim",
@@ -25,11 +29,17 @@ return packer.startup(function()
 
 	use {
 		"norcalli/nvim-colorizer.lua",
-		event = "BufRead",
 		config = function()
 			require("colorizer").setup()
-			vim.cmd("ColorizerReloadAllBuffers")
 		end
+	}
+
+	use {
+		"akinsho/nvim-toggleterm.lua",
+		event = "BufWinEnter",
+		config = function()
+			require("plugin-settings.terminal")
+		end,
 	}
 
 	use {
@@ -124,31 +134,22 @@ return packer.startup(function()
 
 	use {
 		"nvim-telescope/telescope.nvim",
-		requires = {
-			{"nvim-lua/popup.nvim"},
-			{"nvim-lua/plenary.nvim"},
+
+		--[[ requires = {
 			{"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
 			{"nvim-telescope/telescope-media-files.nvim"}
-		},
-		cmd = "Telescope",
+		}, ]]
 		config = function()
-			require("telescope-nvim").config()
+			require("plugin-settings.telescope")
 		end
 	}
 
-	--         use {
-	--             "glepnir/dashboard-nvim",
-	--             cmd = {
-	--                 "Dashboard",
-	--                 "DashboardNewFile",
-	--                 "DashboardJumpMarks",
-	--                 "SessionLoad",
-	--                 "SessionSave"
-	--             },
-	--             setup = function()
-	--                 require("dashboard").config()
-	--             end
-	--         }
+	use {
+		"glepnir/dashboard-nvim",
+		setup = function()
+			require("plugin-settings.dashboard")
+		end
+	}
 
 	use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
 

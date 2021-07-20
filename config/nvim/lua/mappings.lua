@@ -22,7 +22,8 @@ map("n", "<A-j>", "<cmd>wincmd j<CR>")
 map("n", "<A-k>", "<cmd>wincmd k<CR>")
 map("n", "<A-l>", "<cmd>wincmd l<CR>")
 map("n", "<A-h>", "<cmd>wincmd h<CR>")
-map("n", "<A-n>", ":vsp<CR>")
+map("n", "<A-v>", ":vsp<CR>")
+map("n", "<A-n>", ":sp<CR>")
 
 -- Saving/Quitting
 map("n", "<C-s>", ":w<CR>")
@@ -45,7 +46,6 @@ vim.cmd 'smap <expr> <S-Tab> vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<
 vim.cmd 'imap <expr> <S-Tab> vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"'
 
 local wk = require("which-key")
-vim.cmd([[nnoremap <Leader>ah :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>]])
 
 -- Which Key
 wk.register(
@@ -53,17 +53,31 @@ wk.register(
 		r = {"<cmd>FloatermNew --height=0.9 --width=0.9 lf<cr>", "lf"},
 		e = {"<cmd>lua require('utils.tree').toggle()<cr>", "tree"},
 		q = {"<cmd>:bd!<cr>", "close buffer"},
-		c = {"", "clear search"},
+		c = {[[<cmd>let @/ = ""<cr>]], "clear search"},
 		o = {"<cmd>SymbolsOutline<cr>", "outline"},
 		a = {
 			name = "+actions",
-			h = {"syntax highlight"},
 			s = {"<cmd>so<cr>", "source"},
+			h = {
+				"<cmd>TSHighlightCapturesUnderCursor<cr>",
+				"treesitter highlight"
+			},
+		},
+		s = {
+			name = "+settings",
+			s = {"<cmd>setlocal spell!<cr>", "spell"},
+			h = {"<cmd>set conceallevel=2<cr>", "conceal"},
+			c = {"<cmd>set conceallevel=1<cr>", "no-conceal"},
+			w = {"<cmd>set wrap!<cr>", "wrap"},
+		},
+		l = {
+			name = "+lsp",
+			o = {"<cmd><cr>", "playground"},
+			h = {"<cmd>TSHighlightCapturesUnderCursor<cr>", "highlight"},
 		},
 		t = {
 			name = "+treesitter",
 			o = {"<cmd>TSPlaygroundToggle<cr>", "playground"},
-			h = {"<cmd>TSHighlightCapturesUnderCursor<cr>", "highlight"},
 		},
 		p = {
 			name = "+packer",
@@ -76,11 +90,37 @@ wk.register(
 			name = "+git",
 			s = {"<cmd>Gitsigns toggle_signs<cr>", "signs"},
 			C = {"<cmd>Git commit<cr>", "commit"},
-			a = {"<cmd>Git add .<cr>", "add file?"},
-			A = {"<cmd>Git add *<cr>", "add all"},
+			a = {"<cmd>Git add %<cr>", "add current"},
+			A = {"<cmd>Git add .<cr>", "add all"},
 			S = {"<cmd>Git status<cr>", "status"},
+			P = {"<cmd>Git push<cr>", "push"},
+			L = {"<cmd>Git push<cr>", "pull"},
 			b = {"<cmd>Gitsigns blame_line<cr>", "line blame"},
 		},
+		z = {
+			name = "+files",
+			i = {"<cmd>e ~/other/dotfiles/config/nvim/init.lua<cr>", "vimrc"},
+			h = {
+				"<cmd>e ~/other/dotfiles/config/nvim/lua/highlight.lua<cr>",
+				"highlight"
+			},
+			p = {
+				"<cmd>e ~/other/dotfiles/config/nvim/lua/plugins.lua<cr>",
+				"plugins"
+			},
+			m = {
+				"<cmd>e ~/other/dotfiles/config/nvim/lua/mappings.lua<cr>",
+				"mappings"
+			},
+			l = {"<cmd>e ~/other/dotfiles/config/lf/lfrc<cr>", "lfrc"},
+			b = {"<cmd>e ~/other/dotfiles/config/bspwm/bspwmrc<cr>", "bspwmrc"},
+			z = {"<cmd>e ~/other/dotfiles/config/zsh/.zshrc<cr>", "zshrc"},
+			P = {"<cmd>e ~/other/dotfiles/config/polybar/config<cr>", "polybar"},
+			["="] = {
+				"<cmd>e ~/other/dotfiles/config/picom/picom.conf<cr>",
+				"picom"
+			},
+		}
 	},
 	{prefix = "<leader>"}
 )

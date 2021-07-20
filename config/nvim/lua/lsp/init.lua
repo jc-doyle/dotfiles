@@ -1,14 +1,3 @@
-local border = {
-	{"🭽", "FloatBorder"},
-	{"▔", "FloatBorder"},
-	{"🭾", "FloatBorder"},
-	{"▕", "FloatBorder"},
-	{"🭿", "FloatBorder"},
-	{"▁", "FloatBorder"},
-	{"🭼", "FloatBorder"},
-	{"▏", "FloatBorder"},
-}
-
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -21,6 +10,7 @@ local on_attach = function(client, bufnr)
 	local opts = {noremap = true, silent = true}
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
 	buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 	buf_set_keymap(
@@ -29,24 +19,7 @@ local on_attach = function(client, bufnr)
 		'<cmd>lua vim.lsp.buf.signature_help()<CR>',
 		opts
 	)
-	buf_set_keymap(
-		'n',
-		'<space>wa',
-		'<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-		opts
-	)
-	buf_set_keymap(
-		'n',
-		'<space>wr',
-		'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-		opts
-	)
-	buf_set_keymap(
-		'n',
-		'<space>D',
-		'<cmd>lua vim.lsp.buf.type_definition()<CR>',
-		opts
-	)
+	buf_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	buf_set_keymap('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 	buf_set_keymap(
@@ -143,10 +116,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 	vim.lsp.handlers.signature_help,
-	{
-		-- Use a sharp border with `FloatBorder` highlights
-		border = "single"
-	}
+	{border = "single"}
+)
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{border = "single"}
 )
 
 vim.lsp.protocol.CompletionItemKind = {

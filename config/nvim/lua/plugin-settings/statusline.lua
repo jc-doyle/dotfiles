@@ -151,16 +151,63 @@ table.insert(components.right.active, {
 
 table.insert(components.left.inactive, {
 	provider = function()
-		return ''
+		return "      "
+	end,
 
-		--[[ local winlength = vim.fn.winwidth(0)
-		return string.rep("─", winlength) ]]
+	hl = function()
+		local val = {}
+		val.fg = 'base0'
+		val.bg = 'base1'
+		return val
+	end,
+})
+
+table.insert(components.left.inactive, {
+	provider = function()
+		return ""
+	end,
+
+	hl = function()
+		local val = {}
+		val.fg = 'base1'
+		val.bg = 'base0'
+		val.style = 'strikethrough'
+		return val
+	end,
+})
+
+table.insert(components.mid.inactive, {
+	provider = function()
+		return ""
 	end,
 	hl = function()
 		local val = {}
-		val.fg = 'base2'
+		val.fg = 'base1'
 		val.bg = 'base0'
-		val.style = 'underline'
+		val.style = 'strikethrough'
+		return val
+	end,
+})
+
+table.insert(components.right.inactive, {
+	provider = function()
+		local curr_line = vim.fn.line('.')
+		local lines = vim.fn.line('$')
+
+		local percent = vim.fn.round(curr_line / lines * 100)
+
+		if percent < 10 then
+			return "      "
+		elseif percent > 99 then
+			return "      "
+		else
+			return string.format('  %2d%%%%  ', percent)
+		end
+	end,
+	hl = function()
+		local val = {}
+		val.fg = 'base0'
+		val.bg = 'base1'
 		return val
 	end,
 })
