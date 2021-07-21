@@ -8,22 +8,23 @@ return packer.startup(function()
 	use "tpope/vim-fugitive"
 	use "hrsh7th/vim-vsnip"
 	use "tpope/vim-surround"
+	use "b3nj5m1n/kommentary"
 	use "rafamadriz/friendly-snippets"
-
+	use "kabouzeid/nvim-lspinstall"
 	use "nvim-lua/plenary.nvim"
 	use "nvim-lua/popup.nvim"
 
 	use {
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("plugin-settings/gitsigns")
+			require("plugin-settings.gitsigns")
 		end
 	}
 
 	use {
 		"Famiu/feline.nvim",
 		config = function()
-			require("plugin-settings/statusline")
+			require("plugin-settings.statusline")
 		end
 	}
 
@@ -72,11 +73,6 @@ return packer.startup(function()
 	use "nvim-treesitter/nvim-treesitter-textobjects"
 	use "nvim-treesitter/playground"
 	use "nvim-treesitter/nvim-treesitter-refactor"
-	use "windwp/nvim-ts-autotag"
-
-	use {
-		"b3nj5m1n/kommentary",
-	}
 
 	use {
 		"neovim/nvim-lspconfig",
@@ -86,7 +82,7 @@ return packer.startup(function()
 	}
 
 	use {
-		"kabouzeid/nvim-lspinstall",
+		"kosayoda/nvim-lightbulb",
 	}
 
 	use {
@@ -128,41 +124,24 @@ return packer.startup(function()
 	use {
 		"kyazdani42/nvim-tree.lua",
 		config = function()
-			require("plugin-settings/filetree")
+			require("plugin-settings.filetree")
 		end
 	}
 
 	use {
 		"nvim-telescope/telescope.nvim",
-
-		--[[ requires = {
-			{"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
-			{"nvim-telescope/telescope-media-files.nvim"}
-		}, ]]
 		config = function()
 			require("plugin-settings.telescope")
-		end
+		end,
+		requires = "sudormrfbin/cheatsheet.nvim"
 	}
 
 	use {
-		"glepnir/dashboard-nvim",
+		"mhinz/vim-startify",
 		setup = function()
 			require("plugin-settings.dashboard")
 		end
 	}
-
-	use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
-
-	--         -- load autosave only if its globally enabled
-	--         use {
-	--             "Pocco81/AutoSave.nvim",
-	--             config = function()
-	--                 require("zenmode").autoSave()
-	--             end,
-	--             cond = function()
-	--                 return vim.g.auto_save == true
-	--             end
-	--         }
 
 	use {
 		"karb94/neoscroll.nvim",
@@ -171,16 +150,6 @@ return packer.startup(function()
 			require("neoscroll").setup()
 		end
 	}
-
-	--         use {
-	--             "Pocco81/TrueZen.nvim",
-	--             cmd = {"TZAtaraxis", "TZMinimalist", "TZFocus"},
-	--             config = function()
-	--                 require("zenmode").config()
-	--             end
-	--         }
-
-	--         --   use "alvan/vim-closetag" -- for html autoclosing tag
 
 	use {
 		"mhartington/formatter.nvim",
@@ -197,4 +166,6 @@ return packer.startup(function()
 		end,
 		event = "BufRead",
 	}
+
+	use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
 end)

@@ -53,5 +53,5 @@ g.nvim_tree_icons = {
 }
 
 vim.cmd([[
-  autocmd BufEnter,FileType NvimTree setlocal statusline=%#NvimTreeStatuslineNC#
+  autocmd BufEnter,FileType NvimTree setlocal statusline=%#Normal#
 ]])

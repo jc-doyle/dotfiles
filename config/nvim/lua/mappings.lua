@@ -55,13 +55,14 @@ wk.register(
 		q = {"<cmd>:bd!<cr>", "close buffer"},
 		c = {[[<cmd>let @/ = ""<cr>]], "clear search"},
 		o = {"<cmd>SymbolsOutline<cr>", "outline"},
+		h = {"<cmd>Telescope help_tags<cr>", "help"},
+		f = {"<cmd>Telescope find_files<cr>", "find files"},
+		C = {"<cmd>ColorizerToggle<cr>", "colorizer"},
+		["?"] = {"cheatsheet"},
 		a = {
 			name = "+actions",
 			s = {"<cmd>so<cr>", "source"},
-			h = {
-				"<cmd>TSHighlightCapturesUnderCursor<cr>",
-				"treesitter highlight"
-			},
+			h = {"<cmd>TSHighlightCapturesUnderCursor<cr>", "highlight"},
 		},
 		s = {
 			name = "+settings",
@@ -72,18 +73,38 @@ wk.register(
 		},
 		l = {
 			name = "+lsp",
-			o = {"<cmd><cr>", "playground"},
-			h = {"<cmd>TSHighlightCapturesUnderCursor<cr>", "highlight"},
+			i = {
+				"<cmd>lua require'lsp.peek'.PeekImplementation()<cr>",
+				"peek implementation"
+			},
+			d = {
+				"<cmd>lua require'lsp.peek'.PeekDefinition()<cr>",
+				"peek definition"
+			},
+			t = {
+				"<cmd>lua require'lsp.peek'.PeekTypeDefinition()<cr>",
+				"peek type definition"
+			},
+			c = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "code action"},
 		},
-		t = {
+		T = {
 			name = "+treesitter",
 			o = {"<cmd>TSPlaygroundToggle<cr>", "playground"},
+		},
+		t = {
+			name = "+telescope",
+			c = {"<cmd>Telescope command_history<cr>", "command history"},
+			s = {"<cmd>Telescope search_history<cr>", "searches"},
+			o = {"<cmd>Telescope oldfiles<cr>", "old files"},
+			r = {"<cmd>Telescope registers<cr>", "registers"},
+			O = {"<cmd>Telescope vim_options<cr>", "vim options"},
 		},
 		p = {
 			name = "+packer",
 			c = {"<cmd>so | PackerCompile<cr>", "compile"},
 			i = {"<cmd>so | PackerInstall<cr>", "install"},
 			C = {"<cmd>so | PackerClean<cr>", "clean"},
+			u = {"<cmd>so | PackerUpdate<cr>", "clean"},
 			s = {"<cmd>PackerStatus<cr>", "status"},
 		},
 		g = {
@@ -94,8 +115,10 @@ wk.register(
 			A = {"<cmd>Git add .<cr>", "add all"},
 			S = {"<cmd>Git status<cr>", "status"},
 			P = {"<cmd>Git push<cr>", "push"},
-			L = {"<cmd>Git push<cr>", "pull"},
 			b = {"<cmd>Gitsigns blame_line<cr>", "line blame"},
+			B = {"<cmd>Gitsigns toggle_current_line_blame<cr>", "toggle blame"},
+			l = {"<cmd>Telescope git_bcommits<cr>", "list bcommits"},
+			L = {"<cmd>Telescope git_commits<cr>", "list commits"},
 		},
 		z = {
 			name = "+files",
@@ -109,6 +132,10 @@ wk.register(
 				"plugins"
 			},
 			m = {
+				"<cmd>e ~/other/dotfiles/config/nvim/lua/mappings.lua<cr>",
+				"mappings"
+			},
+			w = {
 				"<cmd>e ~/other/dotfiles/config/nvim/lua/mappings.lua<cr>",
 				"mappings"
 			},

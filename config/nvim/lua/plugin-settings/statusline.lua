@@ -198,7 +198,7 @@ table.insert(components.right.inactive, {
 
 		if percent < 10 then
 			return "      "
-		elseif percent > 99 then
+		elseif percent > 95 then
 			return "      "
 		else
 			return string.format('  %2d%%%%  ', percent)
@@ -227,3 +227,7 @@ require('feline').setup({
 	components = components,
 	properties = properties,
 })
+
+vim.cmd([[
+  autocmd BufEnter,FileType NvimTree,Outline setlocal statusline=%#Normal#
+]])

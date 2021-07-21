@@ -65,7 +65,7 @@ Group.new("Folded", colors.base2, colors.none)
 Group.new("FoldColumn", colors.base15, colors.none)
 Group.new("SignColumn", colors.base2, colors.none)
 Group.new("Directory", colors.base6, colors.none)
-Group.new("EndOfBuffer", colors.base1, colors.none)
+Group.new("EndOfBuffer", colors.base0, colors.none)
 Group.new("MsgArea", colors.base3:light(0.1), colors.base0)
 Group.new("ErrorMsg", colors.base10, colors.none, italic)
 Group.new("WarningMsg", colors.base13, colors.none)
@@ -79,7 +79,7 @@ Group.new("StatusLineTermNC", colors.base3, colors.none)
 Group.new("WildMenu", colors.base15, colors.none)
 Group.new("Search", colors.none, colors.base2)
 Group.new("IncSearch", colors.base2, colors.base11)
-Group.new("VertSplit", colors.base2, colors.none)
+Group.new("VertSplit", colors.base1, colors.none)
 Group.new("FloatBorder", colors.base3, colors.base0)
 
 -- Standard Language Groups
@@ -236,6 +236,29 @@ Group.new("LspDiagnosticsUnderlineError", colors.none, colors.none, underline)
 Group.new("LspDiagnosticsUnderlineWarning", colors.none, colors.none, underline)
 Group.new("LspDiagnosticsUnderlineInformation", colors.none, colors.none)
 Group.new("LspDiagnosticsUnderlineHint", colors.none, colors.none)
+
+Group.new("LightBulbVirtualText", colors.base1, colors.none)
+Group.new("FocusedSymbol", colors.base6, colors.none, bold)
+
+Group.new("WhichKey", colors.base11, colors.none, bold)
+Group.new("WhichKeySeperator", colors.base2, colors.none, none)
+Group.new("WhichKeyGroup", colors.base6, colors.none, none)
+Group.new("WhichKeyDesc", colors.base4, colors.none, none)
+
+Group.new("TelescopeSelection", colors.base6, colors.base0:light(0.02), bold)
+Group.new("TelescopeSelectionCarat", colors.base7, colors.none)
+Group.new("TelescopeMultiSelection", colors.base11, colors.none)
+Group.new("TelescopeNormal", colors.base4, colors.none)
+
+Group.new("TelescopeBorder", colors.base4, colors.none)
+Group.new("TelescopePromptBorder", colors.base10, colors.none)
+Group.new("TelescopeResultsBorder", colors.base3, colors.none)
+Group.new("TelescopePreviewBorder", colors.base6, colors.none)
+
+Group.new("TelescopeMatching", colors.base6, colors.none, bold)
+Group.new("TelescopePromptPrefix", colors.base10, colors.none)
+
+Group.new("StartifyHeader", colors.base6, colors.none)
 
 -- Language Specific
 -- Markdown
