@@ -75,12 +75,12 @@ colors:
   # Default colors
   primary:
     background: '0x2E3647'
-    foreground: '0x9ADBFF'
+    foreground: '0xEBF1FA'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '0x2E3647'
-    cursor: '0xEBF1FA'
+    cursor: '0xD7E1F5'
 
   # Normal colors
   normal:
@@ -111,3 +111,4 @@ draw_bold_text_with_bright_colors: false
 cursor:
   style:
     shape: Beam
+  vi_mode_style: Block

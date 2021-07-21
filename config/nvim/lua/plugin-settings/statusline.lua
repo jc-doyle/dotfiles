@@ -23,29 +23,6 @@ table.insert(components.left.active, {
 	end,
 })
 
--- LSP Indicator
-table.insert(components.left.active, {
-	provider = function()
-		return lsp.icon()
-	end,
-
-	hl = function()
-		local val = {}
-		val.bg = 'base0'
-		val.fg = 'base5'
-		return val
-	end,
-
-	right_sep = {
-		str = "|",
-		hl = {fg = 'base2'},
-	},
-
-	enabled = function()
-		return lsp.is_active()
-	end
-})
-
 -- Folder Name
 table.insert(components.left.active, {
 	provider = function()
@@ -53,7 +30,7 @@ table.insert(components.left.active, {
 	end,
 	hl = function()
 		local val = {}
-		val.fg = 'base4'
+		val.fg = 'base3'
 		return val
 	end,
 })
@@ -114,12 +91,12 @@ table.insert(components.right.active, {
 		if gsd and gsd.head and #gsd.head > 0 then
 			return gsd.head .. '  '
 		else
-			return ''
+			return string.lower(require('feline.providers.file').file_type() .. ' ')
 		end
 	end,
 	hl = function()
 		local val = {}
-		val.fg = 'base4'
+		val.fg = 'base3'
 		return val
 	end,
 })

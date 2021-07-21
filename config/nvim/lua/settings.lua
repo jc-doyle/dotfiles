@@ -2,6 +2,7 @@ local opt = vim.opt
 
 opt.termguicolors = true
 opt.hidden = true
+opt.wrap = false
 opt.ignorecase = true
 opt.cursorline = true
 opt.tabstop = 2
@@ -20,7 +21,7 @@ opt.shiftwidth = 2
 opt.number = true
 opt.numberwidth = 2
 opt.scrolloff = 5
-opt.background = "light"
+opt.background = "dark"
 opt.relativenumber = true
 opt.showmode = false
 opt.completeopt = "menuone,noselect,preview,noinsert"
