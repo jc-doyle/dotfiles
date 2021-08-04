@@ -13,6 +13,7 @@ map("n", "<A-,>", ":BufferMoveNext<CR>")
 map("n", "<A-.>", "BufferMovePrevious<CR>")
 map("n", "<C-q>", ":BufferClose<CR>")
 
+-- Window Movement
 map("n", "<S-A-j>", "<cmd>resize +1<CR>")
 map("n", "<S-A-k>", "<cmd>resize -1<CR>")
 map("n", "<S-A-l>", "<cmd>vertical resize +1<CR>")
@@ -22,8 +23,21 @@ map("n", "<A-j>", "<cmd>wincmd j<CR>")
 map("n", "<A-k>", "<cmd>wincmd k<CR>")
 map("n", "<A-l>", "<cmd>wincmd l<CR>")
 map("n", "<A-h>", "<cmd>wincmd h<CR>")
+
+map("n", "<C-A-j>", "<cmd>resize 25<CR>")
+map("n", "<C-A-k>", "<cmd>resize 10<CR>")
+
+map("t", "<A-k>", "<cmd>wincmd k<CR>")
+map("t", "<C-A-k>", "<cmd>resize 25<CR>")
+map("t", "<C-A-j>", "<cmd>resize 10<CR>")
+
 map("n", "<A-v>", ":vsp<CR>")
 map("n", "<A-n>", ":sp<CR>")
+
+-- Terminal
+map("n", "<C-Enter>", "<cmd>lua require 'utils.terminal'.toggle()<CR>")
+map("t", "<C-Enter>", "<cmd>lua require 'utils.terminal'.toggle()<CR>")
+map("t", "<C-n>", "<cmd>stopinsert<CR>")
 
 -- Saving/Quitting
 map("n", "<C-s>", ":w<CR>")
@@ -51,13 +65,14 @@ local wk = require("which-key")
 wk.register(
 	{
 		r = {"<cmd>FloatermNew --height=0.9 --width=0.9 lf<cr>", "lf"},
-		e = {"<cmd>lua require('utils.tree').toggle()<cr>", "tree"},
+		e = {"<cmd>lua require'utils.tree'.toggle()<cr>", "tree"},
 		q = {"<cmd>:bd!<cr>", "close buffer"},
 		c = {[[<cmd>let @/ = ""<cr>]], "clear search"},
 		o = {"<cmd>SymbolsOutline<cr>", "outline"},
 		h = {"<cmd>Telescope help_tags<cr>", "help"},
 		f = {"<cmd>Telescope find_files<cr>", "find files"},
 		C = {"<cmd>ColorizerToggle<cr>", "colorizer"},
+		F = {"<cmd>FormatWrite<cr>", "format"},
 		["?"] = {"cheatsheet"},
 		a = {
 			name = "+actions",
@@ -143,6 +158,7 @@ wk.register(
 			b = {"<cmd>e ~/other/dotfiles/config/bspwm/bspwmrc<cr>", "bspwmrc"},
 			z = {"<cmd>e ~/other/dotfiles/config/zsh/.zshrc<cr>", "zshrc"},
 			P = {"<cmd>e ~/other/dotfiles/config/polybar/config<cr>", "polybar"},
+			s = {"<cmd>e ~/other/dotfiles/config/sxhkd/sxhkdrc<cr>", "sxhkd"},
 			["="] = {
 				"<cmd>e ~/other/dotfiles/config/picom/picom.conf<cr>",
 				"picom"

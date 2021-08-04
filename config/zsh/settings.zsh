@@ -8,14 +8,21 @@ HISTFILE=~/.cache/zsh/history
 setopt INC_APPEND_HISTORY
 # General
 setopt autocd		# Automatically cd into typed directory.
+setopt interactive_comments
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
 # Prompt Theme
 fpath+="$HOME/.config/zsh/plugins/pure"
 autoload -U promptinit; promptinit
 prompt pure
-setopt interactive_comments
-PROMPT='%(?.%F{magenta}⊳.%F{red}⊳)%f '
+PURE_PROMPT_SYMBOL='⊳'
+PURE_PROMPT_VICMD_SYMBOL='⊲'
+zstyle :prompt:pure:path color blue
+zstyle :prompt:pure:virtualenv color '#3A4458'
+zstyle :prompt:pure:git:branch color '#7887A6'
+
+
+#PROMPT='%(?.%F{magenta}⊳.%F{red}⊳)%f '
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -34,11 +41,8 @@ bindkey -v '^?' backward-delete-char
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
+bindkey '^K' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-# Pidswallow
-[ -n "$DISPLAY" ]  && command -v xdo >/dev/null 2>&1 && xdo id > /tmp/term-wid-"$$"
-trap "( rm -f /tmp/term-wid-"$$" )" EXIT HUP
 
 # ZLE hooks for prompt's vi mode status
 # function zle-line-init zle-keymap-select {
@@ -61,7 +65,7 @@ export LESS_TERMCAP_mb=$'\e[1;34m'
 export LESS_TERMCAP_md=$'\e[3;34m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[1;35m'
+export LESS_TERMCAP_so=$'\e[0;95m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;32m'
 

@@ -1,7 +1,7 @@
-M = {}
-
 local bufferline = require('bufferline.state')
 local tree = require('nvim-tree.view')
+
+local M = {}
 
 function M.toggle()
 	if tree.win_open() then

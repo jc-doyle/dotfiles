@@ -43,15 +43,5 @@ require('formatter').setup({
 	}
 })
 
-vim.api.nvim_exec(
-	[[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.go FormatWrite
-augroup END
-]],
-	true
-)
-
 require('formatter.util').print = function()
 end

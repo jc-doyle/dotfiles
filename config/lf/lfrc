@@ -1,10 +1,15 @@
 # Movement
 map gc cd ~/university/compsci
 map gs cd ~/university/stats
-map gm cd ~/university/maths
+map gM cd ~/university/maths
+map gmr cd ~/university/maths/ra
+map gmd cd ~/university/maths/de
+map gr cd ~/university/research
 
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
+
+map gd cd ~/downloads
 
 map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config
@@ -43,7 +48,7 @@ cmd open ${{
     case $(xdg-mime query filetype $f) in
         text/*) nvim $fx;;
         inode/x-empty) nvim $fx;;
-        application/pdf) devour tabbed -c zathura $fx -e >/dev/null 2>&1 &;;
+        application/pdf) devour zathura $fx >/dev/null 2>&1 &;;
         image/*) devour sxiv -b $fx;;
         video/*) devour mpv $fx;;
         *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;

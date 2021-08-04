@@ -42,7 +42,7 @@ super + backslash
 
 # program launcher
 super + Shift_R 
-	rofi -show run -display-run ""
+	rofi -show run -display-run "run"
 
 # make sxhkd reload its configuration files:
 super + Escape

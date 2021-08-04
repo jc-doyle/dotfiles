@@ -2,15 +2,15 @@ configuration {
 	theme: "~/.config/rofi/rofi.rasi";
 
 /*	modi: "window,run,ssh";*/
-	width: 25;
-	lines: 5;
+	/* width: 45; */
+	/* lines: 5; */
 /*	columns: 1;*/
-	font: "Cozette 8";
+	font: "Iosevka 16";
 /*	bw: 1;*/
 /*	location: 0;*/
 	padding: 0;
-	yoffset: -451;
-/*	xoffset: 0;*/
+	yoffset: 0;
+  xoffset: 0;
 /*	fixed-num-lines: true;*/
 /*	show-icons: false;*/
 /*	terminal: "rofi-sensible-terminal";*/
@@ -44,9 +44,9 @@ configuration {
 /*	line-padding: 1;*/
 /*	filter: ;*/
 /*	separator-style: "dash";*/
-/*	hide-scrollbar: false;*/
-/*	fullscreen: false;*/
-/*	fake-transparency: false;*/
+hide-scrollbar: true;
+fullscreen: true;
+/* fake-transparency: true; */
 /*	dpi: -1;*/
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
@@ -85,18 +85,18 @@ configuration {
 /*	kb-remove-word-forward: "Control+Alt+d";*/
 /*	kb-remove-char-forward: "Delete,Control+d";*/
 /*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
-/*	kb-remove-to-eol: "Control+k";*/
+kb-remove-to-eol: "";
 /*	kb-remove-to-sol: "Control+u";*/
-/*	kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";*/
+kb-accept-entry: "Return,KP_Enter";
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-/*	kb-mode-next: "Shift+Right,Control+Tab";*/
-/*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
+kb-mode-next: "Super+l,Control+l";
+kb-mode-previous: "Super+h,Control+ISO_Left_Tab";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-/*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
-/*	kb-row-down: "Down,Control+n";*/
+kb-row-down: "Up,Super+j,Control+j,ISO_Left_Tab";
+kb-row-up: "Down,Super+k,Control+k,Shift+ISO_Left_Tab";
 /*	kb-row-tab: "Tab";*/
 /*	kb-page-prev: "Page_Up";*/
 /*	kb-page-next: "Page_Down";*/
@@ -139,8 +139,8 @@ configuration {
 /*	kb-select-10: "Super+0";*/
 /*	ml-row-left: "ScrollLeft";*/
 /*	ml-row-right: "ScrollRight";*/
-/*	ml-row-up: "ScrollUp";*/
-/*	ml-row-down: "ScrollDown";*/
+ml-row-up: "ScrollUp";
+ml-row-down: "ScrollDown";
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/

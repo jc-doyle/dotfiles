@@ -126,7 +126,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	{border = "single"}
 )
 
-vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(
+--[[ vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(
 	vim.lsp.handlers.implementation,
 	{border = "single"}
 )
@@ -139,7 +139,7 @@ vim.lsp.handlers["textDocument/implementation"] = vim.lsp.with(
 vim.lsp.handlers["textDocument/typeDefinition"] = vim.lsp.with(
 	vim.lsp.handlers.implementation,
 	{border = "single"}
-)
+) ]]
 
 vim.lsp.protocol.CompletionItemKind = {
 	" Text",

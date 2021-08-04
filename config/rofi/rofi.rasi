@@ -1,47 +1,42 @@
-// %%base16_template: rofi##mine %%
-/**
- * Base16 Dark Theme 
- *
- * Author
- *  Scheme: Jonty Doyle
- */
 * {
-    accent: #D7E1F5;
-    background: #2E3647;
-    foreground: #FF6A8E;
-    border-color: #53607A;
+// %%base16_template: rofi##default %%
+/**
+ * Base16 Dark
+ * Jonty Doyle
+ */
 
-
-    active-background: @accent;
-    active-foreground: @foreground;
-    normal-background: @background;
-    normal-foreground: @foreground;
-    urgent-background: @accent;
-    urgent-foreground: @foreground;
-
-    alternate-active-background: @background;
-    alternate-active-foreground: @foreground;
-    alternate-normal-background: @background;
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-background: @background;
-    alternate-urgent-foreground: @foreground;
-
-    selected-active-background: @accent;
-    selected-active-foreground: @background;
-    selected-normal-background: @accent;
-    selected-normal-foreground: @background;
-    selected-urgent-background: @accent;
-    selected-urgent-foreground: @background;
-
-    background-color: @background;
-    spacing: 2;
-}
+  base0:  #2E3647; 
+  base1:  #3A4458; 
+  base2:  #53607A; 
+  base3:  #7887A6; 
+  base4:  #D7E1F5; 
+  base5:  #EBF1FA; 
+  base6:  #9ADBFF; 
+  base7:  #FF6A8E; 
+  base8:  #8FFFBC; 
+  base9:  #E8FFA6; 
+  base10:  #FF92AC; 
+  base11:  #FDAFFF; 
+  base12:  #94F2FF; 
+  base13:  #B7E1FF; 
+  base14:  #9CABDF; 
+  base15:  #9CA6FF; 
 
 // %%base16_template_end%%
+
+  faded: #00000099;
+  spacing: 2;
+  background-color: @base1;
+  text-color: @base4;
+}
+
+* {
+}
+
 window {
-    background-color: @background;
-    border: 1;
-    padding: 0;
+    background-color: @faded;
+    border: 0;
+    padding: 31% 30%;
 }
 mainbox {
     border: 0;
@@ -50,87 +45,43 @@ message {
     margin: 0px;
 }
 textbox {
-    text-color: @foreground;
 }
 inputbar {
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    children: [ textbox-prompt-colon,entry,case-indicator,prompt];
     position: center;
-    padding: 8px 20px 5px 20px;
-    margin: 0px 16px;
+    margin: 3%;
+    padding: 0px 1%;
 }
 textbox-prompt-colon {
     expand: false;
-    str: " ➜ ";
+    str: "➜ ";
     margin: 0px;
-    text-color: @accent;
+    text-color: @base11;
 }
 listview {
     fixed-height: 0;
-    border: 0px 0px;
-    border-color: @border-color;
-    spacing: 2px;
-    scrollbar: false;
-    padding: 0px 20px 10px 20px;
+    scrollbar: true;
+    padding: 0px 40px 10px 50px;
 }
 element {
-    padding: 5px 18px 3px 18px;
+    padding: 0.8%;
 }
-element.normal.normal {
-    background-color: @normal-background;
-    text-color: @normal-foreground;
+element.selected {
+    background-color: @base6;
+    text-color: @base0;
 }
-element.normal.urgent {
-    background-color: @urgent-background;
-    text-color: @urgent-foreground;
-}
-element.normal.active {
-    background-color: @active-background;
-    text-color: @active-foreground;
-}
-element.selected.normal {
-    background-color: @selected-normal-background;
-    text-color: @selected-normal-foreground;
-}
-element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color: @selected-urgent-foreground;
-}
-element.selected.active {
-    background-color: @selected-active-background;
-    text-color: @selected-active-foreground;
-}
-element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color: @alternate-normal-foreground;
-}
-element.alternate.urgent {
-    background-color: @alternate-urgent-background;
-    text-color: @alternate-urgent-foreground;
-}
-element.alternate.active {
-    background-color: @alternate-active-background;
-    text-color: @alternate-active-foreground;
-}
+
 scrollbar {
     width: 0px;
-    border: 0;
-    handle-width: 0px;
     padding: 0;
 }
-sidebar {
-    border: 0px 0px 0px;
-    border-color: @border-color;
-}
+
 button {
     text-color: @normal-foreground;
 }
 button.selected {
     background-color: @selected-normal-background;
     text-color: @selected-normal-foreground;
-}
-inputbar {
-    spacing: 0;
-    text-color: @normal-foreground;
 }
 case-indicator {
     spacing: 0;
@@ -141,6 +92,6 @@ entry {
     text-color: @normal-foreground;
 }
 prompt {
-    spacing: 0;
-    text-color: @normal-foreground;
+    text-color: @base3;
+    padding: 0 10px 0 0;
 }

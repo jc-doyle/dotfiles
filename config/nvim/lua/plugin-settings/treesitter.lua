@@ -13,6 +13,6 @@ require 'nvim-treesitter.configs'.setup {
 			node_decremental = "grm",
 		},
 	},
-	indent = {enable = true},
+	indent = {enable = true, disable = {"python"}},
 	refactor = {highlight_definitions = {enable = true}},
 }

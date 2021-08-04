@@ -33,3 +33,4 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 20
 
+vim.g.python3_host_prog = "/usr/bin/python"

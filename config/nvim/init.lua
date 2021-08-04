@@ -1,10 +1,11 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 require "plugins"
 require "settings"
 require "mappings"
-
-require "utils.tree"
+require "statusline"
+-- require "utils"
 
 -- colorscheme
 vim.cmd('colorscheme default')

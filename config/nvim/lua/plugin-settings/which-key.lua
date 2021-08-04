@@ -43,7 +43,7 @@ require("which-key").setup {
 	ignore_missing = false,
 	hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "},
 	show_help = false,
-	triggers = {"<leader>"},
+	triggers = {"<leader>", "<localleader>"},
 	triggers_blacklist = {
 		-- list of mode / prefixes that should never be hooked by WhichKey
 		-- this is mostly relevant for key maps that start with a native binding

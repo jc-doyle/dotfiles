@@ -11,6 +11,7 @@ bspc monitor eDP1 -d 6 7 8
 #bspc desktop 4 -m HDMI1
 #bspc desktop 5 -m HDMI1
 
+bspc config top_padding 25
 $HOME/.config/polybar/polydocked.sh
 
 picom &

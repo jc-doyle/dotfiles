@@ -1,11 +1,6 @@
 ! Monitor Fixes
 Xft.dpi: 96
 
-! Fonts & Other
-URxvt*termName:                 rxvt-256color
-URxvt*font:                     xft:Iosevka:style=regular:pixelsize=14
-URxvt.clipboard.autocopy:       true
-
 ! %%base16_template: xresources##default %%
 ! Base16 Dark
 ! Scheme: Jonty Doyle
