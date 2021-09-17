@@ -1,0 +1,83 @@
+{
+  "pandoc": {
+    "prefix": "pandoc",
+    "body": [
+      "---",
+      "title: ${1}",
+      "author: ${2:Jonathan Doyle}",
+      "---",
+      "$0"
+    ],
+    "description": "pandoc frontmatter"
+  },
+  "codeblock": {
+    "prefix": "cbl",
+    "body": [
+      "~~~",
+      "$0",
+      "~~~"
+    ],
+    "description": "codeblock"
+  },
+  "boldlist": {
+    "prefix": "bli",
+    "body": [
+      "- **$1:** $0"
+    ],
+    "description": "bold list item"
+  },
+  "italiclist": {
+    "prefix": "ili",
+    "body": [
+      "- *$1:* $0"
+    ],
+    "description": "italic list item"
+  },
+  "langcodeblock": {
+    "prefix": "cbll",
+    "body": [
+      "~~~{.${1:lang}}",
+      "$0",
+      "~~~"
+    ],
+    "description": "language codeblock"
+  },
+  "inline math": {
+    "prefix": "mm",
+    "body": "\\$ $1 \\$$0",
+    "description": "math inline"
+  },
+  "block math": {
+    "prefix": "dm",
+    "body": [
+      "\\$\\$ $0 \\$\\$"
+    ],
+    "description": "math block"
+  },
+  "reference": {
+    "prefix": "ref",
+    "body": [
+      "[@$0]"
+    ],
+    "description": "reference"
+  },
+  "image reference": {
+    "prefix": "iref",
+    "body": [
+      "![${1:caption}](${2:link})$0"
+    ],
+    "description": "image reference"
+  },
+  "pantable": {
+    "prefix": "pantable",
+    "body": [
+      "```{.table}",
+      "---",
+      "include: $0",
+      "width: []",
+      "---",
+      "```"
+    ],
+    "description": "image reference"
+  }
+}

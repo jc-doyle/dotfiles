@@ -75,7 +75,7 @@ colors:
   # Default colors
   primary:
     background: '0x2E3647'
-    foreground: '0xEBF1FA'
+    foreground: '0xF4F8FF'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
@@ -85,7 +85,7 @@ colors:
   # Normal colors
   normal:
     black:   '0x2E3647'
-    red:     '0xFF6A8E'
+    red:     '0xFF79C2'
     green:   '0x8FFFBC'
     yellow:  '0xFF92AC'
     blue:    '0x9ADBFF'
@@ -100,9 +100,9 @@ colors:
     green:   '0x9CA6FF'
     yellow:  '0xE8FFA6'
     blue:    '0xB7E1FF'
-    magenta: '0x53607A'
-    cyan:    '0x7887A6'
-    white:   '0xEBF1FA'
+    magenta: '0x5E6A83'
+    cyan:    '0xA0AECB'
+    white:   '0xF4F8FF'
 
 draw_bold_text_with_bright_colors: false
 

@@ -14,6 +14,7 @@ opt.cursorcolumn = true
 opt.clipboard = "unnamedplus"
 opt.cmdheight = 1
 opt.pumheight = 10
+opt.pumblend = 2
 opt.updatetime = 250
 opt.timeoutlen = 300
 opt.expandtab = true
@@ -25,12 +26,21 @@ opt.background = "dark"
 opt.relativenumber = true
 opt.showmode = false
 opt.completeopt = "menuone,noselect,preview,noinsert"
-opt.pumblend = 8
-opt.winblend = 5
+opt.winblend = 2
 opt.guicursor = "n-v:block-Cursor,i-ci-c-o:ver10-iCursor,r:hor10-iCursor"
 opt.shortmess = "filnxtToOFc"
 opt.foldmethod = "expr"
+opt.fillchars = {
+  fold = ' ',
+  eob = ' ',
+  diff = '⣿', -- alternatives = ⣿ ░ ─
+  msgsep = '‾',
+  foldopen = '▾',
+  foldsep = '│',
+  foldclose = '▸',
+}
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldtext = "v:lua.require\'utils.fold\'.text()"
 opt.foldlevel = 20
 
 vim.g.python3_host_prog = "/usr/bin/python"

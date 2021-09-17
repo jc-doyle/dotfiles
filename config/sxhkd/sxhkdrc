@@ -38,7 +38,7 @@ super + shift + backslash
   tabbedterm -e "lf"
 
 super + backslash
-  alacritty -e 'lf'
+  alacritty --working-directory=`xcwd` -e 'lf'
 
 # program launcher
 super + Shift_R 
@@ -56,10 +56,17 @@ super + {_,shift} + p
 super + shift + c
   xcolor -s
 
-# calendar
+# Calendar
 super + c
   chromium --app="https://calendar.google.com/calendar/" &
 
+# Mail
+super + m
+  mailspring
+
+# Bluetooth
+super + b
+  rofi-bluetooth
 #
 # bspwm hotkeys
 #

@@ -1,18 +1,20 @@
-local vim = vim
+local g = vim.g
 
-vim.cmd("let bufferline = get(g:, 'bufferline', {})")
+g.bufferline = {
+	animation = true,
+	auto_hide = false,
+	closable = true,
+	clickable = true,
+	icons = true,
+	exclude_ft = {'rbrowser', 'qf'},
+	icon_custom_colors = true,
+	icon_separator_active = ' ',
+	icon_separator_inactive = ' ',
+	icon_close_tab = '×',
+	icon_close_tab_modified = '·',
+	maximum_padding = 0,
+	semantic_letters = true,
+	letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+	no_name_title = nil
+}
 
-vim.cmd("let bufferline.animation = v:true")
-vim.cmd("let bufferline.auto_hide = v:false")
-vim.cmd("let bufferline.closable = v:true")
-vim.cmd("let bufferline.clickable = v:true")
-vim.cmd("let bufferline.icons = v:true")
-vim.cmd("let bufferline.icon_custom_colors = v:true")
-vim.cmd("let bufferline.icon_separator_active = ' '")
-vim.cmd("let bufferline.icon_separator_inactive = ' '")
-vim.cmd("let bufferline.icon_close_tab = '×'")
-vim.cmd("let bufferline.icon_close_tab_modified = '·'")
-vim.cmd("let bufferline.maximum_padding = 1")
-vim.cmd("let bufferline.semantic_letters = v:true")
-vim.cmd("let bufferline.letters ='asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP'")
-vim.cmd("let bufferline.no_name_title = v:null")

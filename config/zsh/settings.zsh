@@ -1,11 +1,16 @@
 # Key Speed
-xset r rate 220 35
+
+if [[ $DISPLAY ]]; then
+  xset r rate 220 35
+fi
 
 # History
+# To clear duplicates run [awk '!seen[$0]++' filename]
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 setopt INC_APPEND_HISTORY
+
 # General
 setopt autocd		# Automatically cd into typed directory.
 setopt interactive_comments
@@ -43,21 +48,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^K' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-# ZLE hooks for prompt's vi mode status
-# function zle-line-init zle-keymap-select {
-# 	# Change the cursor style depending on keymap mode.
-# 	case $KEYMAP {
-# 		vicmd)
-# 			printf '\e[0 q' # Box.
-# 			;;
-# 		viins|main)
-# 			printf '\e[6 q' # Vertical bar.
-# 			;;
-# 	}
-# }
-# zle -N zle-line-init
-# zle -N zle-keymap-select
 
 # Less Colors
 export LESS=-R

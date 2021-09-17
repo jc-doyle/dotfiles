@@ -20,13 +20,13 @@ set index-active-bg             "#9ADBFF"
 set index-active-fg             "#2E3647"
 
 set notification-bg             "#2E3647"
-set notification-fg             "#53607A"
+set notification-fg             "#5E6A83"
 
 set notification-error-bg       "#2E3647"
 set notification-error-fg       "#FF92AC"
 
 set notification-warning-bg     "#2E3647"
-set notification-warning-fg     "#7887A6"
+set notification-warning-fg     "#A0AECB"
 
 set highlight-color             "#3A4458"
 set highlight-active-color      "#FDAFFF"
@@ -38,7 +38,7 @@ set completion-highlight-bg     "#9ADBFF"
 set completion-highlight-fg     "#2E3647"
 
 set recolor-lightcolor          "#2E3647"
-set recolor-darkcolor           "#EBF1FA"
+set recolor-darkcolor           "#F4F8FF"
 
 # %%base16_template_end%%
 #
@@ -47,6 +47,9 @@ set recolor-lightcolor          "#F8F6F4"
 
 set default-bg                  "#F8F6F4"
 set default-fg                  "#1f1f1f"
+
+set statusbar-bg                "#F8F6F4"
+set statusbar-fg                "#1f1f1f"
 
 set recolor                     "true"
 set recolor-keephue             "true"

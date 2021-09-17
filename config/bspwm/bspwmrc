@@ -3,7 +3,7 @@
 killall -q redshift 
 sxhkd &
 redshift -l -55.33:25.23 -t 6500:5200 &
-# syncthing -no-browser &
+syncthing --no-browser &
 mount_vula.py &
 autorandr -c
 dunst &

@@ -9,6 +9,9 @@ map gr cd ~/university/research
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
 
+map gS cd ~/.scripts/
+map gC cd ~/.cache/
+
 map gd cd ~/downloads
 
 map g<gt> cd ~/.config
@@ -46,9 +49,13 @@ cmd chmod ${{
 # Open
 cmd open ${{
     case $(xdg-mime query filetype $f) in
+        text/csv) sc-im $fx;;
+        application/*spreadsheet*) sc-im $fx;;
+        application/x-sc) sc-im $fx;;
         text/*) nvim $fx;;
         inode/x-empty) nvim $fx;;
         application/pdf) devour zathura $fx >/dev/null 2>&1 &;;
+        application/epub*) devour zathura $fx >/dev/null 2>&1 &;;
         image/*) devour sxiv -b $fx;;
         video/*) devour mpv $fx;;
         *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
@@ -151,6 +158,9 @@ map xX $$f
 map xx !$f
 map xM chmod
 map xm $chmod +x $f
+
+# Neovim
+map <c-n> $nvim $fx
 
 # dedicated keys for file opener actions
 map o &mimeopen $f

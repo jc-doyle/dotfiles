@@ -22,11 +22,11 @@ function M.folder()
 end
 
 function M.readonly(context)
-  if context.readonly then
-    return ' ⊘ '
-  else
-    return '  '
-  end
+	if context.readonly then
+		return ' ⊘ '
+	else
+		return '  '
+	end
 end
 
 function M.mode()
@@ -43,16 +43,15 @@ function M.mode()
 	return mode_icons[utils.mode_alias[vim.fn.mode()]]
 end
 
-
-function M.diagnostic_errors()
+function M.diag_errors()
 	if utils.diagnostics_exist('Error') then
-		return '  ' .. utils.get_diagnostics_count('Error')
+		return '  ' .. utils.get_diagnostics_count('Error')
 	else
 		return ''
 	end
 end
 
-function M.diagnostic_warnings()
+function M.diag_warnings()
 	if utils.diagnostics_exist('Warning') then
 		return '  ' .. utils.get_diagnostics_count('Warning')
 	else
@@ -60,15 +59,15 @@ function M.diagnostic_warnings()
 	end
 end
 
-function M.diagnostic_hints()
+function M.diag_hints()
 	if utils.diagnostics_exist('Hint') then
-		return '  ' .. utils.get_diagnostics_count('Hint')
+		return '  ' .. utils.get_diagnostics_count('Hint')
 	else
 		return ''
 	end
 end
 
-function M.diagnostic_info()
+function M.diag_info()
 	if utils.diagnostics_exist('Information') then
 		return '  ' .. utils.get_diagnostics_count('Information')
 	else
@@ -87,11 +86,10 @@ function M.git_branch()
 end
 
 function M.lsp_active()
-  if utils.lsp_active() then
-    return 'ﬕ '
-    else 
-    return ''
-  end
-
+	if utils.lsp_active() then
+		return 'ﬕ '
+	else
+		return ''
+	end
 end
 return M

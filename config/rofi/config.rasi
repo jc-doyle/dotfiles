@@ -87,7 +87,7 @@ fullscreen: true;
 /*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
 kb-remove-to-eol: "";
 /*	kb-remove-to-sol: "Control+u";*/
-kb-accept-entry: "Return,KP_Enter";
+kb-accept-entry: "Return,KP_Enter,Super+Return";
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/

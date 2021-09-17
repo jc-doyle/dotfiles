@@ -4,27 +4,29 @@ local autogroup = require 'utils.general'.augroup
 
 local M = {}
 
-local none = {buftypes = {'terminal'}, filetypes = {'Outline', 'NvimTree'}, bufnames = {}}
-
+local none = {
+	buftypes = {'terminal', 'quickfix'},
+	filetypes = {'Outline', 'NvimTree', 'Trouble'},
+	bufnames = {"Object_Browser"}
+}
 
 local function component(hlname, source)
 	return '%#' .. hlname .. '#' .. source
 end
 
 local function generate(context)
-  local active = {left = {}, center = {}, right = {}}
-  local inactive = {left = {}, center = {}, right = {}}
+	local active = {left = {}, center = {}, right = {}}
+	local inactive = {left = {}, center = {}, right = {}}
 
 	table.insert(active.left, component(utils.mode_hl(), components.mode()))
 	table.insert(active.left, component('Normal', ''))
 	table.insert(active.left, component('StHint', components.readonly(context)))
 	table.insert(active.left, component('StHint', components.folder()))
 
-	table.insert(inactive.center, component('StInfo', ''))
-	table.insert(active.center, component('StError', components.diagnostic_errors()))
-	table.insert(active.center, component('StWarn', components.diagnostic_warnings()))
-	table.insert(active.center, component('StHint', components.diagnostic_hints()))
-	table.insert(active.center, component('StInfo', components.diagnostic_info()))
+	table.insert(active.center, component('StError', components.diag_errors()))
+	table.insert(active.center, component('StWarn', components.diag_warnings()))
+	table.insert(active.center, component('StHint', components.diag_hints()))
+	table.insert(active.center, component('StInfo', components.diag_info()))
 
 	table.insert(active.right, component('StHint', components.git_branch()))
 	table.insert(active.right, component('StHint', components.lsp_active()))
@@ -32,24 +34,33 @@ local function generate(context)
 
 	table.insert(inactive.left, component('StInactive', components.mode()))
 	table.insert(inactive.left, component('StLine', ''))
+
 	table.insert(inactive.center, component('StLine', ''))
+
+	table.insert(inactive.right, component('StLine', ''))
 	table.insert(inactive.right, component('StInactive', components.percent()))
 
+	local statusline = {}
 
-  local statusline = {}
-  if context.inactive then
-    statusline = inactive
-  else
-    statusline = active
-  end
+	if context.inactive or not vim.g.vim_in_focus then
+		statusline = inactive
+	else
+		statusline = active
+	end
 
-  if context.width < 40 then
-		return string.format("%s%%=%s%%=%s",
-      statusline.left[1] .. statusline.left[2],
-      statusline.center[1],
-      statusline.right[#statusline.right])
+	if context.width < 40 then
+		return string.format(
+			"%s%%=%s%%=%s",
+			statusline.left[1] .. statusline.left[2],
+			statusline.center[1],
+			statusline.right[1] .. statusline.left[2]
+		)
 	elseif context.width < 90 and not context.inactive then
-		return string.format("%s%%=%s", table.concat(statusline.left), table.concat(statusline.right))
+		return string.format(
+			"%s%%=%s",
+			table.concat(statusline.left),
+			table.concat(statusline.right)
+		)
 	else
 		return string.format(
 			"%s%%=%s%%=%s",
@@ -87,7 +98,7 @@ function M.print()
 		fileformat = vim.bo[curbuf].fileformat,
 		shiftwidth = vim.bo[curbuf].shiftwidth,
 		width = vim.api.nvim_win_get_width(curwin),
-    inactive = vim.api.nvim_get_current_win() ~= curwin
+		inactive = vim.api.nvim_get_current_win() ~= curwin
 	}
 
 	if is_forced_none(context) then
@@ -106,7 +117,14 @@ autogroup(
 			'*',
 			'lua vim.wo.statusline=require"statusline".print()'
 		},
+		{
+			'BufWinEnter',
+			'quickfix',
+			'lua vim.wo.statusline=require"statusline".print()'
+		},
 		{'WinEnter,BufEnter', '*', 'set statusline<'},
+		{'FocusGained', '*', 'let g:vim_in_focus = v:true'},
+		{'FocusLost', '*', 'let g:vim_in_focus = v:false'},
 	},
 	'statusline'
 )

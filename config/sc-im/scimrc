@@ -1,0 +1,59 @@
+# Mappings
+nmap "<C-i>" ":cellcolor \"italic=1\"<CR>"
+nmap "<C-b>" ":cellcolor \"bold=1\"<CR>"
+nmap "<C-n>" ":cellcolor \"italic=0 bold=0\"<CR>"
+
+vmap "<C-i>" ":cellcolor \"italic=1\"<CR>"
+vmap "<C-b>" ":cellcolor \"bold=1\"<CR>"
+vmap "<C-n>" ":cellcolor \"italic=1 bold=0\"<CR>"
+
+# Settings
+set input_bar_bottom
+set autocalc
+set xlsx_readformulas
+set autowrap
+set numeric
+
+# Colorscheme
+# %%base16_template: sc-im##default %%
+DEFINE_COLOR "base0" 46 54 71
+DEFINE_COLOR "base1" 58 68 88
+DEFINE_COLOR "base2" 94 106 131
+DEFINE_COLOR "base3" 160 174 203
+DEFINE_COLOR "base4" 215 225 245
+DEFINE_COLOR "base5" 244 248 255
+DEFINE_COLOR "base6" 154 219 255
+DEFINE_COLOR "base7" 255 121 194
+DEFINE_COLOR "base8" 143 255 188
+DEFINE_COLOR "base9" 232 255 166
+DEFINE_COLOR "base10" 255 146 172
+DEFINE_COLOR "base11" 253 175 255
+DEFINE_COLOR "base12" 148 242 255
+DEFINE_COLOR "base13" 183 225 255
+DEFINE_COLOR "base14" 156 171 223
+DEFINE_COLOR "base15" 156 166 255
+
+# %%base16_template_end%%
+
+color "type=DEFAULT fg=base4 bg=BLACK"
+color "type=NORMAL fg=base3 bg=BLACK"
+
+color "type=CELL_ID fg=base6 bg=BLACK bold=0"
+color "type=CELL_FORMAT fg=base1 bg=BLACK"
+color "type=CELL_CONTENT fg=base14 bg=BLACK bold=0"
+
+color "type=INFO_MSG fg=base14 bg=BLACK italic=1 bold=0"
+color "type=ERROR_MSG fg=base10 bg=BLACK italic=1 bold=0"
+
+color "type=MODE fg=base1 bg=BLACK bold=0"
+color "type=HEADINGS fg=base1 bg=BLACK"
+color "type=HEADINGS_ODD fg=base1 bg=BLACK"
+color "type=CELL_SELECTION fg=base10 bg=BLACK bold=0"
+color "type=CELL_SELECTION_SC fg=base5 bg=base1 bold=1"
+
+color "type=NUMB fg=base6 bg=BLACK"
+color "type=STRG fg=base8 bg=BLACK"
+color "type=DATEF fg=base11 bg=BLACK"
+color "type=EXPRESSION fg=base15 bg=BLACK"
+color "type=CELL_NEGATIVE fg=base10 bg=BLACK"
+color "type=CELL_ERROR fg=base7 bg=BLACK italic=1"

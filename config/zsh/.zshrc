@@ -8,8 +8,7 @@ source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # LF
-source "/usr/share/lf/lfcd.sh"
-bindkey -s '^o' 'lfcd\n'
+ source "/usr/share/lf/lfcd.sh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

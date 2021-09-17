@@ -7,12 +7,12 @@ Xft.dpi: 96
 
 #define base00 #2E3647
 #define base01 #3A4458
-#define base02 #53607A
-#define base03 #7887A6
+#define base02 #5E6A83
+#define base03 #A0AECB
 #define base04 #D7E1F5
-#define base05 #EBF1FA
+#define base05 #F4F8FF
 #define base06 #9ADBFF
-#define base07 #FF6A8E
+#define base07 #FF79C2
 #define base08 #8FFFBC
 #define base09 #E8FFA6
 #define base0A #FF92AC

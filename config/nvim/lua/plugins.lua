@@ -4,26 +4,24 @@ local use = packer.use
 return packer.startup(function()
 	use "wbthomason/packer.nvim"
 
-	-- LSP, Snippets & Completion ------------------------------
+	-- LSP, Snippets & Completion ----------------------------------------
 	use {
 		"neovim/nvim-lspconfig",
 		config = function()
 			require("lsp")
 		end
 	}
+
 	use {
-		"hrsh7th/nvim-compe",
-		event = "InsertEnter",
+		"folke/trouble.nvim",
 		config = function()
-			require("lsp.completion")
+			require("lsp.diagnostics")
 		end
 	}
-	use "kosayoda/nvim-lightbulb"
-	use "hrsh7th/vim-vsnip"
-	use "rafamadriz/friendly-snippets"
-	use "kabouzeid/nvim-lspinstall"
+	use "ray-x/lsp_signature.nvim"
+	use "jubnzv/virtual-types.nvim"
 
-	-- Tree Sitter -----------------------------------------
+	-- Tree Sitter ------------------------------------------------------
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
@@ -34,11 +32,7 @@ return packer.startup(function()
 	use "nvim-treesitter/playground"
 	use "nvim-treesitter/nvim-treesitter-refactor"
 
-	-- Language Specific -----------------------------------
-	use "Vimjas/vim-python-pep8-indent"
-	use "jalvesaq/Nvim-R"
-
-	-- Git -------------------------------------------------
+	-- Git --------------------------------------------------------------
 	use {
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -47,13 +41,32 @@ return packer.startup(function()
 	}
 	use "tpope/vim-fugitive"
 
-	-- Editing Functionality -------------------------------
+	-- Completion & Snippets --------------------------------------------
+	use {
+		"hrsh7th/nvim-cmp",
+		requires = {
+			use "hrsh7th/vim-vsnip",
+			use "hrsh7th/cmp-vsnip",
+			use "hrsh7th/cmp-buffer",
+			use "hrsh7th/cmp-path",
+			use "hrsh7th/cmp-nvim-lsp",
+      use "f3fora/cmp-spell"
+		},
+		config = function()
+			require("plugin-settings.completion")
+		end
+	}
+
+	-- use "abecodes/tabout.nvim"
+
+	-- Editing Functionality --------------------------------------------
 	use {
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()
 		end
 	}
+
 	use {
 		"mhartington/formatter.nvim",
 		config = function()
@@ -61,14 +74,9 @@ return packer.startup(function()
 		end,
 		event = "BufRead",
 	}
-	use {
-		"windwp/nvim-autopairs",
-		after = "nvim-compe",
-		config = function()
-			require("nvim-autopairs").setup()
-			require("nvim-autopairs.completion.compe").setup({map_cr = true, map_complete = true})
-		end
-	}
+
+	use "windwp/nvim-autopairs"
+
 	use "tpope/vim-surround"
 	use "b3nj5m1n/kommentary"
 	use "nvim-lua/plenary.nvim"
@@ -76,7 +84,17 @@ return packer.startup(function()
 	use "tjdevries/colorbuddy.nvim"
 	use "preservim/vim-pencil"
 
-	-- Terminal --------------------------------------------
+	-- Debug -----------------------------------------------------------
+	use {
+		"mfussenegger/nvim-dap",
+		config = function()
+			require("plugin-settings.debug")
+		end
+	}
+
+	use "theHamsta/nvim-dap-virtual-text"
+
+	-- Terminal --------------------------------------------------------
 	use {
 		"voldikss/vim-floaterm",
 		config = function()
@@ -84,7 +102,7 @@ return packer.startup(function()
 		end
 	}
 
-	-- UI/Tools --------------------------------------------
+	-- UI/Tools --------------------------------------------------------
 	use {
 		"folke/which-key.nvim",
 		config = function()
@@ -114,7 +132,7 @@ return packer.startup(function()
 		config = function()
 			require("plugin-settings.outline")
 		end,
-    lock = true
+		lock = true
 	}
 	use {
 		"nvim-telescope/telescope.nvim",
@@ -143,6 +161,20 @@ return packer.startup(function()
 		end,
 		event = "BufRead",
 	}
+	use {
+		"kevinhwang91/nvim-bqf",
+		config = function()
+			require("plugin-settings.qf")
+		end
+	}
 	use "kyazdani42/nvim-web-devicons"
+	use "junegunn/goyo.vim"
 	use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
+
+	-- Language Specific -----------------------------------------------
+	use "Vimjas/vim-python-pep8-indent"
+	use "vim-pandoc/vim-pandoc-syntax"
+	use "vim-pandoc/vim-pandoc"
+	use "jalvesaq/Nvim-R"
+	use "mfussenegger/nvim-jdtls"
 end)

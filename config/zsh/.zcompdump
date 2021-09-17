@@ -2,7 +2,6 @@
 
 _comps=(
 '-' '_precommand'
-'-*-' '_bootctl'
 '.' '_source'
 '5g' '_go'
 '5l' '_go'
@@ -1231,7 +1230,6 @@ _comps=(
 'sha512t256' '_cksum'
 'shasum' '_shasum'
 'shellcheck' '_shellcheck'
-'shell-script' '_bootctl'
 'shift' '_arrays'
 'show' '_mh'
 'showchar' '_psutils'
