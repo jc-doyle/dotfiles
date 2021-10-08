@@ -7,6 +7,7 @@
 
 ## Usage
 Run
-```shell
+
+``` shell
   stow -t ~/.config config
 ```
