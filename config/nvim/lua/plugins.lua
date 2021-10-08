@@ -4,11 +4,11 @@ local use = packer.use
 return packer.startup(function()
 	use "wbthomason/packer.nvim"
 
-	-- LSP, Snippets & Completion ----------------------------------------
+	-- LSP ----------------------------------------
 	use {
 		"neovim/nvim-lspconfig",
 		config = function()
-			require("lsp")
+		require("lsp")
 		end
 	}
 
@@ -21,6 +21,28 @@ return packer.startup(function()
 	use "ray-x/lsp_signature.nvim"
 	use "jubnzv/virtual-types.nvim"
 
+	-- Completion & Snippets --------------------------------------------
+	use {
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+	    "f3fora/cmp-spell",
+	    "jc-doyle/cmp-latex-symbols",
+      "jc-doyle/cmp-nvim-ultisnips",
+      "jc-doyle/cmp-pandoc-references"
+		},
+		config = function()
+			require("plugin-settings.completion")
+		end,
+	}
+  use {
+    "SirVer/ultisnips",
+		config = function()
+			require("plugin-settings.snippets")
+		end,
+  }
 	-- Tree Sitter ------------------------------------------------------
 	use {
 		"nvim-treesitter/nvim-treesitter",
@@ -31,31 +53,16 @@ return packer.startup(function()
 	use "nvim-treesitter/nvim-treesitter-textobjects"
 	use "nvim-treesitter/playground"
 	use "nvim-treesitter/nvim-treesitter-refactor"
-
 	-- Git --------------------------------------------------------------
-	use {
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("plugin-settings.gitsigns")
-		end
-	}
+	-- use {
+	-- 	"lewis6991/gitsigns.nvim",
+	-- 	config = function()
+	-- 		require("plugin-settings.gitsigns")
+	--     end,
+	--     event = "BufRead"
+	-- }
 	use "tpope/vim-fugitive"
 
-	-- Completion & Snippets --------------------------------------------
-	use {
-		"hrsh7th/nvim-cmp",
-		requires = {
-			use "hrsh7th/vim-vsnip",
-			use "hrsh7th/cmp-vsnip",
-			use "hrsh7th/cmp-buffer",
-			use "hrsh7th/cmp-path",
-			use "hrsh7th/cmp-nvim-lsp",
-      use "f3fora/cmp-spell"
-		},
-		config = function()
-			require("plugin-settings.completion")
-		end
-	}
 
 	-- use "abecodes/tabout.nvim"
 
@@ -72,13 +79,26 @@ return packer.startup(function()
 		config = function()
 			require("plugin-settings.format")
 		end,
+		cmd = "FormatWrite",
+	}
+
+	use {
+		"terrortylor/nvim-comment",
+		config = function()
+			require("nvim_comment").setup()
+		end,
 		event = "BufRead",
 	}
 
-	use "windwp/nvim-autopairs"
+	use {
+		"windwp/nvim-autopairs",
+		config = function()
+			require("plugin-settings.autopairs")
+		end,
+		after = "nvim-cmp",
+	}
 
 	use "tpope/vim-surround"
-	use "b3nj5m1n/kommentary"
 	use "nvim-lua/plenary.nvim"
 	use "nvim-lua/popup.nvim"
 	use "tjdevries/colorbuddy.nvim"
@@ -107,13 +127,13 @@ return packer.startup(function()
 		"folke/which-key.nvim",
 		config = function()
 			require("plugin-settings.which-key")
-		end
+		end,
 	}
 	use {
 		"romgrk/barbar.nvim",
 		config = function()
 			require("plugin-settings.bufferline")
-		end
+		end,
 	}
 	use {
 		"Xuyuanp/scrollbar.nvim",
@@ -121,25 +141,25 @@ return packer.startup(function()
 			require("plugin-settings.scrollbar")
 		end
 	}
-	use {
-		"kyazdani42/nvim-tree.lua",
-		config = function()
-			require("plugin-settings.filetree")
-		end
-	}
+	-- use {
+	-- 	"kyazdani42/nvim-tree.lua",
+	-- 	config = function()
+	-- 		require("plugin-settings.filetree")
+	-- 	end
+	-- }
 	use {
 		"simrat39/symbols-outline.nvim",
 		config = function()
 			require("plugin-settings.outline")
 		end,
-		lock = true
+		lock = true,
+    cmd = "SymbolsOutline"
 	}
 	use {
 		"nvim-telescope/telescope.nvim",
 		config = function()
 			require("plugin-settings.telescope")
-		end,
-		requires = "sudormrfbin/cheatsheet.nvim"
+    end
 	}
 	use {
 		"mhinz/vim-startify",
@@ -164,17 +184,18 @@ return packer.startup(function()
 	use {
 		"kevinhwang91/nvim-bqf",
 		config = function()
-			require("plugin-settings.qf")
+			require("plugin-settings.quickfix")
 		end
 	}
 	use "kyazdani42/nvim-web-devicons"
 	use "junegunn/goyo.vim"
+  use "SmiteshP/nvim-gps"
 	use {"tweekmonster/startuptime.vim", cmd = "StartupTime"}
 
 	-- Language Specific -----------------------------------------------
 	use "Vimjas/vim-python-pep8-indent"
 	use "vim-pandoc/vim-pandoc-syntax"
-	use "vim-pandoc/vim-pandoc"
+	use "lervag/vimtex"
 	use "jalvesaq/Nvim-R"
 	use "mfussenegger/nvim-jdtls"
 end)

@@ -1,4 +1,8 @@
-local components = require 'statusline.components'
+-- A groovy status line
+
+-- Sources
+local s = require 'statusline.components'
+
 local utils = require 'statusline.utils'
 local autogroup = require 'utils.general'.augroup
 
@@ -11,34 +15,38 @@ local none = {
 }
 
 local function component(hlname, source)
-	return '%#' .. hlname .. '#' .. source
+	if source then
+		return '%#' .. hlname .. '#' .. source
+	end
+	return '%#' .. hlname .. '#'
 end
 
 local function generate(context)
 	local active = {left = {}, center = {}, right = {}}
 	local inactive = {left = {}, center = {}, right = {}}
 
-	table.insert(active.left, component(utils.mode_hl(), components.mode()))
-	table.insert(active.left, component('Normal', ''))
-	table.insert(active.left, component('StHint', components.readonly(context)))
-	table.insert(active.left, component('StHint', components.folder()))
+	active.left = {
+		component(utils.mode_hl(), s.mode()),
+		component('Normal'),
+		component('StHint', s.folder())
+	}
 
-	table.insert(active.center, component('StError', components.diag_errors()))
-	table.insert(active.center, component('StWarn', components.diag_warnings()))
-	table.insert(active.center, component('StHint', components.diag_hints()))
-	table.insert(active.center, component('StInfo', components.diag_info()))
+	active.center = {
+		component('StError', s.diag_errors()),
+		component('StWarn', s.diag_warnings()),
+		component('StHint', s.diag_hints()),
+		component('StInfo', s.diag_info())
+	}
 
-	table.insert(active.right, component('StHint', components.git_branch()))
-	table.insert(active.right, component('StHint', components.lsp_active()))
-	table.insert(active.right, component(utils.mode_hl(), components.percent()))
+	active.right = {
+		component('StHint', s.git_branch()),
+		component('StHint', s.lsp_active()),
+		component(utils.mode_hl(), s.percent())
+	}
 
-	table.insert(inactive.left, component('StInactive', components.mode()))
-	table.insert(inactive.left, component('StLine', ''))
-
-	table.insert(inactive.center, component('StLine', ''))
-
-	table.insert(inactive.right, component('StLine', ''))
-	table.insert(inactive.right, component('StInactive', components.percent()))
+	inactive.left = {component('StInactive', s.mode()), component('StLine')}
+	inactive.center = {component('StLine')}
+	inactive.right = {component('StLine'), component('StInactive', s.percent())}
 
 	local statusline = {}
 
@@ -50,12 +58,11 @@ local function generate(context)
 
 	if context.width < 40 then
 		return string.format(
-			"%s%%=%s%%=%s",
+			"%s%%=%s",
 			statusline.left[1] .. statusline.left[2],
-			statusline.center[1],
-			statusline.right[1] .. statusline.left[2]
+			statusline.right[2]
 		)
-	elseif context.width < 90 and not context.inactive then
+	elseif context.width < 80 and not context.inactive then
 		return string.format(
 			"%s%%=%s",
 			table.concat(statusline.left),

@@ -5,6 +5,7 @@ vim.g.vsnip_snippet_dir = vim.fn.stdpath('config')..'/snippets'
 vim.g.loaded_netrw = 0
 
 require "plugins"
+-- require "bib"
 require "settings"
 require "mappings"
 require "statusline"

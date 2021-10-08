@@ -1,14 +1,14 @@
 configuration {
-	theme: "~/.config/rofi/rofi.rasi";
+  theme: "themes/base16";
 
 /*	modi: "window,run,ssh";*/
-	/* width: 45; */
-	/* lines: 5; */
+/* width: 45; */
+/* lines: 5; */
 /*	columns: 1;*/
 	font: "Iosevka 16";
 /*	bw: 1;*/
 /*	location: 0;*/
-	padding: 0;
+	/* padding: 0; */
 	yoffset: 0;
   xoffset: 0;
 /*	fixed-num-lines: true;*/
@@ -44,8 +44,8 @@ configuration {
 /*	line-padding: 1;*/
 /*	filter: ;*/
 /*	separator-style: "dash";*/
-hide-scrollbar: true;
-fullscreen: true;
+/* hide-scrollbar: true; */
+/* fullscreen: true; */
 /* fake-transparency: true; */
 /*	dpi: -1;*/
 /*	threads: 0;*/
@@ -84,7 +84,7 @@ fullscreen: true;
 /*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
 /*	kb-remove-word-forward: "Control+Alt+d";*/
 /*	kb-remove-char-forward: "Delete,Control+d";*/
-/*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
+kb-remove-char-back: "BackSpace";
 kb-remove-to-eol: "";
 /*	kb-remove-to-sol: "Control+u";*/
 kb-accept-entry: "Return,KP_Enter,Super+Return";
@@ -92,7 +92,8 @@ kb-accept-entry: "Return,KP_Enter,Super+Return";
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
 kb-mode-next: "Super+l,Control+l";
-kb-mode-previous: "Super+h,Control+ISO_Left_Tab";
+kb-mode-complete: "Super+Tab";
+kb-mode-previous: "Super+h,Control+h";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
 kb-row-down: "Up,Super+j,Control+j,ISO_Left_Tab";
@@ -145,3 +146,5 @@ ml-row-down: "ScrollDown";
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+/* vim: set ft=css: */

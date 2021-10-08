@@ -23,8 +23,6 @@ lsp.handlers["textDocument/hover"] = lsp.with(
 	{border = border}
 )
 
-
-
 lsp.protocol.CompletionItemKind = {
 	" Text",
 	" Method",

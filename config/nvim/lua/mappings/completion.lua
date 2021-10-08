@@ -1,25 +1,24 @@
 local cmp = require 'cmp'
-local apairs = require 'nvim-autopairs'
+
+local feedkey = function(key, mode)
+	vim.fn.feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode)
+end
 
 vim.api.nvim_set_keymap(
 	'i',
-	'<C-i>',
+	'<CR>',
 	'v:lua.MPairs.autopairs_cr()',
 	{expr = true, noremap = true}
 )
-local feedkey = function(key, mode)
-	vim.api.nvim_feedkeys(
-		vim.api.nvim_replace_termcodes(key, true, true, true),
-		mode,
-		true
-	)
-end
+
 
 local M = {
 	["<CR>"] = cmp.mapping(
 		function(fallback)
-			if vim.fn["vsnip#available"]() == 1 then
-				feedkey("<Plug>(vsnip-expand-or-jump)", "")
+			if (vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn[
+				"UltiSnips#CanJumpForwards"
+			]() == 1) then
+				feedkey("<A-S-N>", "i")
 			else
 				fallback()
 			end
@@ -27,10 +26,11 @@ local M = {
 		{"i", "s"}
 	),
 
+
 	["<S-CR>"] = cmp.mapping(
 		function(fallback)
-			if vim.fn["vsnip#jumpable"](-1) == 1 then
-				feedkey("<Plug>(vsnip-jump-prev)", "")
+			if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+				feedkey("<A-S-P>", "i")
 			else
 				fallback()
 			end
@@ -39,6 +39,16 @@ local M = {
 	),
 
 	["<Tab>"] = function()
+		if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
+			feedkey("<A-S-N>", "i")
+		elseif vim.fn.pumvisible() == 1 then
+			feedkey("<C-Space>", "i")
+		else
+			feedkey("<Tab>", "n")
+		end
+	end,
+
+	["<S-Tab>"] = function()
 		if vim.fn.pumvisible() == 1 then
 			feedkey("<C-Space>", "i")
 		else
@@ -70,12 +80,5 @@ local M = {
 		{"i", "s"}
 	),
 }
-
-vim.api.nvim_set_keymap(
-	'i',
-	'<CR>',
-	'v:lua.MPairs.autopairs_cr()',
-	{expr = true, noremap = true}
-)
 
 return M

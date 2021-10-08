@@ -17,19 +17,20 @@ map gd cd ~/downloads
 map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config
 map gN cd ~/.config/nvim/lua/
+map gP cd ~/.local/share/nvim/site/pack/packer/
 
 # General Settings
 set icons
 set period 1
 set scrolloff 10
-set color256 true
 set drawbox true
 set ratios 2:3
 set previewer ~/.config/lf/preview.sh
+set errorfmt "\033[0;33;40m%s\033[0m"
 
 # Z shell specific settings
 set shell zsh
-set shellopts '-eu:--shwordsplit'
+set shellopts '-euy'
 set ifs "\n"
 
 # Commands
@@ -49,15 +50,15 @@ cmd chmod ${{
 # Open
 cmd open ${{
     case $(xdg-mime query filetype $f) in
-        text/csv) sc-im $fx;;
         application/*spreadsheet*) sc-im $fx;;
         application/x-sc) sc-im $fx;;
-        text/*) nvim $fx;;
-        inode/x-empty) nvim $fx;;
         application/pdf) devour zathura $fx >/dev/null 2>&1 &;;
         application/epub*) devour zathura $fx >/dev/null 2>&1 &;;
         image/*) devour sxiv -b $fx;;
         video/*) devour mpv $fx;;
+        inode/x-empty) nvim $fx;;
+        text/csv) sc-im $fx;;
+        text/*) nvim $fx;;
         *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
     esac }}
 
@@ -99,7 +100,7 @@ cmd zip ${{
 # y (select for copy) and P to paste soft-link
 # d (select for cut) and P to paste hard-link
 cmd link %{{
-    set -- $(lf -remote load)
+    set -- $(cat ~/.local/share/lf/files)
     mode="$1"
     shift
     if [ "$#" -lt 1 ]; then
@@ -112,6 +113,8 @@ cmd link %{{
         # while a move mode is indicating a hard link
         move) ln -t . -- "$@";;
     esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
 }}
 
 # Bulk Rename
@@ -135,7 +138,14 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 
-
+# New Folder w/ Selected Files
+cmd newfold ${{
+    set -f
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+map <a-n> newfold
 # Mappings
 
 # Extract/Zip

@@ -16,4 +16,8 @@ function M.autocmd(event, pattern, cmd)
 	vim.cmd('autocmd ' .. event .. ' ' .. pattern .. ' ' .. cmd)
 end
 
+function _G.P(args)
+  print(vim.inspect(args))
+end
+
 return M

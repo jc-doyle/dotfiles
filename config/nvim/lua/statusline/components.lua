@@ -18,15 +18,7 @@ function M.percent()
 end
 
 function M.folder()
-	return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-end
-
-function M.readonly(context)
-	if context.readonly then
-		return ' ⊘ '
-	else
-		return '  '
-	end
+	return '  ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 end
 
 function M.mode()
@@ -79,7 +71,7 @@ function M.git_branch()
 	local gsd = vim.b.gitsigns_status_dict
 
 	if gsd and gsd.head and #gsd.head > 0 then
-		return gsd.head .. ' '
+		return ' ' .. gsd.head .. ' '
 	else
 		return vim.bo.filetype .. ' '
 	end
@@ -87,9 +79,10 @@ end
 
 function M.lsp_active()
 	if utils.lsp_active() then
-		return 'ﬕ '
+		return ' '
 	else
 		return ''
 	end
 end
+
 return M

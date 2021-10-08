@@ -11,7 +11,7 @@ local LspItemKind = {
 	Class = " Class",
 	Interface = " Interface",
 	Module = " Module",
-	Proeperty = "襁Property",
+	Property = "襁Property",
 	Unit = " Unit",
 	Value = " Value",
 	Enum = "練Enum",
@@ -19,7 +19,7 @@ local LspItemKind = {
 	Snippet = " Snippet",
 	Color = " Color",
 	File = " File",
-	Reference = " Link",
+	Reference = " Reference",
 	Folder = " Folder",
 	EnumMember = " EnumMember",
 	Constant = " Constant",
@@ -28,6 +28,34 @@ local LspItemKind = {
 	Opertaor = " Operator",
 	TypeParameter = " TypeParameter",
 }
+
+local function format_kind(entry, item)
+	local source = entry.source.name
+	item.kind = LspItemKind[item.kind]
+
+	if source == 'buffer' then
+		item.kind = "﬘ Buffer"
+	elseif source == 'spell' then
+		item.kind = " Spell"
+	elseif source == 'ultisnips' then
+		item.abbr = item.abbr .. '~'
+	elseif source == 'latex_symbols' then
+		local result = {}
+		for word in string.gmatch(item.abbr, "[^%s]+") do
+			table.insert(result, word)
+		end
+		item.abbr = result[1]
+		if result[2] ~= nil then
+			item.kind = result[2] .. " Symbol"
+		end
+	elseif source == 'pandoc_references' then
+    if not string.match(item.abbr, '(%w+):(%g+)') then
+		  item.kind = " Citation"
+    end
+	end
+
+	return item
+end
 
 local function truncate(item)
 	if string.len(item.abbr) > 24 then
@@ -42,72 +70,35 @@ local function truncate(item)
 end
 
 local function format(entry, item)
-	local source = entry.source.name
 	item = truncate(item)
-
-	if source == 'nvim_lsp' or 'path' then
-		item.kind = LspItemKind[item.kind]
-	elseif source == 'buffer' then
-		item.kind = "﬘ Buffer"
-	elseif source == 'spell' then
-		item.kind = " Spell"
-	end
-
-  item.label = ""
-
+	item = format_kind(entry, item)
 	return item
 end
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
-	documentation = false,
+	documentation = {
+		border = {'', '', '', ' ', '', '', '', ' '},
+		winhighlight = 'NormalFloat:NormalFloat,FloatBorder:NormalFloat',
+		maxwidth = 40,
+		maxheight = 15
+	},
 	sources = {
 		{name = "nvim_lsp"},
-		{name = "vsnip"},
 		{name = "buffer"},
 		{name = "path"},
+		{name = "ultisnips"},
+		{name = "latex_symbols"},
+		{name = "pandoc_references"},
+
+		-- {name = "vsnip"},
 		-- {name = "spell"},
 	},
-	formatting = {
-		format = format
-	},
+	formatting = {format = format},
 	mapping = mappings,
 	autocomplete = false
-})
-
---[[ source = {
-		path = {kind = "/ Path", menu = "", true},
-		buffer = {kind = "﬘ Buffer", menu = "", true},
-		calc = {kind = " Calc", menu = "", true},
-		nvim_lsp = {menu = "", true},
-		vsnip = {priority = 2000, kind = " Snippet", menu = "", true},
-		omni = {kind = " Omni", menu = "", true},
-		nvim_lua = false,
-		luasnip = false,
-		treesitter = false,
-	} ]]
-
-require('nvim-autopairs').setup {}
-require("nvim-autopairs.completion.cmp").setup({
-	map_cr = false,
-
-	--  map <CR> on insert mode
-	map_complete = true,
-
-	-- it will auto insert `(` (map_char) after select function or method item
-	auto_select = false,
-
-	-- automatically select the first item
-	insert = true,
-
-	-- use insert confirm behavior instead of replace
-	map_char = {
-		-- modifies the function or method delimiter by filetypes
-		all = '(',
-		tex = '{'
-	}
 })

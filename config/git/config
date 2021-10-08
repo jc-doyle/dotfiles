@@ -1,7 +1,10 @@
 [user]
 	name = JC-Doyle
 	email = doyle.jonty@gmail.com
+	signingkey = 5F1C04B3A90406A3
 [core]
 	editor = nvim
 [credential]
 	helper = cache
+[commit]
+	gpgsign = true

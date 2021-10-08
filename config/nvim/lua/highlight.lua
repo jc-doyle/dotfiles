@@ -58,7 +58,7 @@ hl("FloatBorder", colors.base2, colors.base1:dark(0.03))
 
 -- StatusLine
 hl('StError', colors.base7, colors.base0)
-hl('StWarn', colors.base10, colors.base0)
+hl('StWarn', colors.base9, colors.base0)
 hl('StHint', colors.base2, colors.base0)
 hl('StInfo', colors.base1, colors.base0)
 
@@ -183,6 +183,7 @@ hl("TSType", colors.base11, colors.none)
 hl("TSTypeBuiltin", colors.base3, colors.none)
 hl("TSVariable", colors.base5, colors.none)
 hl("TSVariableBuiltin", colors.base4, colors.none)
+hl("TSWarning", colors.base2, colors.none)
 
 hl("TSDefinitionUsage", colors.none, colors.none, underline)
 hl("TSDefinition", colors.none, colors.base1:light(0.05), underline)
@@ -309,6 +310,15 @@ hl("pandocAtxHeader", colors.base6, colors.none, bold)
 hl("pandocAtxStart", colors.base11, colors.none)
 hl("pandocListItemBulletID", colors.base14, colors.none)
 hl("pandocListItemBullet", colors.base2, colors.none)
+hl("pandocReferenceDefinition", colors.base8, colors.none)
+hl("pandocOperator", colors.base15, colors.none)
+hl("pandocReferenceURL", colors.base15, colors.none)
+hl("pandocPCite", colors.base2, colors.none, italic)
+hl("pandocCiteKey", colors.base14, colors.none, italic)
+hl("pandocCiteAnchor", colors.base2, colors.none, italic)
+hl("pandocCiteLocator", colors.base2, colors.none)
+hl("pandocNoFormatted", colors.base9, colors.none)
+hl("pandocCurly", colors.base2, colors.none, italic)
 
 
 -- Yaml

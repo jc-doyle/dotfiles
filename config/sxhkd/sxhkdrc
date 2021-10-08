@@ -45,8 +45,8 @@ super + Shift_R
 	rofi -show run -display-run "run"
 
 # make sxhkd reload its configuration files:
-super + Escape
-  pkill -USR1 -x sxhkd && notify-send "SXHKD Restarted"
+# super + Escape
+#   pkill -USR1 -x sxhkd && notify-send "SXHKD Restarted"
 
 # Screen shot
 super + {_,shift} + p

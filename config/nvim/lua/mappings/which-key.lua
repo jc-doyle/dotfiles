@@ -9,7 +9,7 @@ local mappings = {
 	h = {'<cmd>Telescope help_tags<cr>', 'help'},
 	F = {'<cmd>Telescope find_files<cr>', 'find files'},
 	C = {'<cmd>ColorizerToggle<cr>', 'colorizer'},
-	S = {'<cmd>VsnipOpenEdit<cr>', 'snippet'},
+	S = {'<cmd>UltiSnipsEdit<cr>', 'snippet'},
 	f = {'<cmd>FormatWrite<cr>', 'format'},
 	a = {
 		name = '+actions',
@@ -20,7 +20,7 @@ local mappings = {
 		name = '+settings',
 		s = {'<cmd>setlocal spell!<cr>', 'spell'},
 		h = {'<cmd>set conceallevel=2<cr>', 'conceal'},
-		c = {'<cmd>set conceallevel=1<cr>', 'no-conceal'},
+		c = {'<cmd>set conceallevel=0<cr>', 'no-conceal'},
 		w = {'<cmd>set wrap!<cr>', 'wrap'},
 	},
 	l = {
@@ -78,6 +78,7 @@ local mappings = {
 	z = {
 		name = '+files',
 		i = {'<cmd>e ~/other/dotfiles/config/nvim/init.lua<cr>', 'vimrc'},
+		t = {'<cmd>e ~/university/TODO.md<cr>', 'TODO'},
 		h = {
 			'<cmd>e ~/other/dotfiles/config/nvim/lua/highlight.lua<cr>',
 			'highlight'
@@ -103,12 +104,16 @@ local mappings = {
 	p = {
 		name = '+pandoc',
 		p = {
-			'<cmd>e ~/other/dotfiles/config/pandoc/templates/paper.latex<cr>',
-			'paper.latex'
+			'<cmd>e ~/.local/share/pandoc/templates/paper.latex<cr>',
+			'paper template'
 		},
 		d = {
-			'<cmd>e ~/other/dotfiles/config/pandoc/templates/default.latex<cr>',
-			'default.latex'
+			'<cmd>e ~/.local/share/pandoc/templates/default.latex<cr>',
+			'default template'
+		},
+		D = {
+			'<cmd>e ~/.local/share/pandoc/defaults.yaml<cr>',
+			'default metadata'
 		},
 		m = {'<cmd>silent exec "!make"<cr>', 'make'},
 		v = {'<cmd>silent exec "!make view"<cr>', 'view'},

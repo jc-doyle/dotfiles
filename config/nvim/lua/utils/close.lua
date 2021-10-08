@@ -52,7 +52,6 @@ function M.close()
 	  vim.cmd("wincmd c")
 end
 end
-
 utils.augroup(
 	{
 		{"WinEnter", "*", "lua require 'utils.close'.close_nvim()"},
