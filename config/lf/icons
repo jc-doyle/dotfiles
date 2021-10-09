@@ -18,6 +18,7 @@ LICENSE*        
 .DS_Store*      
 .Dockerfile*    
 CMakeLists.txt* 
+.gitignore*     ﮖ
 
 # Directories
 .git/           

@@ -5,7 +5,6 @@ source "$HOME/.config/zsh/fzfcolors.zsh"
 
 # LF & Git Subrepo
 source "/usr/share/lf/lfcd.sh"
-source ~/.local/share/git-subrepo/.rc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
