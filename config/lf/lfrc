@@ -156,6 +156,7 @@ map Zt tar
 # Paste Link
 map P :link
 
+
 # View Size
 map zS %du -sh $f
 
@@ -171,6 +172,9 @@ map xm $chmod +x $f
 
 # Neovim
 map <c-n> $nvim $fx
+
+# Sudoedit
+map S $sudoedit $fx
 
 # dedicated keys for file opener actions
 map o &mimeopen $f

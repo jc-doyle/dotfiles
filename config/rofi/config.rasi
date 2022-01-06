@@ -1,5 +1,4 @@
 configuration {
-  theme: "themes/base16";
 
 /*	modi: "window,run,ssh";*/
 /* width: 45; */
@@ -146,5 +145,7 @@ ml-row-down: "ScrollDown";
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+@theme "themes/base16"
 
 /* vim: set ft=css: */

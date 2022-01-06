@@ -2,9 +2,7 @@
 source "$HOME/.config/zsh/settings.zsh"
 source "$HOME/.config/zsh/alias.zsh"
 source "$HOME/.config/zsh/fzfcolors.zsh"
-
-# LF & Git Subrepo
-source "/usr/share/lf/lfcd.sh"
+source "$HOME/.config/zsh/functions.zsh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

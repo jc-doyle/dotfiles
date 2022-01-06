@@ -6,6 +6,7 @@ alias todo='nvim ~/university/TODO.md'
 alias af='nvim ~/.config/zsh/alias.zsh'
 alias gl='nvim ~/.config/zsh/globals.zsh'
 alias zs='nvim ~/.config/zsh/settings.zsh'
+alias lfrc='nvim ~/.config/lf/lfrc'
 alias zp='nvim ~/.zprofile'
 
 alias bs='nvim ~/.config/bspwm/bspwmrc'
@@ -22,8 +23,16 @@ alias ls='ls -A --color=auto --format=vertical -X --group-directories-first'
 alias feh='feh -B "#2e3440" --scale-down'
 alias wallpaper='.scripts/setbg.sh'
 alias sc='sc-im'
-alias fonts='fc-list'
 # alias lf='/usr/share/lf/lfcd.sh'
+
+#Fonts
+alias fonts='fc-list -f "%{family[0]} - %{style}\n" | sort | uniq | fzf'
+
+#Notebook
+alias notebook='jupyter notebook --browser="/usr/bin/chromium --app=%s"'
+
+#Sheets
+alias sheets='devour chromium --app="https://docs.google.com/spreadsheets/"'
 
 # Npm
 alias npi="npm install -g"
@@ -33,5 +42,5 @@ alias mobile='.config/autorandr/mobile/postswitch'
 alias docked='.config/autorandr/docked/postswitch'
 
 # Java
-# JAVA_OPTIONS='-Djava.util.prefs.userRoot="/home/jonty/.config/java" -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
-# alias java='java $(echo $JAVA_OPTIONS)'
+JAVA_OPTIONS='-Djava.util.prefs.userRoot="/home/jonty/.config/java" -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+alias java='java $(echo $JAVA_OPTIONS)'
