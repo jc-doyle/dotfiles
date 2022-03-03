@@ -48,6 +48,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^[[Z' autosuggest-execute
 
 # Less Colors
 export LESS=-R
@@ -67,6 +68,10 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 ZSH_HIGHLIGHT_STYLES[comment]='fg=white'
 zle_highlight+=(region:'bg=#3A4456')
+
+#Should Concatenate ?
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=#3A4458'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=#9ADBFF'
 
 # Plugins
 source "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh" 

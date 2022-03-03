@@ -10,6 +10,7 @@ alias lfrc='nvim ~/.config/lf/lfrc'
 alias zp='nvim ~/.zprofile'
 
 alias bs='nvim ~/.config/bspwm/bspwmrc'
+alias dw='nvim ~/.config/dwm/config.def.h'
 alias sx='nvim ~/.config/sxhkd/sxhkdrc'
 alias xi='nvim ~/.xinitrc'
 alias al='nvim ~/.config/alacritty/alacritty.yml'

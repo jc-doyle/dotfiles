@@ -1,38 +1,43 @@
 #! /bin/sh
+
 # Init Programs
-killall -q redshift 
 sxhkd &
-redshift -l -55.33:25.23 -t 6500:5200 &
-syncthing --no-browser &
-# mount_vula.py &
-autorandr -c
 dunst &
+syncthing --no-browser &
+vula mount &
+zsh $HOME/.config/polybar/$HOST.sh
+autorandr -l $HOST
 
-# Wallpaper & Colour Scheme
-feh --bg-scale /home/jonty/.cache/wallpaper/current.jpg
+# Machine Specific Programs & Settings
+if [ "$HOST" = "box" ]; then
+  bspc monitor DP-0 -d 1 2 3 4 5
+  bspc monitor HDMI-0 -d 6 7 8
+  picom --config $HOME/.config/picom/$HOST.conf --experimental-backends &
+elif [ "$HOST" = "mobile" ]; then
+  killall -q redshift 
+  redshift -l -55.33:25.23 -t 6500:5200 &
+  xbacklight -set 90
+  bspc monitor eDP1 -d 1 2 3 4 5 6 7 8
+  picom --config $HOME/.config/picom/$HOST.conf &
+fi
 
-# Linking external rules
-#bspc config external_rules_command "/home/jonty/.config/bspwm/bspwmrules"
-
-# QOL Settings
-xbacklight -set 90
+# Standard Settings
 amixer set Master 40%
 
-# Monitors & Screens
-bspc monitor eDP1 -d 1 2 3 4 5 6 7 8
+# Wallpaper & Colour Scheme
+feh --no-fehbg --bg-scale /home/jonty/.cache/wallpaper/current.jpg
 
-# Not used
+# BSPWM Configs
 bspc config focused_border_color  '#FFFFFF'
 bspc config normal_border_color   '#FFFFFF'
 bspc config border_width          0
-
 bspc config window_gap            14
 bspc config remove_unplugged_monitors true
-
 bspc config split_ratio           0.52
-
 bspc config focus_follows_pointer true
 bspc config swallow_first_click   false
 
+# Rules & Some start-up terminals/programs
 bspc rule -a Zathura state=tiled
 bspc rule -a "R_x11" state=floating rectangle=800x600+560+240
+bspc rule -a "Alacritty" --one-shot state=pseudo_tiled desktop=7 rectangle=1300x800+0+0 && alacritty -e 'ytop' &

@@ -5,15 +5,30 @@
 
   # UI
   # width x height x y  
-  geometry = "500x24-185+10"
+    ### Geometry ###
+
+    # dynamic width from 0 to 300
+    # width = (0, 300)
+    # constant width of 300
+  width = (0,400)
+
+    # The maximum height of a single notification, excluding the frame.
+  height = 295
+
+    # Position the notification in the top right corner
+  origin = top-right
+
+    # Offset from the origin
+  offset = 182x8
   indicate_hidden = yes
   shrink = yes
-  transparency = 7
-  notification_height = 24
-  separator_height = 0
+  transparency = 25
+  notification_height = 15
+  separator_height = 1
   frame_width = 0 
   padding = 6
   horizontal_padding = 15
+  separator_color=auto
 
   # Sort messages by urgency.
   sort = no
@@ -22,8 +37,8 @@
   idle_threshold = 120
 
   # Text
-  font = Cozette 10 
-  line_height = 1
+  font = Cozette 9 
+  line_height = 0
   markup = full
   alignment = center
   show_age_threshold = 60
@@ -72,18 +87,18 @@
 
 # %%base16_template: dunst##default %%
 [urgency_low]
-    background = "#2E3647"
-    foreground = "#A0AECB"
+    background = "#9CA6FF"
+    foreground = "#3A4458"
     timeout = 10
 
 [urgency_normal]
-    background = "#3A4458"
-    foreground = "#9ADBFF"
-    timeout = 15
+    background = "#9ADBFF"
+    foreground = "#2E3647"
+    timeout = 200
 
 [urgency_critical]
-    background = "#5E6A83"
-    foreground = "#FF79C2"
+    background = "#FF79C2"
+    foreground = "#2E3647"
     timeout = 0
 
 # %%base16_template_end%%

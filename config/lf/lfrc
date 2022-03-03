@@ -1,10 +1,7 @@
 # Movement
-map gc cd ~/university/compsci
-map gs cd ~/university/stats
-map gM cd ~/university/maths
-map gmr cd ~/university/maths/ra
-map gmd cd ~/university/maths/de
-map gr cd ~/university/research
+map gc cd ~/university/CSC3002
+map gm cd ~/university/CSC3022
+map gM cd ~/university/MAM2000/
 
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
@@ -13,11 +10,13 @@ map gS cd ~/.scripts/
 map gC cd ~/.cache/
 
 map gd cd ~/downloads
+map gs cd ~/sync
 
 map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config
-map gN cd ~/.config/nvim/lua/
-map gP cd ~/.local/share/nvim/site/pack/packer/
+map gN cd ~/.config/nvim/lua
+map gP cd ~/.local/share/nvim/site/pack/packer
+map gD cd ~/.config/dwm
 
 # General Settings
 set icons
@@ -52,10 +51,10 @@ cmd open ${{
     case $(xdg-mime query filetype $f) in
         application/*spreadsheet*) sc-im $fx;;
         application/x-sc) sc-im $fx;;
-        application/pdf) devour zathura $fx >/dev/null 2>&1 &;;
-        application/epub*) devour zathura $fx >/dev/null 2>&1 &;;
-        image/*) devour sxiv -b $fx;;
-        video/*) devour mpv $fx;;
+        application/pdf) zathura $fx;;
+        application/epub*) zathura $fx;;
+        image/*) sxiv -b $fx;;
+        video/*) mpv $fx;;
         inode/x-empty) nvim $fx;;
         text/csv) sc-im $fx;;
         text/*) nvim $fx;;
@@ -184,7 +183,7 @@ map O $mimeopen --ask $f
 map N push :folder<space>
 map n push :file<space>
 
-map W $zsh /home/jonty/.scripts/setbg.sh $f 
+map W $zsh /home/jonty/.scripts/setbg $f 
 
 map A rename # at the very end
 map r push A<c-u> # new rename

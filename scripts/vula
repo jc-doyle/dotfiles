@@ -1,0 +1,19 @@
+#!/usr/bin/python
+import sys
+import subprocess
+
+sites = { 
+    'CSC3002':'https://vula.uct.ac.za/dav/5002dbe3-736f-451d-a464-8b3d882f794c',
+    'CSC3022':'https://vula.uct.ac.za/dav/12305e61-0226-425d-8067-3496652bef9d',
+}
+
+if (sys.argv[1]):
+    arg = sys.argv[1]
+else:
+    sys.exit(1)
+
+for dir, site in sites.items():
+    process = subprocess.run(['sudo', arg, '-t', 'davfs', site, '/home/jonty/university/'+dir+'/vula'])
+    if process.returncode == 0: print('Mounted ' + dir + '.')
+
+# Update "/etc/davfs2/secrets" for auto-authentication
