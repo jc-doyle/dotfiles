@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "Please ensure you have created a user (a sudoer), and are logged in as that user."
+cd $HOME
 
 # Set Config
 
