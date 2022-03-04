@@ -1,0 +1,17 @@
+#!/bin/zsh
+DOTFOLDER="$HOME/other/dotfiles"
+
+StowFolders=('config' 'scripts')
+HomedirFiles=('.xinitrc' '.zprofile')
+
+cd $DOTFOLDER
+
+# All stowable folders
+for i in "${StowFolders[@]}"; do
+  stow -t $HOME/.$i/ $i
+done
+
+# The rest
+for i in "${HomedirFiles[@]}"; do
+  ln -sf $DOTFOLDER/$i -t $HOME
+done
