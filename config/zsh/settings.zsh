@@ -25,6 +25,8 @@ PURE_PROMPT_VICMD_SYMBOL='⊲'
 zstyle :prompt:pure:path color blue
 zstyle :prompt:pure:virtualenv color '#3A4458'
 zstyle :prompt:pure:git:branch color '#7887A6'
+zstyle :prompt:pure:git:branch color '#7887A6'
+zstyle :prompt:pure:user color '#5E6A83'
 
 
 #PROMPT='%(?.%F{magenta}⊳.%F{red}⊳)%f '

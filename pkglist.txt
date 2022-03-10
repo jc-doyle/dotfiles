@@ -105,6 +105,7 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xterm
+yajl
 ytop-bin
 zathura
 zathura-pdf-mupdf

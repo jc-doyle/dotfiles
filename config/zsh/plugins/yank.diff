@@ -1,2 +1,0 @@
-1056a1057
->   printf %s "${CUTBUFFER}" | xclip -sel c
