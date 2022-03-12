@@ -37,8 +37,8 @@ set ifs "\n"
 cmd folder %mkdir "$@"
 cmd file %touch "$@"
 
-cmd chmod ${{
-    printf "Mode: "
+cmd chmod %{{
+    echo "Mode: "
     read ans
     for file in "$fx"
     do
@@ -48,6 +48,7 @@ cmd chmod ${{
 
 # Open
 cmd open ${{
+    printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
         application/*spreadsheet*) sc-im $fx;;
         application/x-sc) sc-im $fx;;
@@ -59,7 +60,8 @@ cmd open ${{
         text/csv) sc-im $fx;;
         text/*) nvim $fx;;
         *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
-    esac }}
+    esac 
+    }}
 
 # Delete/Restore
 cmd trash %trash-put $fx
@@ -137,9 +139,15 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 
+cmd on-cd &{{
+    printf "\033]0; $PWD\007" > /dev/tty
+}}
+on-cd
+
 # New Folder w/ Selected Files
-cmd newfold ${{
+cmd newfold %{{
     set -f
+    echo "Name: "
     read newd
     mkdir -- "$newd"
     mv -- $fx "$newd"
@@ -155,13 +163,13 @@ map Zt tar
 # Paste Link
 map P :link
 
-
 # View Size
 map zS %du -sh $f
 
 # General 
 map <esc> quit
 map <enter> shell
+map w quit
 
 # Execute/Chmod
 map xX $$f
