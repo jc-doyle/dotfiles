@@ -6,4 +6,4 @@
 	url = https://github.com/jc-doyle/colors.git
 [submodule "config/dwm"]
 	path = config/dwm
-	url = git@github.com:jc-doyle/dwm.git
+	url = https://github.com/jc-doyle/dwm.git
