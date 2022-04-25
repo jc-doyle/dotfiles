@@ -27,6 +27,7 @@ zstyle :prompt:pure:virtualenv color '#3A4458'
 zstyle :prompt:pure:git:branch color '#7887A6'
 zstyle :prompt:pure:git:branch color '#7887A6'
 zstyle :prompt:pure:user color '#5E6A83'
+zstyle :prompt:pure:host color red
 
 
 #PROMPT='%(?.%F{magenta}⊳.%F{red}⊳)%f '

@@ -48,6 +48,7 @@ export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv/
 
 # LF Icons
 LF_ICONS=$(sed ~/.config/lf/icons \

@@ -1,6 +1,7 @@
 # Zsh Functions
 
-#LF CD
+# LF CMDS
+# CD
 lf () {
     tmp="$(mktemp)"
     /usr/bin/lf -last-dir-path="$tmp" "$@"

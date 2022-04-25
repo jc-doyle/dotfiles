@@ -50,7 +50,7 @@ cmd chmod %{{
 cmd open ${{
     printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
-        application/*spreadsheet*) sc-im $fx;;
+        application/*spreadsheet*) libreoffice $fx;;
         application/x-sc) sc-im $fx;;
         application/pdf) zathura $fx;;
         application/epub*) zathura $fx;;
