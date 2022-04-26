@@ -1,11 +1,15 @@
 [submodule "config/nvim"]
 	path = config/nvim
 	url = https://github.com/jc-doyle/nvim.git
+	branch = master
+  update = merge
 [submodule "colors"]
 	path = colors
 	url = https://github.com/jc-doyle/colors.git
 	branch = master
+  update = merge
 [submodule "config/dwm"]
 	path = config/dwm
 	url = https://github.com/jc-doyle/dwm.git
 	branch = main
+  update = merge
