@@ -1,16 +1,19 @@
 #!/bin/zsh
 
+set -e
+
 dirs=(
-  "xresources/.Xresources"
   "alacritty/alacritty.yml"
   "polybar/config" 
-  "rofi/rofi.rasi" 
+  "rofi/themes/rofi.rasi" 
   "nvim/lua/colors/colors.lua"
   "zsh/fzfcolors.zsh"
-  "zathura/zathurarc"
+  # "zathura/zathurarc"
   "dunst/dunstrc"
-  "sc-im/theme"
+  # "sc-im/theme"
 )
+
+cd "/home/jonty/other/dotfiles/colors/" || exit
 
 for i in ${dirs[*]}; do
   pybase16 inject -s $1 -f "/home/jonty/other/dotfiles/config/"$i
