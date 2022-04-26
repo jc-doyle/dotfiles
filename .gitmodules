@@ -4,3 +4,7 @@
 [submodule "config/dwm"]
 	path = config/dwm
 	url = https://github.com/jc-doyle/dwm.git
+[submodule "colors"]
+	path = colors
+	url = https://github.com/jc-doyle/colors.git
+	branch = master
