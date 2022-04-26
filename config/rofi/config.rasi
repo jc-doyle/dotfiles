@@ -146,6 +146,6 @@ ml-row-down: "ScrollDown";
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@theme "themes/base16"
+@theme "themes/rofi"
 
 /* vim: set ft=css: */

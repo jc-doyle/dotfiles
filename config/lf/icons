@@ -18,7 +18,7 @@ LICENSE*        
 .DS_Store*      
 .Dockerfile*    
 CMakeLists.txt* 
-.gitignore*     ﮖ
+.gitignore*     
 
 # Directories
 .git/           
@@ -217,4 +217,3 @@ CMakeLists.txt* 
 *.xspf  
 *.xwd   
 *.yuv   
-

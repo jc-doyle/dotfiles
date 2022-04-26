@@ -31,6 +31,7 @@ git clone https://github.com/jeffreytse/zsh-vi-mode
 echo "Installing Packages..."
 cd "$DOTFOLDER" || exit
 yay -S --needed $(< "$PKGLIST")
+# yay -S --noconfirm --needed $(< $PKGLIST)
 
 # Update config
 $DOTFOLDER/scripts/update-config
