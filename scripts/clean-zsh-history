@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+HISTDIR="$HOME/.cache/zsh"
+
+cd $HISTDIR || exit
+cp -f history history.old
+awk '!seen[$0]++' history.old > history || exit
+dunstify "Zsh History Cleaned"
+

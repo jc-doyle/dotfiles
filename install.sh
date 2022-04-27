@@ -1,7 +1,9 @@
 #!/bin/sh
 set -e
 DOTFOLDER="$HOME/other/dotfiles"
-PKGLIST="$DOTFOLDER/pkglist.txt"
+PKGDIR="$DOTFOLDER/pkg"
+PKGLIST="$PKGDIR/pkg.txt"
+AURLIST="$PKGDIR/aur.txt"
 
 echo "Please ensure you have created a user (a sudoer), and are logged in as that user."
 cd "$HOME" || exit
@@ -15,7 +17,8 @@ sudo sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
 
 # Install Yay
 echo "Installing Yay..."
-git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin || exit
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin || exit
 makepkg --noconfirm -si
 
 # Cloning Zsh-Plugins
@@ -30,8 +33,10 @@ git clone https://github.com/jeffreytse/zsh-vi-mode
 # Install from pkglist
 echo "Installing Packages..."
 cd "$DOTFOLDER" || exit
-yay -S --needed $(< "$PKGLIST")
 # yay -S --noconfirm --needed $(< $PKGLIST)
+sudo pacman -S --needed - < "$PKGLIST"
+yay -S --noconfirm --needed $(< "$AURLIST")
 
 # Update config
+echo "Updating Config..."
 $DOTFOLDER/scripts/update-config
