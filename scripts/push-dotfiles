@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 # Move to base repo
-set -e
 cd ~/other/dotfiles || exit
 
 # Push & update each submodule
@@ -9,9 +8,13 @@ git submodule foreach git push || exit
 git submodule update --recursive --remote
 
 # Add all submodules
-git add colors config/dwm config/nvim
-git commit -m "submodule version update" || exit
+git add colors config/dwm config/nvim 
+git commit -m "submodule version update" || echo "no submodule changes"
 
 # Push to github
-git push
-notify-send "Pushed Dotfiles"
+PUSHSTATUS=$(git push 2>&1)
+
+# Send notification if successful
+if [[ $PUSHSTATUS != *"up-to-date"* ]]; then
+  notify-send "Pushed Dotfiles"
+fi
