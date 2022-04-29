@@ -6,7 +6,7 @@ map gM cd ~/university/MAM2000/
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
 
-map gS cd ~/.scripts/
+map gS cd ~/other/dotfiles/scripts/
 map gC cd ~/.cache/
 
 map gd cd ~/downloads
