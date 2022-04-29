@@ -136,4 +136,11 @@
   summary = "gscreenshot"
   format = " Screenshot Taken" 
 
+[github-push]
+  appname = "push"
+  format = " %s"
+  background = "#9CA6FFCC"
+  
+
+
 # vim: ft=cfg

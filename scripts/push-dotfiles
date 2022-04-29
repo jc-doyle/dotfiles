@@ -16,5 +16,5 @@ PUSHSTATUS=$(git push 2>&1)
 
 # Send notification if successful
 if [[ $PUSHSTATUS != *"up-to-date"* ]]; then
-  notify-send "Pushed Dotfiles"
+  dunstify -a "push" "Pushed Dotfiles"
 fi
