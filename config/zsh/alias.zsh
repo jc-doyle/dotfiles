@@ -3,7 +3,9 @@ alias A="cat -s ~/.config/zsh/alias.zsh"
 
 # Key Files 
 alias todo='nvim ~/university/TODO.md'
+alias hist='nvim ~/.cache/zsh/history'
 alias af='nvim ~/.config/zsh/alias.zsh'
+alias al='nvim ~/.config/zsh/alias.zsh'
 alias gl='nvim ~/.config/zsh/globals.zsh'
 alias zs='nvim ~/.config/zsh/settings.zsh'
 alias lfrc='nvim ~/.config/lf/lfrc'
@@ -13,7 +15,6 @@ alias bs='nvim ~/.config/bspwm/bspwmrc'
 alias dw='nvim ~/.config/dwm/config.def.h'
 alias sx='nvim ~/.config/sxhkd/sxhkdrc'
 alias xi='nvim ~/.xinitrc'
-alias al='nvim ~/.config/alacritty/alacritty.yml'
 alias csd='nvim ~/other/dotfiles/colors/schemes/dark/dark.yaml'
 alias csl='nvim ~/other/dotfiles/colors/schemes/light/light.yaml'
 
