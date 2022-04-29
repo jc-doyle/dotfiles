@@ -3,12 +3,12 @@
 pkill polybar
 
 if [[ $HOST = "box" ]]; then
-  polybar -q wsleft	&
   polybar -q lyleft	&
-  polybar -q wsright &
   polybar -q lyright &
   polybar -q trayleft &
   polybar -q trayright &
+  polybar -q wsleft	&
+  polybar -q wsright &
   polybar -q music &
 elif [[ $HOST = "laptop" ]]; then
   polybar -q music-laptop &
