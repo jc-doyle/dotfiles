@@ -40,6 +40,7 @@ CMakeLists.txt* 
 *.xlsx    ﬘
 *.csv     ﬘
 *.sc      ﬘
+*.ini     
 
 # Languages
 *.c       
