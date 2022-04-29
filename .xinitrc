@@ -20,16 +20,16 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Startup Programs
-syncthing --no-browser &
+# syncthing --no-browser &
 feh --no-fehbg --bg-scale /home/jonty/.cache/wallpaper/current.jpg &
 autorandr -c &
+sxhkd &
 picom --config $HOME/.config/picom/box.conf --experimental-backends &
+$HOME/.config/polybar/launch.sh
 
 # Start Dwm
-sxhkd &
 while true; do
     # Log stderror to a file 
-    # dwm 2> ~/.dwm.log
     # No error logging
     dwm >/dev/null 2>&1
 done
