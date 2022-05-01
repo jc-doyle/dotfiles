@@ -49,6 +49,7 @@ export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv/
+export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nvidia/compute
 
 # LF Icons
 LF_ICONS=$(sed ~/.config/lf/icons \
