@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
 
-cp $1 $HOME/.cache/wallpaper/current.jpg
-feh --bg-scale /home/jonty/.cache/wallpaper/current.jpg
+cp $1 "$XDG_CACHE_HOME"/wallpaper/current.jpg || exit
+feh --no-fehbg --bg-scale "$XDG_CACHE_HOME"/wallpaper/current.jpg
+dunstify "Wallpaper Updated"

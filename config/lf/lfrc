@@ -191,7 +191,7 @@ map O $mimeopen --ask $f
 map N push :folder<space>
 map n push :file<space>
 
-map W $zsh /home/jonty/.scripts/setbg $f 
+map W $zsh setbg $f 
 
 map A rename # at the very end
 map r push A<c-u> # new rename
