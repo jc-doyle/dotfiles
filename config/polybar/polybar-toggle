@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+if pgrep -x "polybar" > /dev/null
+then
+  pkill -x "polybar"
+else
+  "$HOME"/.config/polybar/launch.sh
+fi
