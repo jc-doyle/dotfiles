@@ -9,7 +9,7 @@ alias al='nvim ~/.config/zsh/alias.zsh'
 alias gl='nvim ~/.config/zsh/globals.zsh'
 alias zs='nvim ~/.config/zsh/settings.zsh'
 alias lfrc='nvim ~/.config/lf/lfrc'
-alias zp='nvim ~/.zprofile'
+alias zp='nvim ~/other/dotfiles/.zprofile'
 
 alias bs='nvim ~/.config/bspwm/bspwmrc'
 alias dw='nvim ~/.config/dwm/config.def.h'
