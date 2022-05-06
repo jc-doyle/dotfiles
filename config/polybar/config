@@ -124,7 +124,7 @@ width = 9%
 offset-x = 1%
 line-size = 2
 modules-center = dwm-tags
-monitor = eDP-1
+monitor = eDP1
 
 [bar/lyleft-laptop]
 foreground = #8FFFBC
@@ -133,7 +133,7 @@ width = 2%
 offset-x = 10.5%
 line-size = 2
 modules-center = dwm-layout
-monitor = eDP-1
+monitor = eDP1
 
 [bar/music-laptop]
 inherit = bar/base
@@ -141,7 +141,7 @@ enable-ipc = true
 width = 20%
 offset-x = 40%
 modules-center = spotify
-monitor = eDP-1
+monitor = eDP1
 
 [bar/monitor-laptop]
 inherit = bar/base
@@ -150,7 +150,7 @@ offset-x = 81%
 padding = 4
 modules-left = memory
 modules-right = cpu
-monitor = eDP-1
+monitor = eDP1
 
 [bar/time-laptop]
 inherit = bar/base
@@ -158,7 +158,7 @@ width = 5%
 offset-x = 89.5%
 padding = 4
 modules-center = time
-monitor = eDP-1
+monitor = eDP1
 
 [bar/battery-laptop]
 inherit = bar/base
