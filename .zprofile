@@ -16,6 +16,7 @@ export PATH="$GOPATH/bin/:$PATH"
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 export PATH="/usr/bin/julia:$PATH"
 export PATH="$XDG_DATA_HOME/texlive/bin/x86_64-linux/:$PATH"
+export PATH="$XDG_CONFIG_HOME/polybar/:$PATH"
 
 
 # Home Clean Up

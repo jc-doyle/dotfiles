@@ -45,3 +45,6 @@ super + shift + c
 # Bluetooth
 super + b
   rofi-bluetooth
+
+super + p
+  polybar-toggle
