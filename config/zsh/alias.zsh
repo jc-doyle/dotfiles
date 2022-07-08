@@ -30,11 +30,10 @@ alias gf='git status'
 #Fonts
 alias fonts='fc-list -f "%{family[0]} - %{style}\n" | sort | uniq | fzf'
 
-#Notebook
+#Browser Apps
 alias notebook='jupyter notebook --browser="/usr/bin/chromium --app=%s"'
-
-#Sheets
 alias sheets='devour chromium --app="https://docs.google.com/spreadsheets/"'
+alias figma='chromium --app="https://www.figma.com/"'
 
 # Npm
 alias npi="npm install -g"
