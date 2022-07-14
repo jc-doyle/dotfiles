@@ -11,14 +11,15 @@ off
 output DP-5
 off
 output DP-0
-crtc 0
+crtc 1
 mode 1920x1080
 pos 0x0
 rate 143.86
 x-prop-non_desktop 0
 output HDMI-0
-crtc 1
+crtc 0
 mode 1920x1080
 pos 1920x0
+primary
 rate 74.97
 x-prop-non_desktop 0
