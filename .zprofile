@@ -1,3 +1,6 @@
+# Locale
+export LANG=C.UTF-8
+
 # Programs
 export EDITOR="nvim"
 export TERMINAL="alacritty"
