@@ -2,17 +2,16 @@
 set -e
 DOTFOLDER="$HOME/other/dotfiles"
 PKGDIR="$DOTFOLDER/pkg"
-PKGLIST="$PKGDIR/pkg.txt"
-AURLIST="$PKGDIR/aur.txt"
+PKGLIST="$PKGDIR/pkg"
+AURLIST="$PKGDIR/aur"
+NODELIST="$PKGDIR/node"
 
 echo "Please ensure you have created a user (a sudoer), and are logged in as that user."
 cd "$HOME" || exit
 
-# Set Config
-
 # Pacman Things
 sudo grep -q "ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
-sudo sed -i "s/^#ParallelDownloads = 5$/ParallelDownloads = 5/;s/^#Color$/Color/" /etc/pacman.conf
+sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
 sudo sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
 
 # Install Yay
@@ -21,22 +20,26 @@ git clone https://aur.archlinux.org/yay-bin.git
 cd yay-bin || exit
 makepkg --noconfirm -si
 
-# Cloning Zsh-Plugins
-cd "$DOTFOLDER"/config/zsh/plugins || exit
-echo "Installing Zsh Plugins..."
-git clone https://github.com/sindresorhus/pure.git
-git clone https://github.com/zsh-users/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-history-substring-search.git
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-git clone https://github.com/jeffreytse/zsh-vi-mode
+# Zsh Install
+echo "Installing Zsh Goodies..."
+cd "$DOTFOLDER"/config/zsh/ || exit
+zsh install.zsh
 
 # Install from pkglist
 echo "Installing Packages..."
 cd "$DOTFOLDER" || exit
-# yay -S --noconfirm --needed $(< $PKGLIST)
 sudo pacman -S --needed - < "$PKGLIST"
-yay -S --noconfirm --needed $(< "$AURLIST")
+yay -S --needed $(< "$AURLIST")
 
 # Update config
 echo "Updating Config..."
 $DOTFOLDER/scripts/update-config
+
+echo "Installing Python Goodies.."
+cd "$DOTFOLDER"/config/python/ || exit
+zsh install.zsh
+
+echo "Installing Node Goodies.."
+cd "$DOTFOLDER"/config/npm/ || exit
+zsh install.zsh
+

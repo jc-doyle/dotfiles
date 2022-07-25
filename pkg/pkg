@@ -46,7 +46,6 @@ ncdu
 neofetch
 networkmanager
 ninja
-npm
 ntp
 nvidia
 nvidia-settings
@@ -54,7 +53,6 @@ openssh
 os-prober
 patch
 pavucontrol
-piper
 pkgconf
 playerctl
 pulseaudio

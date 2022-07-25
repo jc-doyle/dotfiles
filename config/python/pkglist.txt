@@ -1,0 +1,10 @@
+# Used Binaries
+trash-cli
+pulsemixer
+python-lsp-server
+
+# Python Libraries
+pyaml
+rich
+numpy
+matplotlib

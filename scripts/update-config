@@ -1,9 +1,10 @@
 #!/bin/zsh
+
 DOTFOLDER="$HOME/other/dotfiles"
 CFGFOLDERS=('config' 'scripts')
 HOMEFILES=('.xinitrc' '.zprofile')
 
-echo "Updating..."
+echo "Symlinking Config..."
 
 mkdir -p ~/.scripts/
 cd $DOTFOLDER || exit
@@ -18,4 +19,7 @@ for i in "${HOMEFILES[@]}"; do
   ln -sf $DOTFOLDER/$i -t $HOME || exit
 done
 
-echo "Success"
+# Re-Source zprofile
+source ~/.zprofile || exit
+
+echo "Success!"

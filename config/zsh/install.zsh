@@ -1,8 +1,14 @@
 #!/bin/zsh
 
+mkcd() {
+  mkdir -p "$1"
+  cd "$1" || exit
+}
+
 # Cloning Zsh-Plugins
-cd plugins || exit
+mkcd plugins 
 rm -rf pure zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting zsh-vi-mode
+
 echo "Installing Zsh Plugins..."
 git clone https://github.com/sindresorhus/pure.git
 git clone https://github.com/zsh-users/zsh-autosuggestions
@@ -14,3 +20,4 @@ echo "Removing Pure newline..."
 sed -i '/spacious/{n;s/print//}' pure/pure.zsh
 
 mkdir -p $HOME/.cache/zsh/ || exit
+echo "Complete. Create a history file."
