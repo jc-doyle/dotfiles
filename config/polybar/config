@@ -3,22 +3,22 @@
 ; %%base16_template: polybar##default %%
 [colors]
 
-base0 = #2E3647
-base1 = #3A4458
-base2 = #5E6A83
-base3 = #A0AECB
-base4 = #D7E1F5
-base5 = #F4F8FF
-base6 = #9ADBFF
-base7 = #FF79C2
-base8 = #8FFFBC
-base9 = #E8FFA6
-base10 = #FF92AC
-base11 = #FDAFFF
-base12 = #94F2FF
-base13 = #B7E1FF
-base14 = #9CABDF
-base15 = #9CA6FF
+base0 = #F8F6F4
+base1 = #E7E5E2
+base2 = #B2ABA3
+base3 = #908D8D
+base4 = #383838
+base5 = #313131
+base6 = #3B5970
+base7 = #BA4E68
+base8 = #3C6B60
+base9 = #7E9F8B
+base10 = #944D84
+base11 = #58487A
+base12 = #3D495A
+base13 = #1A7488
+base14 = #61474D
+base15 = #384C7F
 
 ; %%base16_template_end%%
 ;--------------------------- BARS -----------------------------
@@ -33,7 +33,7 @@ base3-color = ${colors.base3}
 
 height = 26
 
-background = ${colors.base1}
+background = ${colors.base0}
 foreground = ${colors.base4}
 override-redirect=false
 offset-y = 8
@@ -51,7 +51,7 @@ modules-center = dwm-tags
 monitor = DP-0
 
 [bar/lyleft]
-foreground = #8FFFBC
+foreground = ${colors.base8}
 inherit = bar/base
 width = 2%
 offset-x = 10.5%
@@ -127,7 +127,7 @@ modules-center = dwm-tags
 monitor = eDP1
 
 [bar/lyleft-laptop]
-foreground = #8FFFBC
+foreground = ${colors.base8}
 inherit = bar/base
 width = 2%
 offset-x = 10.5%
@@ -143,21 +143,20 @@ offset-x = 40%
 modules-center = spotify
 monitor = eDP1
 
-[bar/monitor-laptop]
-inherit = bar/base
-width = 8%
-offset-x = 81%
-padding = 4
-modules-left = memory
-modules-right = cpu
-monitor = eDP1
-
 [bar/time-laptop]
 inherit = bar/base
-width = 5%
-offset-x = 89.5%
-padding = 4
+width = 3%
+offset-x = 88%
+padding = 2
 modules-center = time
+monitor = eDP1
+
+[bar/date-laptop]
+inherit = bar/base
+width = 3%
+offset-x = 91.5%
+padding = 2
+modules-center = date
 monitor = eDP1
 
 [bar/battery-laptop]
@@ -166,6 +165,7 @@ width = 4%
 offset-x = 95%
 padding = 4
 modules-right = battery
+monitor = eDP1
 
 ;--------------------------- MODULES ---------------------------
 
@@ -198,6 +198,7 @@ label-empty-padding = 1
 
 label-separator = " "
 ;--------------------------------------
+
 [module/dwm-tags]
 type = internal/dwm
 format = <label-tags>
@@ -241,11 +242,17 @@ label-layout-foreground = ${colors.base8}
 type = internal/date
 interval = 10
 format-margin = 0
-
 time = "%H:%M"
-date = "%d %b"
+label = %time%
+label-foreground = ${colors.base8}
 
-label = %{F#9ADBFF}%time% %{F#A0AECB}%date%
+[module/date]
+type = internal/date
+interval = 1000
+format-margin = 0
+date = "%d %b"
+label = %date%
+label-foreground = ${colors.base4}
 
 ;--------------------------------------
 

@@ -25,6 +25,7 @@ alias ls='ls -A --color=auto --format=vertical -X --group-directories-first'
 alias feh='feh -B "#2e3440" --scale-down'
 alias wallpaper='.scripts/setbg.sh'
 alias gf='git status'
+alias light='sudo light -S'
 # alias lf='/usr/share/lf/lfcd.sh'
 
 #Fonts

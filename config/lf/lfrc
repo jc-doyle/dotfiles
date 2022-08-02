@@ -1,3 +1,6 @@
+# Get Here
+map g' $nvim ~/other/dotfiles/config/lf/lfrc
+
 # Movement
 map gp cd ~/projects/point-north/
 map gc cd ~/university/CSC3002
@@ -11,7 +14,7 @@ map gS cd ~/other/dotfiles/scripts/
 map gC cd ~/.cache/
 
 map gd cd ~/downloads
-map gs cd ~/sync
+map gs cd ~/other/dotfiles/colors/
 
 map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config

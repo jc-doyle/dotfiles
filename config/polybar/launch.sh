@@ -15,6 +15,6 @@ elif [[ $HOST = "laptop" ]]; then
   polybar -q wsleft-laptop &
   polybar -q lyleft-laptop &
   polybar -q time-laptop &
-  polybar -q monitor-laptop &
+  polybar -q date-laptop &
   polybar -q battery-laptop &
 fi

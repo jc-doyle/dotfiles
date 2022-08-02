@@ -87,6 +87,7 @@ CMakeLists.txt* 
 *.lock    
 *.md      
 *.mkd     
+*.mustache 
 
 # Shells and Command Interpreters
 *.bash 

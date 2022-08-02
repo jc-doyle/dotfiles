@@ -84,18 +84,18 @@
 
 # %%base16_template: dunst##default %%
 [urgency_low]
-    background = "#9ADBFFDD"
-    foreground = "#3A4458"
+    background = "#3B5970DD"
+    foreground = "#E7E5E2"
     timeout = 10
 
 [urgency_normal]
-    background = "#9ADBFFDD"
-    foreground = "#3A4458"
+    background = "#3B5970DD"
+    foreground = "#E7E5E2"
     timeout = 15
 
 [urgency_critical]
-    background = "#FDAFFFAA"
-    foreground = "#2E3647"
+    background = "#58487AAA"
+    foreground = "#F8F6F4"
     timeout = 0
 
 # %%base16_template_end%%
