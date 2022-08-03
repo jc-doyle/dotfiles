@@ -1,6 +1,16 @@
 #!/bin/sh
 set -e
+IMAGEDIR="$XDG_CACHE_HOME/wallpaper/"
+TEMPNAME="current"
 
-cp $1 "$XDG_CACHE_HOME"/wallpaper/current.jpg || exit
-feh --no-fehbg --bg-scale "$XDG_CACHE_HOME"/wallpaper/current.jpg
+TEMPFILE="$IMAGEDIR/$TEMPNAME.jpg"
+
+if [ ! -f  "$TEMPFILE" ]; then
+  mkdir "$IMAGEDIR"
+  touch "$TEMPFILE"
+fi
+
+cp "$1" "$TEMPFILE" || exit
+feh --no-fehbg --bg-scale "$TEMPFILE"
+
 dunstify "Wallpaper Updated"

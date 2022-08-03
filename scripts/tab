@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-TABBED_CONFIG="-c -k -o #F4F2EF -O #CCCAC9 -t #F8F6F4 -T #5B5B5B"
-
-tabbed $TABBED_CONFIG $1 -e

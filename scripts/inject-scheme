@@ -13,7 +13,7 @@ dirs=(
   # "sc-im/theme"
 )
 
-cd "/home/jonty/other/dotfiles/colors/" || exit
+cd "$HOME/other/dotfiles/colors/" || exit
 
 for i in ${dirs[*]}; do
   pybase16 inject -s $1 -f "/home/jonty/other/dotfiles/config/"$i

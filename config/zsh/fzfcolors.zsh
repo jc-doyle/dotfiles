@@ -1,8 +1,8 @@
-# %%base16_template: fzf##default %%
+# --- colors ---
 export FZF_DEFAULT_OPTS='
---color fg:#313131,bg:#F8F6F4,hl:#58487A,fg+:#944D84,bg+:#F8F6F4,hl+:#58487A
---color pointer:#944D84,info:#383838,spinner:#3C6B60,header:#383838,prompt:#3C6B60,marker:#7E9F8B
---color border:#3B5970
+--color fg:#F4F8FF,bg:,hl:#FDAFFF,fg+:#FF92AC,bg+:#2E3647,hl+:#FDAFFF
+--color pointer:#FF92AC,info:#D7E1F5,spinner:#8FFFBC,header:#D7E1F5,prompt:#8FFFBC,marker:#E8FFA6
+--color border:#9ADBFF
 '
 
-# %%base16_template_end%%
+# --- colors ---

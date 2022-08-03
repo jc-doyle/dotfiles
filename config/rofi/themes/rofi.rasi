@@ -1,28 +1,23 @@
 * {
-// %%base16_template: rofi##default %%
-/**
- * Base16 Light
- * Jonty Doyle
- */
+// ------ colors ------
+base0:  #2E3647; 
+base1:  #3A4458; 
+base2:  #5E6A83; 
+base3:  #A0AECB; 
+base4:  #D7E1F5; 
+base5:  #F4F8FF; 
+base6:  #9ADBFF; 
+base7:  #FF79C2; 
+base8:  #8FFFBC; 
+base9:  #E8FFA6; 
+base10:  #FF92AC; 
+base11:  #FDAFFF; 
+base12:  #94F2FF; 
+base13:  #B7E1FF; 
+base14:  #9CABDF; 
+base15:  #9CA6FF; 
 
-  base0:  #F8F6F4; 
-  base1:  #E7E5E2; 
-  base2:  #B2ABA3; 
-  base3:  #908D8D; 
-  base4:  #383838; 
-  base5:  #313131; 
-  base6:  #3B5970; 
-  base7:  #BA4E68; 
-  base8:  #3C6B60; 
-  base9:  #7E9F8B; 
-  base10:  #944D84; 
-  base11:  #58487A; 
-  base12:  #3D495A; 
-  base13:  #1A7488; 
-  base14:  #61474D; 
-  base15:  #384C7F; 
-
-// %%base16_template_end%%
+// ------ colors ------
 
   faded: #00000099;
   spacing: 2;

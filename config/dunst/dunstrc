@@ -82,23 +82,23 @@
   # Markup is allowed
   format = "%s"
 
-# %%base16_template: dunst##default %%
+# ------ colors ------
 [urgency_low]
-    background = "#3B5970DD"
-    foreground = "#E7E5E2"
+    background = "#9ADBFFDD"
+    foreground = "#3A4458"
     timeout = 10
 
 [urgency_normal]
-    background = "#3B5970DD"
-    foreground = "#E7E5E2"
+    background = "#9ADBFFDD"
+    foreground = "#3A4458"
     timeout = 15
 
 [urgency_critical]
-    background = "#58487AAA"
-    foreground = "#F8F6F4"
+    background = "#FDAFFFAA"
+    foreground = "#2E3647"
     timeout = 0
 
-# %%base16_template_end%%
+# ------ colors ------
 
 # Messages can be matched by
 #    appname (discouraged, see desktop_entry)

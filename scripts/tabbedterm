@@ -1,2 +1,0 @@
-#!/bin/zsh
-tabbed -cr 2 alacritty --embed "" $1 $2

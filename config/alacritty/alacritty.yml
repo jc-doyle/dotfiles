@@ -66,45 +66,43 @@ window:
     x: 15
     y: 14
 
-# %%base16_template: alacritty##default %%
-# Base16 Light
-# Jonty Doyle
+# ------ colors ------
 colors:
   # Default colors
   primary:
-    background: '0xF8F6F4'
-    foreground: '0x313131'
+    background: '#2E3647'
+    foreground: '#F4F8FF'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0xF8F6F4'
-    cursor: '0x383838'
+    text:     '#2E3647'
+    cursor:   '#D7E1F5'
 
   # Normal colors
   normal:
-    black:   '#F8F6F4'
-    red:     '0xBA4E68'
-    green:   '0x3C6B60'
-    yellow:  '0x944D84'
-    blue:    '0x3B5970'
-    magenta: '0x58487A'
-    cyan:    '0x3D495A'
-    white:   '#383838'
+    black:   '#2E3647'
+    red:     '#FF79C2'
+    green:   '#8FFFBC'
+    yellow:  '#FF92AC'
+    blue:    '#9ADBFF'
+    magenta: '#FDAFFF'
+    cyan:    '#94F2FF'
+    white:   '#D7E1F5'
 
   # Bright colors
   bright:
-    black:   '0xE7E5E2'
-    red:     '0x61474D'
-    green:   '0x384C7F'
-    yellow:  '0x7E9F8B'
-    blue:    '0x1A7488'
-    magenta: '0xB2ABA3'
-    cyan:    '0x908D8D'
-    white:   '0x313131'
+    black:   '#3A4458'
+    red:     '#9CABDF'
+    green:   '#9CA6FF'
+    yellow:  '#E8FFA6'
+    blue:    '#B7E1FF'
+    magenta: '#5E6A83'
+    cyan:    '#A0AECB'
+    white:   '#F4F8FF'
 
 draw_bold_text_with_bright_colors: false
 
-# %%base16_template_end%%
+# ------ colors ------
 
 cursor:
   style:
