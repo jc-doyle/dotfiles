@@ -21,6 +21,8 @@ export PATH="/usr/bin/julia:$PATH"
 export PATH="$XDG_DATA_HOME/texlive/bin/x86_64-linux/:$PATH"
 export PATH="$XDG_CONFIG_HOME/polybar/:$PATH"
 
+# Colors
+export COLOR_DIR=$HOME/other/dotfiles/colors/
 
 # Home Clean Up
 export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
