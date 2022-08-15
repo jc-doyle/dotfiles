@@ -3,9 +3,9 @@ map g' $nvim ~/other/dotfiles/config/lf/lfrc
 
 # Movement
 map gp cd ~/projects/point-north/
-map gc cd ~/university/CSC3002
-map gm cd ~/university/CSC3022
-map gM cd ~/university/MAM2000/
+map gc cd ~/university/cs/
+map gm cd ~/university/ia/
+map gi cd ~/university/inf/
 
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
@@ -50,20 +50,20 @@ cmd chmod %{{
     done
 }}
 
-# Open
+# Default Programs
 cmd open ${{
     printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
         application/*spreadsheet*) libreoffice $fx;;
+        application/stl) f3d $fx;;
         application/x-sc) sc-im $fx;;
         application/pdf) zathura $fx;;
         application/epub*) zathura $fx;;
+        application/x-blender) blender $fx;;
         image/*) sxiv -b $fx;;
         video/*) mpv $fx;;
-        inode/x-empty) nvim $fx;;
-        text/csv) sc-im $fx;;
         text/*) nvim $fx;;
-        *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+        */*) nvim $fx;;
     esac 
     }}
 
@@ -157,7 +157,8 @@ cmd newfold %{{
     mv -- $fx "$newd"
 }}
 map <a-n> newfold
-# Mappings
+
+# General Mappings
 
 # Extract/Zip
 map Zu extract

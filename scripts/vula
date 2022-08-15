@@ -3,8 +3,9 @@ import sys
 import subprocess
 
 sites = { 
-    'CSC3002':'https://vula.uct.ac.za/dav/5002dbe3-736f-451d-a464-8b3d882f794c',
-    'CSC3022':'https://vula.uct.ac.za/dav/12305e61-0226-425d-8067-3496652bef9d',
+    'cs':'https://vula.uct.ac.za/dav/2ba86917-5774-4a9f-8966-3953651a27c9',
+    'ia':'https://vula.uct.ac.za/dav/db2e1ed3-b01c-41a8-9fcd-d295db2640db',
+    'inf':'https://vula.uct.ac.za/dav/40ba62d6-1cfb-4b69-9fc2-880384d76854',
 }
 
 if (sys.argv[1]):

@@ -33,7 +33,9 @@ alias fonts='fc-list -f "%{family[0]} - %{style}\n" | sort | uniq | fzf'
 
 #Browser Apps
 alias notebook='jupyter notebook --browser="/usr/bin/chromium --app=%s"'
-alias sheets='devour chromium --app="https://docs.google.com/spreadsheets/"'
+alias diagram='chromium --app="https://app.diagrams.net"'
+alias docs='chromium --app="https://docs.google.com/document/u/0/"'
+alias sheets='chromium --app="https://docs.google.com/spreadsheets/"'
 alias figma='chromium --app="https://www.figma.com/"'
 
 # Npm
