@@ -55,8 +55,7 @@ cmd open ${{
     printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
         application/*spreadsheet*) libreoffice $fx;;
-        application/stl) f3d $fx;;
-        application/x-sc) sc-im $fx;;
+        */*stl) f3d $fx;;
         application/pdf) zathura $fx;;
         application/epub*) zathura $fx;;
         application/x-blender) blender $fx;;
