@@ -42,7 +42,7 @@ alias figma='chromium --app="https://www.figma.com/"'
 alias npi="npm install -g"
 
 # Python
-alias pip="pip3"
+# alias pip="pip3"
 
 # Switching
 alias mobile='.config/autorandr/mobile/postswitch'
