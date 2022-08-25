@@ -1,0 +1,8 @@
+# Paths
+alacritty: "alacritty/alacritty.yml"
+kitty: "kitty/colors.conf"
+neovim: "nvim/lua/colors/colors.lua"
+dunst: "dunst/dunstrc"
+polybar: "polybar/config"
+rofi: "rofi/themes/rofi.rasi"
+fzf: "zsh/fzfcolors.zsh"

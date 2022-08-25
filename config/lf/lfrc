@@ -11,7 +11,7 @@ map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
 
 map gS cd ~/other/dotfiles/scripts/
-map gC cd ~/.cache/
+map gC cd ~/other/dotfiles/colors/
 
 map gd cd ~/downloads
 map gs cd ~/other/dotfiles/colors/
