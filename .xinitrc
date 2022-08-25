@@ -25,7 +25,7 @@ feh --no-fehbg --bg-scale /home/jonty/.cache/wallpaper/current.jpg &
 autorandr -c &
 sxhkd &
 picom --config $HOME/.config/picom/box.conf --experimental-backends &
-$HOME/.config/polybar/launch.sh
+"$HOME/.config/polybar/launch.sh"
 
 # Start Dwm
 while true; do
