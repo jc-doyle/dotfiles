@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-notify-send "colorscheme: $1"
-
-$HOME/.config/polybar/launch.sh

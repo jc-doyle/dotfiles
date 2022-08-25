@@ -1,7 +1,7 @@
 # Paths
 alacritty: "alacritty/alacritty.yml"
 kitty: "kitty/colors.conf"
-neovim: "nvim/lua/colors/colors.lua"
+neovim: "nvim/lua/highlight.lua"
 dunst: "dunst/dunstrc"
 polybar: "polybar/config"
 rofi: "rofi/themes/rofi.rasi"
