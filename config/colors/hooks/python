@@ -1,0 +1,28 @@
+#!/bin/python
+import subprocess
+import os
+
+
+def kitty():
+    for file in os.scandir('/tmp/'):
+        if file.name.find('kitty') != -1:
+            socket = f'unix:/tmp/{file.name}'
+            path = '~/.config/kitty/colors.conf'
+            cmd = ['kitty', '@', '--to', socket, 'set-colors', path]
+            subprocess.run(cmd, stdout=subprocess.PIPE)
+
+
+def nvim():
+    cmd = ['nvr', '--nostart', '--serverlist']
+    process = subprocess.run(cmd, stdout=subprocess.PIPE)
+    servers = process.stdout.decode().split('\n')
+
+    for server in servers:
+        if len(server) > 0:
+            str = "so ~/.config/nvim/lua/highlight.lua"
+            cmd = ['nvr', '--nostart', '--servername', server, '-cc', str]
+            subprocess.run(cmd, stdout=subprocess.PIPE)
+
+
+nvim()
+kitty()

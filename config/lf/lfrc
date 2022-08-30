@@ -1,5 +1,6 @@
 # Get Here
 map g' $nvim ~/other/dotfiles/config/lf/lfrc
+map gr $cp $f ~/code/
 
 # Movement
 map gp cd ~/projects/point-north/

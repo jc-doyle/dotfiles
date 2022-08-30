@@ -1,10 +1,15 @@
-# Used Binaries
+# Utilities
 trash-cli
 pulsemixer
 python-lsp-server
 
 # Python Libraries
-pyaml
+pyyaml
 rich
 numpy
 matplotlib
+
+# Build Tools
+setuptools
+build
+twine

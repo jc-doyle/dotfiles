@@ -4,14 +4,5 @@
 notify-send "colorscheme: $1"
 
 # Restart Polybar
-polybar-msg cmd restart > /dev/null 2>&1
-
-# Update Kitty 
-kitty @ set-colors --all --configured /home/jonty/.config/kitty/colors.conf
-
-# Update Neovim
-# nvr --nostart --servername $path -cc 'so ~/.config/nvim/lua/highlight.lua'
-# INSTANCES=$(nvr --serverlist)
-# for instance in $INSTANCES; do
-#   echo $instance
-  # nvr --servername $instance -cc 'so ~/.config/nvim/lua/highlight.lua'
+# polybar-msg cmd restart > /dev/null 2>&1
+~/.config/polybar/launch.sh || exit
