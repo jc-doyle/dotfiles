@@ -1,6 +1,5 @@
 # Get Here
 map g' $nvim ~/other/dotfiles/config/lf/lfrc
-map gr $cp $f ~/code/
 
 # Movement
 map gp cd ~/projects/point-north/
@@ -23,43 +22,18 @@ map gN cd ~/.config/nvim/lua
 map gP cd ~/.local/share/nvim/site/pack/packer
 map gD cd ~/.config/dwm
 
-# General Settings
-set icons
-set period 1
-set scrolloff 10
-set drawbox true
-set ratios 2:3
-set previewer ~/.config/lf/preview.sh
-set errorfmt "\033[0;33;40m%s\033[0m"
-
-# Z shell specific settings
-set shell zsh
-set shellopts '-euy'
-set ifs "\n"
-
-# Commands
-# Creating and Editing Dirs
-cmd folder %mkdir "$@"
-cmd file %touch "$@"
-
-cmd chmod %{{
-    echo "Mode: "
-    read ans
-    for file in "$fx"
-    do
-      chmod $ans $file
-    done
-}}
+# Source Commands
+source ~/.config/lf/commands
 
 # Default Programs
 cmd open ${{
     printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
-        application/*spreadsheet*) libreoffice $fx;;
+        */*spreadsheet*) libreoffice $fx;;
         */*stl) f3d $fx;;
-        application/pdf) zathura $fx;;
-        application/epub*) zathura $fx;;
-        application/x-blender) blender $fx;;
+        */pdf) zathura $fx;;
+        */epub*) zathura $fx;;
+        */x-blender) blender $fx;;
         image/*) sxiv -b $fx;;
         video/*) mpv $fx;;
         text/*) nvim $fx;;
@@ -67,96 +41,20 @@ cmd open ${{
     esac 
     }}
 
-# Delete/Restore
-cmd trash %trash-put $fx
-cmd restore $trash-restore
+# General Settings
+set icons
+set period 1
+set scrolloff 10
+set drawbox true
+set ratios 2:3
+set previewer ~/.config/lf/preview
+set errorfmt "\033[0;33;40m%s\033[0m"
 
-# Extract
-cmd extract ${{
-    set -f
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
-}}
+# Z shell specific settings
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
 
-# Tar
-cmd tar ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    tar czf $1.tar.gz $1
-    rm -rf $1
-}}
-
-# Zip
-cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
-}}
-
-# y (select for copy) and P to paste soft-link
-# d (select for cut) and P to paste hard-link
-cmd link %{{
-    set -- $(cat ~/.local/share/lf/files)
-    mode="$1"
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echo no files to link"
-        exit 0
-    fi
-    case "$mode" in
-        # symbolically copy mode is indicating a soft link
-        copy) ln -sr -t . -- "$@";;
-        # while a move mode is indicating a hard link
-        move) ln -t . -- "$@";;
-    esac
-    rm ~/.local/share/lf/files
-    lf -remote "send clear"
-}}
-
-# Bulk Rename
-cmd bulk-rename ${{
-    old="$(mktemp)"
-    new="$(mktemp)"
-    [ -n "$fs" ] && fs="$(ls)"
-    printf '%s\n' "$fs" >"$old"
-    printf '%s\n' "$fs" >"$new"
-    $EDITOR "$new"
-    [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
-    paste "$old" "$new" | while IFS= read -r names; do
-        src="$(printf '%s' "$names" | cut -f1)"
-        dst="$(printf '%s' "$names" | cut -f2)"
-        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
-            continue
-        fi
-        mv -- "$src" "$dst"
-    done
-    rm -- "$old" "$new"
-    lf -remote "send $id unselect"
-}}
-
-cmd on-cd &{{
-    printf "\033]0; $PWD\007" > /dev/tty
-}}
-on-cd
-
-# New Folder w/ Selected Files
-cmd newfold %{{
-    set -f
-    echo "Name: "
-    read newd
-    mkdir -- "$newd"
-    mv -- $fx "$newd"
-}}
-map <a-n> newfold
 
 # General Mappings
 
@@ -195,7 +93,9 @@ map O $mimeopen --ask $f
 # New Files
 map N push :folder<space>
 map n push :file<space>
+map <a-n> newfold
 
+# Wallpaper
 map W $zsh setbg $f 
 
 map A rename # at the very end
@@ -205,5 +105,12 @@ map i push A<a-b><a-b><a-f> # before extention
 map a push A<a-b> # after extention
 map R bulk-rename
 
+# Delete Restore
 map D trash
 map U restore
+
+# Yank paths
+map Yy yank-dirname
+map YY yank-path
+map Yi yank-basename
+map YI yank-basename-without-extension

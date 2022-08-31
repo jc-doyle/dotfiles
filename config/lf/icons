@@ -12,21 +12,22 @@ or 
 ex 
 
 # Full File Matches
-README.md*      
-makefile*       
+README.md*      
+*akefile*       
 LICENSE*        
 .DS_Store*      
 .Dockerfile*    
 CMakeLists.txt* 
 .gitignore*     
+lfrc*           
 
 # Directories
 .git/           
 .github/        
 
-# Extension Associations
+# Common Filetypes
 *.git     
-*.pdf     ﴬ
+*.pdf     
 *.db      
 *.bib     
 *.part    
@@ -40,7 +41,6 @@ CMakeLists.txt* 
 *.xlsx    ﬘
 *.csv     ﬘
 *.sc      ﬘
-*.ini     
 
 # Languages
 *.c       
@@ -78,16 +78,20 @@ CMakeLists.txt* 
 *.ts      
 *.vim     
 
-# Other
-*.rss     參
-*.yaml    
-*.yml     
-*.conf    
-*.config  
-*.lock    
-*.md      
-*.mkd     
-*.mustache 
+# Other (Text Related)
+*.rss       參
+*.toml      
+*.yaml      
+*.yml       
+*.conf      
+*.config    
+*.lock      
+*.ini       
+*.md        
+*.txt       
+*.mkd       
+*.mustache  
+*.snippets  
 
 # Shells and Command Interpreters
 *.bash 
@@ -97,7 +101,91 @@ CMakeLists.txt* 
 *.sh   
 *.zsh  
 
-## Archives
+# Music
+*.aac  
+*.mp3  
+*.alac 
+*.flac 
+*.m4a  
+*.wav  
+*.webm 
+*.mka  
+*.mid  
+*.midi 
+
+# Video
+*.avi  
+*.m2v  
+*.m4v  
+*.mkv  
+*.mov  
+*.mp4  
+*.mp4v 
+*.gif  
+
+# Image
+*.jpeg  
+*.jpg   
+*.mpeg  
+*.mpg   
+*.png   
+
+# Model/Vector
+*.svg    שּׁ
+*.drawio שּׁ
+*.stl    
+*.blend  
+*.blend1 
+
+# Fonts
+*.otf   
+*.ttf   
+
+# Other media
+*.asf   
+*.au    
+*.bmp   
+*.cgm   
+*.dl    
+*.emf   
+*.flc   
+*.fli   
+*.flv   
+*.gl    
+*.mjpeg 
+*.mjpg  
+*.mng   
+*.mpc   
+*.nuv   
+*.oga   
+*.ogg   
+*.ogm   
+*.ogv   
+*.ogx   
+*.opus  
+*.pbm   
+*.pcx   
+*.pgm   
+*.ppm   
+*.qt    
+*.ra    
+*.rm    
+*.rmvb  
+*.spx   
+*.svgz  
+*.tga   
+*.tif   
+*.tiff  
+*.vob   
+*.wmv   
+*.xbm   
+*.xcf   
+*.xpm   
+*.xspf  
+*.xwd   
+*.yuv   
+
+# Archives
 *.7z   
 *.ace  
 *.alz  
@@ -145,77 +233,3 @@ CMakeLists.txt* 
 *.zoo  
 *.zst  
 
-## Music
-*.aac  
-*.mp3  
-*.alac 
-*.flac 
-*.m4a  
-*.wav  
-*.webm 
-*.mka  
-*.mid  
-*.midi 
-
-## Video
-*.avi  
-*.m2v  
-*.m4v  
-*.mkv  
-*.mov  
-*.mp4  
-*.mp4v 
-*.gif  
-
-# Image
-*.jpeg  
-*.jpg   
-*.mpeg  
-*.mpg   
-*.png   
-*.svg   שּׁ
-
-# Other media
-## Image
-*.asf   
-*.au    
-*.bmp   
-*.cgm   
-*.dl    
-*.emf   
-*.flc   
-*.fli   
-*.flv   
-*.gl    
-*.mjpeg 
-*.mjpg  
-*.mng   
-*.mpc   
-*.nuv   
-*.oga   
-*.ogg   
-*.ogm   
-*.ogv   
-*.ogx   
-*.opus  
-*.pbm   
-*.pcx   
-*.pgm   
-*.ppm   
-*.qt    
-*.ra    
-*.rm    
-*.rmvb  
-*.spx   
-*.svgz  
-*.tga   
-*.tif   
-*.tiff  
-*.vob   
-*.wmv   
-*.xbm   
-*.xcf   
-*.xpm   
-*.xspf  
-*.xwd   
-*.yuv   
