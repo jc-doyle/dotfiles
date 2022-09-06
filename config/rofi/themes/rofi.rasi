@@ -78,19 +78,19 @@ scrollbar {
 }
 
 button {
-    text-color: @normal-foreground;
+    text-color: @base5;
 }
 button.selected {
-    background-color: @selected-normal-background;
-    text-color: @selected-normal-foreground;
+    background-color: @base6;
+    text-color: @base5;
 }
 case-indicator {
     spacing: 0;
-    text-color: @normal-foreground;
+    text-color: @base6;
 }
 entry {
     spacing: 0;
-    text-color: @normal-foreground;
+    text-color: @base5;
 }
 prompt {
     text-color: @base3;
