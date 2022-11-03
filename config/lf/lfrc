@@ -29,7 +29,9 @@ source ~/.config/lf/commands
 cmd open ${{
     printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
-        */*spreadsheet*) libreoffice $fx;;
+        */*spreadsheet*) libreoffice --nologo $fx;;
+        */*presentation*) libreoffice --nologo $fx;;
+        */*document*) libreoffice --nologo $fx;;
         */*stl) f3d $fx;;
         */pdf) zathura $fx;;
         */epub*) zathura $fx;;

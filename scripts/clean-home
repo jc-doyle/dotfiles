@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm -rf "$HOME/Downloads" || exit
+rm -rf "$HOME/.nv" || exit
+
+
+notify-send "Home Cleaned"

@@ -20,6 +20,7 @@ alias csd='nvim ~/other/dotfiles/colors/schemes/dark/dark.yaml'
 alias csl='nvim ~/other/dotfiles/colors/schemes/light/light.yaml'
 
 # Utilities
+alias s="kitty +kitten ssh"
 alias doc="~/.local/share/pandoc/newdoc/newdoc.py"
 alias con="nmcli dev wifi con"
 alias ls='ls -A --color=auto --format=vertical -X --group-directories-first'
@@ -28,6 +29,7 @@ alias wallpaper='.scripts/setbg.sh'
 alias gf='git status'
 alias light='sudo light -S'
 alias mixer='pulsemixer'
+alias rsync='rsync --info=progress2'
 # alias lf='/usr/share/lf/lfcd.sh'
 
 #Fonts
