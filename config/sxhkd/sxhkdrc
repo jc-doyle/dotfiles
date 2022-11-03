@@ -1,30 +1,22 @@
 # ----HOTKEYS----
 
-# Volume Movements
-# XF86AudioRaiseVolume
-# 	pactl set-sink-volume 0 +5% 
-#&& notify-send  "Volume: $(pulsemixer --get-volume | cut -d' ' -f1)%"
-# XF86AudioLowerVolume
-# 	pactl set-sink-volume 0 -5%
-
-# super equal
-# 	pactl set-sink-volume 0 +5% 
-
-# super minus pactl set-sink-volume 0 -5%
-
-# XF86AudioMute
-# 	pactl set-sink-mute 0 toggle	
-
 # PlayerCtl Commands
-# super + {space,comma,period}
-# 	playerctl {play-pause,previous,next} -p spotify
+super + {space,comma,period}
+	playerctl {play-pause,previous,next} -p spotify
 
-# Backlight Movements
-# XF86MonBrightnessUp
-# 	xbacklight -inc 5
-# 
-# XF86MonBrightnessDown
-# 	xbacklight -dec 5
+# Brightness
+XF86MonBrightnessUp
+	sudo light -A 5
+
+XF86MonBrightnessDown
+	sudo light -U 5
+
+# Audio
+XF86AudioMicMute
+  pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo toggle
+
+XF86AudioMute
+  pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
 
 # Screen shot
 # super + {_,shift} + p

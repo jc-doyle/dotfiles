@@ -27,6 +27,7 @@ alias feh='feh -B "#2e3440" --scale-down'
 alias wallpaper='.scripts/setbg.sh'
 alias gf='git status'
 alias light='sudo light -S'
+alias mixer='pulsemixer'
 # alias lf='/usr/share/lf/lfcd.sh'
 
 #Fonts

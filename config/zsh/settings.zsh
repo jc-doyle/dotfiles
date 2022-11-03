@@ -51,7 +51,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-bindkey '^[[Z' autosuggest-execute
+bindkey '^[[Z' vi-up-line-or-history
 
 # Less Colors
 export LESS=-R

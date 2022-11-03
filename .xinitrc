@@ -9,7 +9,6 @@ fi
 xmodmap -e 'keysym Caps_Lock = Escape'
 xmodmap -e 'clear Lock'
 xsetroot -cursor_name left_ptr
-WINIT_X11_SCALE_FACTOR=1
 
 # Startup Scripts
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
@@ -22,6 +21,8 @@ fi
 # Startup Programs
 # syncthing --no-browser &
 autorandr -c &
+feh --no-fehbg --bg-scale /home/jonty/.cache/wallpaper/current.jpg &
+picom --config $HOME/.config/picom/box.conf --experimental-backends &
 sxhkd &
 "$HOME/.config/polybar/launch.sh"
 
@@ -30,6 +31,5 @@ while true; do
     # Log stderror to a file 
     # No error logging
     dwm >/dev/null 2>&1
-    picom --config $HOME/.config/picom/box.conf --experimental-backends &
-    feh --no-fehbg --bg-scale /home/jonty/.cache/wallpaper/current.jpg &
 done
+
