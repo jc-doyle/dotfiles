@@ -36,6 +36,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export VSCODE_PORTABLE="$XDG_DATA_HOME"/vscode
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
 export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
