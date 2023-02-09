@@ -15,7 +15,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Path
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.scripts/:$PATH"
-export PATH="$GOPATH/bin/:$PATH"
+export PATH="$XDG_DATA_HOME/go/bin/:$PATH"
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 export PATH="/usr/bin/julia:$PATH"
 export PATH="$XDG_DATA_HOME/texlive/bin/x86_64-linux/:$PATH"

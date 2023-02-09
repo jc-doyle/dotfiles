@@ -13,10 +13,12 @@ ex 
 
 # Full File Matches
 README.md*      
-*akefile*       
+Makefile*       
+makefile*       
 LICENSE*        
 .DS_Store*      
 .Dockerfile*    
+Dockerfile*     
 CMakeLists.txt* 
 .gitignore*     
 lfrc*           

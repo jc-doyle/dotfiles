@@ -1,7 +1,7 @@
 # ----HOTKEYS----
 
 # PlayerCtl Commands
-super + {space,comma,period}
+super + ctrl + {space,comma,period}
 	playerctl {play-pause,previous,next} -p spotify
 
 # Brightness
@@ -25,6 +25,11 @@ XF86AudioMute
 # Color Picker
 super + shift + c
   xcolor -s
+
+# Sheets
+super + w
+   chromium --app="https://docs.google.com/spreadsheets/" &
+  
 
 # Calendar
 # super + c
