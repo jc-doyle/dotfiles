@@ -31,6 +31,7 @@ lfrc*           
 *.git     
 *.pdf     
 *.db      
+*.sql     
 *.bib     
 *.part    
 *.torrent 
@@ -66,6 +67,7 @@ lfrc*           
 *.java    
 *.jl      
 *.js      
+*.jsx     
 *.json    
 *.lua     
 *.php     
@@ -78,8 +80,10 @@ lfrc*           
 *.scala   
 *.sqlite  
 *.ts      
+*.tsx     
 *.vim     
 *.svelte  
+*.proto   
 
 # Other (Text Related)
 *.rss       參
