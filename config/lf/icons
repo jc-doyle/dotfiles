@@ -35,6 +35,8 @@ lfrc*           
 *.bib     
 *.part    
 *.torrent 
+*.journal 󰗚
+*.rules   
 *.url     
 *.link    
 *.log     
@@ -44,6 +46,11 @@ lfrc*           
 *.xlsx    ﬘
 *.csv     ﬘
 *.sc      ﬘
+*.key     󰌋
+*.csr     󰌋
+*.pem     󰌋
+*.service 
+*.diff    
 
 # Languages
 *.c       
@@ -92,7 +99,7 @@ lfrc*           
 *.yml       
 *.conf      
 *.config    
-*.lock      
+*.lock      
 *.ini       
 *.md        
 *.txt       

@@ -30,6 +30,7 @@ alias gf='git status'
 alias light='sudo light -S'
 alias mixer='pulsemixer'
 alias rsync='rsync --info=progress2'
+alias m='mysql -uroot --auto-rehash'
 # alias lf='/usr/share/lf/lfcd.sh'
 
 #Fonts
@@ -55,3 +56,8 @@ alias docked='.config/autorandr/docked/postswitch'
 # Java
 JAVA_OPTIONS='-Djava.util.prefs.userRoot="/home/jonty/.config/java" -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 alias java='java $(echo $JAVA_OPTIONS)'
+
+# Hledger
+alias hl='hledger --color=always --pretty=yes'
+alias income-statement='hl is --tree'
+alias balance-sheet='hl bs --tree'

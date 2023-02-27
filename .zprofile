@@ -20,6 +20,15 @@ export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 export PATH="/usr/bin/julia:$PATH"
 export PATH="$XDG_DATA_HOME/texlive/bin/x86_64-linux/:$PATH"
 export PATH="$XDG_CONFIG_HOME/polybar/:$PATH"
+export PATH="$HOME/.tiup/bin/:$PATH"
+export PATH="$XDG_DATA_HOME/cargo/bin/:$PATH"
+
+# Ledger
+export LEDGER_FILE="$HOME/personal/finances/all.journal"
+
+# ScCache
+export RUSTC_WRAPPER="$(which sccache)"
+export CARGO_INCREMENTAL=0
 
 # Colors
 # export COLOR_DIR=$HOME/other/dotfiles/colors/
@@ -58,6 +67,9 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv/
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nvidia/compute
+export MYSQL_HISTFILE="$XDG_DATA_HOME"/.mysql_history
+export SQLITE_HISTORY=$XDG_CACHE_HOME/.sqlite_history
+export MYCLI_HISTFILE=$XDG_CACHE_HOME/.mycli_history
 
 # LF Icons
 LF_ICONS=$(sed ~/.config/lf/icons \

@@ -18,5 +18,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-alias luamake=/home/jonty/.local/share/nvim/lsp/lua-language-server/3rd/luamake/luamake
