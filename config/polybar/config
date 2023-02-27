@@ -103,7 +103,9 @@ dim-value = 0.8
 inherit = bar/base
 width = 8%
 offset-x = 91%
-modules-center = time 
+modules-right = time 
+modules-left = date 
+padding = 6
 monitor = DP-0
 
 [bar/trayright]
@@ -252,7 +254,7 @@ interval = 1000
 format-margin = 0
 date = "%d %b"
 label = %date%
-label-foreground = ${colors.base4}
+label-foreground = ${colors.base3}
 
 ;--------------------------------------
 
