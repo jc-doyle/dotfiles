@@ -91,6 +91,7 @@ lfrc*           
 *.vim     
 *.svelte  
 *.proto   
+*.map     󰹹
 
 # Other (Text Related)
 *.rss       參

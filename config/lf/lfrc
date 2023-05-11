@@ -3,7 +3,7 @@ map g' $nvim ~/other/dotfiles/config/lf/lfrc
 
 # Movement
 map gp cd ~/projects/point-north/
-map gc cd ~/university/cs/
+map gc cd ~/co2e/
 map gm cd ~/university/ia/
 map gi cd ~/university/inf/
 
@@ -21,6 +21,10 @@ map g. cd ~/other/dotfiles/config
 map gN cd ~/.config/nvim/lua
 map gP cd ~/.local/share/nvim/site/pack/packer
 map gD cd ~/.config/dwm
+
+# Zulzi
+map gA cd ~/zulzi/shaka-apis/protos/
+map gL cd ~/zulzi/deliciouz/
 
 # Source Commands
 source ~/.config/lf/commands
@@ -51,6 +55,7 @@ set drawbox true
 set ratios 2:3
 set previewer ~/.config/lf/preview
 set errorfmt "\033[0;33;40m%s\033[0m"
+set cursorpreviewfmt ""
 
 # Z shell specific settings
 set shell zsh

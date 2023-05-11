@@ -1,7 +1,7 @@
 # Key Speed
 
 if [[ $DISPLAY ]]; then
-  xset r rate 220 35
+  xset r rate 220 40 
 fi
 
 # History

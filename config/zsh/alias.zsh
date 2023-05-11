@@ -31,12 +31,13 @@ alias light='sudo light -S'
 alias mixer='pulsemixer'
 alias rsync='rsync --info=progress2'
 alias m='mysql -uroot --auto-rehash'
+alias poweroff='sudo systemctl poweroff'
 # alias lf='/usr/share/lf/lfcd.sh'
 
-#Fonts
+# Fonts
 alias fonts='fc-list -f "%{family[0]} - %{style}\n" | sort | uniq | fzf'
 
-#Browser Apps
+# Browser Apps
 alias notebook='jupyter notebook --browser="/usr/bin/chromium --app=%s"'
 alias diagram='chromium --app="https://app.diagrams.net"'
 alias docs='chromium --app="https://docs.google.com/document/u/0/"'
