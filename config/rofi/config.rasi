@@ -4,7 +4,7 @@ configuration {
 /* width: 45; */
 /* lines: 5; */
 /*	columns: 1;*/
-	font: "Iosevka 16";
+	font: "Iosevka Custom 17";
 /*	bw: 1;*/
 /*	location: 0;*/
 	/* padding: 0; */

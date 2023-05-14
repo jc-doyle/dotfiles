@@ -65,7 +65,7 @@ width = 2%
 offset-x = 10.5%
 line-size = 2
 modules-center = dwm-layout
-monitor = HMDI-A-0
+monitor = HDMI-A-0
 
 [bar/wsright]
 inherit = bar/base
@@ -73,7 +73,7 @@ width = 9%
 offset-x = 1%
 line-size = 2
 modules-center = dwm-tags
-monitor = HMDI-A-0
+monitor = HDMI-A-0
 ;--------------------------------------
 
 [bar/music]
@@ -116,7 +116,7 @@ padding = 4
 modules-left = memory
 modules-center = temperature
 modules-right = cpu
-monitor = HMDI-A-0
+monitor = HDMI-A-0
 
 ;------------------------ LAPTOP --------------------------
 

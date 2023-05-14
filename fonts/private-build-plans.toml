@@ -1,0 +1,33 @@
+[buildPlans.iosevka-custom]
+family = "Iosevka Custom"
+spacing = "term"
+serifs = "sans"
+no-cv-ss = true
+export-glyph-names = true
+
+  [buildPlans.iosevka-custom.variants]
+  inherits = "ss20"
+
+    [buildPlans.iosevka-custom.variants.design]
+    asterisk = "flip-penta-low"
+    ampersand = "upper-open"
+    percent = "rings-continuous-slash"
+    lig-equal-chain = "without-notch"
+    lig-hyphen-chain = "without-notch"
+    lig-double-arrow-bar = "without-notch"
+    lig-single-arrow-bar = "without-notch"
+
+[buildPlans.iosevka-custom.weights.regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.iosevka-custom.weights.semibold]
+shape = 600
+menu = 600
+css = 600
+
+[buildPlans.iosevka-custom.weights.bold]
+shape = 700
+menu = 700
+css = 700
