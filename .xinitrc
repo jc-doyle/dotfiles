@@ -22,7 +22,7 @@ fi
 # syncthing --no-browser &
 autorandr -c &
 feh --no-fehbg --bg-scale /home/jonty/.cache/wallpaper/current.jpg &
-picom --config $HOME/.config/picom/box.conf --experimental-backends &
+picom --config $HOME/.config/picom/box.conf &
 sxhkd &
 "$HOME/.config/polybar/launch.sh"
 

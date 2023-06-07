@@ -105,7 +105,7 @@ width = 8%
 offset-x = 91%
 modules-right = time 
 modules-left = date 
-padding = 6
+padding = 4
 monitor = DisplayPort-2
 
 [bar/trayright]
@@ -170,36 +170,6 @@ modules-right = battery
 monitor = eDP1
 
 ;--------------------------- MODULES ---------------------------
-
-[module/bspwm]
-type = internal/bspwm
-reverse-scroll = false
-enable-click = true
-
-;ws-icon-0 = 1;ф
-;ws-icon-1 = 2;β
-;ws-icon-2 = 3;λ
-;ws-icon-3 = 4;φ
-;ws-icon-4 = 5;Θ
-;ws-icon-5 = 6;Ω
-;ws-icon-6 = 7;Ԑ
-;ws-icon-7 = 8;δ
-
-label-focused = ■
-label-focused-underline = ${colors.base6}
-label-focused-foreground = ${colors.base6}
-label-focused-padding = 1
-
-label-occupied = ■ 
-label-occupied-foreground = ${colors.base2}
-label-occupied-padding = 1
-
-label-empty = □ 
-label-empty-foreground = ${colors.base2}
-label-empty-padding = 1
-
-label-separator = " "
-;--------------------------------------
 
 [module/dwm-tags]
 type = internal/dwm
@@ -323,7 +293,7 @@ label = %{F#5E6A83}CPU %{F#FDAFFF}%percentage%%
 
 [module/temperature]
 type = internal/temperature
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp3_input
+hwmon-path = /sys/devices/platform/PNP0C14:01/wmi_bus/wmi_bus-PNP0C14:01/466747A0-70EC-11DE-8A39-0800200C9A66/hwmon/hwmon3/temp1_input
 interval = 2
 label = %temperature-c%
 
