@@ -41,6 +41,7 @@ window {
 }
 mainbox {
     border: 0;
+    border-radius: 5px;
 }
 message {
     margin: 0px;
@@ -50,7 +51,7 @@ textbox {
 inputbar {
     children: [ textbox-prompt-colon,entry,case-indicator,prompt];
     position: center;
-    margin: 3%;
+    margin: 3% 2% 2% 2%;
     padding: 0px 1%;
 }
 textbox-prompt-colon {
@@ -70,6 +71,7 @@ element {
 element.selected {
     background-color: @base6;
     text-color: @base0;
+    border-radius: 5px;
 }
 
 scrollbar {
