@@ -1,5 +1,6 @@
-# Get Here
+# Get Here & Icons
 map g' $nvim ~/other/dotfiles/config/lf/lfrc
+map gI $nvim ~/other/dotfiles/config/lf/icons
 
 # Movement
 map gp cd ~/projects/point-north/
@@ -25,6 +26,7 @@ map gD cd ~/.config/dwm
 # Zulzi
 map gA cd ~/zulzi/shaka-apis/protos/
 map gL cd ~/zulzi/deliciouz/
+map gz cd ~/zulzi
 
 # Source Commands
 source ~/.config/lf/commands
@@ -40,6 +42,7 @@ cmd open ${{
         */pdf) zathura $fx;;
         */epub*) zathura $fx;;
         */x-blender) blender $fx;;
+        image/gif) mpv --loop $fx;;
         image/*) sxiv -b $fx;;
         video/*) mpv $fx;;
         text/*) nvim $fx;;

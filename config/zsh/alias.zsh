@@ -7,7 +7,6 @@ alias hist='nvim ~/.cache/zsh/history'
 alias af='nvim ~/.config/zsh/alias.zsh'
 alias al='nvim ~/.config/zsh/alias.zsh'
 alias ki='nvim ~/.config/kitty/kitty.conf'
-alias gl='nvim ~/.config/zsh/globals.zsh'
 alias zs='nvim ~/.config/zsh/settings.zsh'
 alias lfrc='nvim ~/.config/lf/lfrc'
 alias zp='nvim ~/other/dotfiles/.zprofile'
@@ -43,6 +42,7 @@ alias diagram='chromium --app="https://app.diagrams.net"'
 alias docs='chromium --app="https://docs.google.com/document/u/0/"'
 alias sheets='chromium --app="https://docs.google.com/spreadsheets/"'
 alias figma='chromium --app="https://www.figma.com/"'
+alias via='sudo chown $USER:$USER /dev/hidraw2 && chromium --app="https://usevia.app/"'
 
 # Npm
 alias npi="npm install -g"

@@ -19,8 +19,10 @@ LICENSE*        󰌆
 .DS_Store*      
 .Dockerfile*    󰡨
 Dockerfile*     󰡨
+dockerfile*     󰡨
 CMakeLists.txt* 󰒓
 .gitignore*     
+.dockerignore*  
 lfrc*           󰒓
 
 # Directories
@@ -74,6 +76,7 @@ lfrc*           󰒓
 *.jl      
 *.js      
 *.jsx     
+*.cjs     
 *.json    
 *.lua     
 *.php     
@@ -85,12 +88,14 @@ lfrc*           󰒓
 *.r       ﳒ
 *.scala   
 *.sqlite  
+*.swift   
 *.ts      
 *.tsx     
 *.vim     
 *.svelte  
 *.proto   
 *.map     󰹹
+*.mod     
 
 # Other (Text Related)
 *.rss       󰑫
@@ -100,6 +105,7 @@ lfrc*           󰒓
 *.conf      󰒓
 *.config    󰒓
 *.lock      
+*.sum       
 *.ini       󰒓
 *.md        󱩼
 *.txt       󰈚
