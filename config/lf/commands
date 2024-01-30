@@ -13,7 +13,7 @@ cmd chmod %{{
 }}
 
 # Delete/Restore
-cmd trash %trash-put $fx
+cmd trash %trash $fx
 cmd restore $trash-restore
 
 # Extract

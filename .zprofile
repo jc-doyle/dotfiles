@@ -1,5 +1,5 @@
 # Locale
-export LANG=C.UTF-8
+export LANG=en_US.UTF-8
 
 # Programs
 export EDITOR="nvim"
@@ -20,6 +20,10 @@ export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 export PATH="/usr/bin/julia:$PATH"
 export PATH="$XDG_DATA_HOME/texlive/bin/x86_64-linux/:$PATH"
 export PATH="$XDG_CONFIG_HOME/polybar/:$PATH"
+# Homebrew
+export PATH="/opt/homebrew/bin/:$PATH"
+# Cargo
+export PATH="$HOME/.local/share/cargo/bin/:$PATH"
 
 # Colors
 # export COLOR_DIR=$HOME/other/dotfiles/colors/
@@ -60,7 +64,7 @@ export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv/
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nvidia/compute
 
 # LF Icons
-LF_ICONS=$(sed ~/.config/lf/icons \
+LF_ICONS=$(gsed ~/.config/lf/icons \
             -e '/^[ \t]*#/d'      \
             -e '/^[ \t]*$/d'      \
             -e 's/[ \t]\+/=/g'    \

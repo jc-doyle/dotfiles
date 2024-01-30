@@ -2,10 +2,10 @@
 map g' $nvim ~/other/dotfiles/config/lf/lfrc
 
 # Movement
-map gp cd ~/projects/point-north/
-map gc cd ~/university/cs/
-map gm cd ~/university/ia/
-map gi cd ~/university/inf/
+map gz cd ~/zulzi/
+map gL cd ~/zulzi/deliciouz/
+map gD cd ~/zulzi/dwelmz/
+map gm cd ~/zulzi/migrationz/
 
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
@@ -20,28 +20,28 @@ map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config
 map gN cd ~/.config/nvim/lua
 map gP cd ~/.local/share/nvim/site/pack/packer
-map gD cd ~/.config/dwm
+# map gD cd ~/.config/dwm
 
 # Source Commands
 source ~/.config/lf/commands
 
 # Default Programs
-cmd open ${{
-    printf "\033]0; $PWD\007" > /dev/tty
-    case $(xdg-mime query filetype $f) in
-        */*spreadsheet*) libreoffice --nologo $fx;;
-        */*presentation*) libreoffice --nologo $fx;;
-        */*document*) libreoffice --nologo $fx;;
-        */*stl) f3d $fx;;
-        */pdf) zathura $fx;;
-        */epub*) zathura $fx;;
-        */x-blender) blender $fx;;
-        image/*) sxiv -b $fx;;
-        video/*) mpv $fx;;
-        text/*) nvim $fx;;
-        */*) nvim $fx;;
-    esac 
-    }}
+cmd open $nvim $fx
+    # printf "\033]0; $PWD\007" > /dev/tty
+    # case $(xdg-mime query filetype $f) in
+    #     */*spreadsheet*) libreoffice --nologo $fx;;
+    #     */*presentation*) libreoffice --nologo $fx;;
+    #     */*document*) libreoffice --nologo $fx;;
+    #     */*stl) f3d $fx;;
+    #     */pdf) zathura $fx;;
+    #     */epub*) zathura $fx;;
+    #     */x-blender) blender $fx;;
+    #     image/*) sxiv -b $fx;;
+    #     video/*) mpv $fx;;
+    #     text/*) nvim $fx;;
+    #     */*) nvim $fx;;
+    # esac 
+    # }}
 
 # General Settings
 set icons

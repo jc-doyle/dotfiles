@@ -14,7 +14,8 @@ alias zp='nvim ~/other/dotfiles/.zprofile'
 
 alias bs='nvim ~/.config/bspwm/bspwmrc'
 alias dw='nvim ~/.config/dwm/config.def.h'
-alias sx='nvim ~/.config/sxhkd/sxhkdrc'
+alias sx='nvim ~/.config/skhd/skhdrc'
+alias ya='nvim ~/.config/yabai/yabairc'
 alias xi='nvim ~/.xinitrc'
 alias csd='nvim ~/other/dotfiles/colors/schemes/dark/dark.yaml'
 alias csl='nvim ~/other/dotfiles/colors/schemes/light/light.yaml'
@@ -23,14 +24,17 @@ alias csl='nvim ~/other/dotfiles/colors/schemes/light/light.yaml'
 alias s="kitty +kitten ssh"
 alias doc="~/.local/share/pandoc/newdoc/newdoc.py"
 alias con="nmcli dev wifi con"
-alias ls='ls -A --color=auto --format=vertical -X --group-directories-first'
+alias ls='ls -A --color=auto'
 alias feh='feh -B "#2e3440" --scale-down'
 alias wallpaper='.scripts/setbg.sh'
-alias gf='git status'
+alias gs='git status'
 alias light='sudo light -S'
 alias mixer='pulsemixer'
-alias rsync='rsync --info=progress2'
+# alias rsync='rsync --info=progress2'
 # alias lf='/usr/share/lf/lfcd.sh'
+
+alias k='kubectl'
+alias etl='etcdctl'
 
 #Fonts
 alias fonts='fc-list -f "%{family[0]} - %{style}\n" | sort | uniq | fzf'
@@ -46,7 +50,8 @@ alias figma='chromium --app="https://www.figma.com/"'
 alias npi="npm install -g"
 
 # Python
-# alias pip="pip3"
+alias pip="pip3"
+alias python="python3"
 
 # Switching
 alias mobile='.config/autorandr/mobile/postswitch'

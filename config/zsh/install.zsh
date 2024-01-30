@@ -17,7 +17,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 git clone https://github.com/jeffreytse/zsh-vi-mode
 
 echo "Removing Pure newline..."
-sed -i '/spacious/{n;s/print//}' pure/pure.zsh
+gsed -i '/spacious/{n;s/print//}' pure/pure.zsh
 
 mkdir -p $HOME/.cache/zsh/ || exit
 echo "Complete. Create a history file."

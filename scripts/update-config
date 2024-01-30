@@ -11,12 +11,12 @@ cd $DOTFOLDER || exit
 
 # All stowable folders
 for i in "${CFGFOLDERS[@]}"; do
-  stow -t $HOME/.$i/ $i || exit
+  /opt/homebrew/bin/stow -t $HOME/.$i/ $i || exit
 done
 
 # The rest
 for i in "${HOMEFILES[@]}"; do
-  ln -sf $DOTFOLDER/$i -t $HOME || exit
+  ln -sf $DOTFOLDER/$i $HOME || exit
 done
 
 # Re-Source zprofile

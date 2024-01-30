@@ -1,10 +1,9 @@
 # Zsh Functions
 
-# LF CMDS
-# CD
+# LF CD
 lf () {
     tmp="$(mktemp)"
-    /usr/bin/lf -last-dir-path="$tmp" "$@"
+    /opt/homebrew/bin/lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"

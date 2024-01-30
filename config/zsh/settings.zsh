@@ -33,10 +33,15 @@ zstyle :prompt:pure:host color red
 #PROMPT='%(?.%F{magenta}⊳.%F{red}⊳)%f '
 
 # Basic auto/tab complete:
-autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 _comp_options+=(globdots)		# Include hidden files.
 
 # Use vim keys in tab complete menu:
