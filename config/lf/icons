@@ -15,7 +15,7 @@ ex 󱓞
 README.md*      󰗚
 Makefile*       
 makefile*       
-LICENSE*        󰌆
+LICENSE*        󰿃
 .DS_Store*      
 .Dockerfile*    󰡨
 Dockerfile*     󰡨
@@ -24,6 +24,8 @@ CMakeLists.txt* 󰒓
 .gitignore*     
 .dockerignore*  
 lfrc*           󰒓
+config*           󰒓
+authorized_keys*  󱕴
 
 # Directories
 .git/           

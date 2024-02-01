@@ -4,9 +4,6 @@ map gI $nvim ~/other/dotfiles/config/lf/icons
 
 # Movement
 map gp cd ~/projects/point-north/
-map gc cd ~/co2e/
-map gm cd ~/university/ia/
-map gi cd ~/university/inf/
 
 map gT cd ~/.local/share/Trash/
 map gl cd ~/.local/share/
@@ -23,10 +20,9 @@ map gN cd ~/.config/nvim/lua
 map gP cd ~/.local/share/nvim/site/pack/packer
 map gD cd ~/.config/dwm
 
-# Zulzi
-map gA cd ~/zulzi/shaka-apis/protos/
-map gL cd ~/zulzi/deliciouz/
-map gz cd ~/zulzi
+# Work
+map gb cd ~/co2e/console
+map gc cd ~/co2e/backend
 
 # Source Commands
 source ~/.config/lf/commands

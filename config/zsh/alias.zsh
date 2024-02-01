@@ -43,6 +43,7 @@ alias docs='chromium --app="https://docs.google.com/document/u/0/"'
 alias sheets='chromium --app="https://docs.google.com/spreadsheets/"'
 alias figma='chromium --app="https://www.figma.com/"'
 alias via='sudo chown $USER:$USER /dev/hidraw2 && chromium --app="https://usevia.app/"'
+alias rss='chromium --app="http://192.168.88.121:7070/"'
 
 # Npm
 alias npi="npm install -g"
