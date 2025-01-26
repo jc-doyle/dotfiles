@@ -57,7 +57,7 @@ set recolor-keephue             "true"
 # General Settings
 set selection-clipboard clipboard
 set page-padding 0
-set font "Iosevka 16"
+set font "Iosevka Custom 16"
 set adjust-open "width"
 set guioptions ""
 set statusbar-basename false

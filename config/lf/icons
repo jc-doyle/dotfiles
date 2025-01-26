@@ -15,6 +15,7 @@ ex 󱓞
 README.md*      󰗚
 Makefile*       
 makefile*       
+justfile*       
 LICENSE*        󰿃
 .DS_Store*      
 .Dockerfile*    󰡨
@@ -23,6 +24,7 @@ dockerfile*     󰡨
 CMakeLists.txt* 󰒓
 .gitignore*     
 .dockerignore*  
+.env*           󱕴
 lfrc*           󰒓
 config*           󰒓
 authorized_keys*  󱕴

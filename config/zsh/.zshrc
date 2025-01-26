@@ -18,3 +18,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# bun completions
+[ -s "/home/jonty/.bun/_bun" ] && source "/home/jonty/.bun/_bun"

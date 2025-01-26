@@ -21,8 +21,8 @@ map gP cd ~/.local/share/nvim/site/pack/packer
 map gD cd ~/.config/dwm
 
 # Work
-map gb cd ~/co2e/console
-map gc cd ~/co2e/backend
+map gc cd ~/co2e/console
+map gb cd ~/co2e/backend
 
 # Source Commands
 source ~/.config/lf/commands
@@ -31,9 +31,9 @@ source ~/.config/lf/commands
 cmd open ${{
     printf "\033]0; $PWD\007" > /dev/tty
     case $(xdg-mime query filetype $f) in
-        */*spreadsheet*) libreoffice --nologo $fx;;
-        */*presentation*) libreoffice --nologo $fx;;
-        */*document*) libreoffice --nologo $fx;;
+        */*spreadsheet*) onlyoffice-desktopeditors $fx;;
+        */*presentation*) onlyoffice-desktopeditors $fx;;
+        */*document*) onlyoffice-desktopeditors $fx;;
         */*stl) f3d $fx;;
         */pdf) zathura $fx;;
         */epub*) zathura $fx;;
