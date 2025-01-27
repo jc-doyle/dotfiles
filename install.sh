@@ -10,7 +10,7 @@ echo "Please ensure you have created a user (a sudoer), and are logged in as tha
 cd "$HOME" || exit
 
 # Pacman Things
-sudo grep -q "ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+sudo grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 sudo sed -Ei "s/^#(ParallelDownloads).*/\1 = 5/;/^#Color$/s/#//" /etc/pacman.conf
 sudo sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
 
@@ -35,11 +35,11 @@ yay -S --needed $(< "$AURLIST")
 echo "Updating Config..."
 $DOTFOLDER/scripts/update-config
 
-echo "Installing Python Goodies.."
-cd "$DOTFOLDER"/config/python/ || exit
-zsh install.zsh
+#echo "Installing Python Goodies.."
+#cd "$DOTFOLDER"/config/python/ || exit
+#zsh install.zsh
 
-echo "Installing Node Goodies.."
-cd "$DOTFOLDER"/config/npm/ || exit
-zsh install.zsh
+#echo "Installing Node Goodies.."
+#cd "$DOTFOLDER"/config/npm/ || exit
+#zsh install.zsh
 

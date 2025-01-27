@@ -1,0 +1,21 @@
+#!/bin/zsh
+current=$(dwm-msg get_monitors | jq '.[0].tagset.current')
+
+case "$1" in
+  "right")
+    next=$((current << 1))
+    if [ "$next" -lt 33 ]; then
+      dwm-msg run_command view $next > /dev/null 2>&1
+    fi
+    ;;
+  "left")
+    next=$((current >> 1))
+    if [ "$next" -gt 0 ]; then
+      dwm-msg run_command view $next > /dev/null 2>&1
+    fi
+    ;;
+  *)
+    echo "Invalid option: [left, right]"
+    exit 1
+    ;;
+esac

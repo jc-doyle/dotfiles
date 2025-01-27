@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-pkill polybar
+if pgrep -x "polybar"; then pkill -x "polybar"; fi
 
 if [[ $HOST = "box" ]]; then
   polybar -q lyleft &
@@ -11,7 +11,7 @@ if [[ $HOST = "box" ]]; then
   polybar -q wsright &
   polybar -q music &
   polybar -q network &
-elif [[ $HOST = "laptop" ]]; then
+elif [[ $HOST = "notebook" ]]; then
   polybar -q music-laptop &
   polybar -q wsleft-laptop &
   polybar -q lyleft-laptop &

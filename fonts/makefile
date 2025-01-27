@@ -17,7 +17,7 @@ patch:
 	curl -L $(PATCH_URL) > $(PATCH_ZIP)
 	unzip $(PATCH_ZIP) -d patcher
 	rm $(PATCH_ZIP)
-	./patcher/font-patcher $(IOSEVKA_DIR)/dist/iosevka-custom/ttf/iosevka-custom-regular.ttf -s -c -out $(PATCHED_DIR) --makegroups 6
+	./patcher/font-patcher $(IOSEVKA_DIR)/dist/iosevka-custom/TTF/iosevka-custom-regular.ttf -s -c -out $(PATCHED_DIR) --makegroups 6
 	rm -rf ./patcher
 
 install:

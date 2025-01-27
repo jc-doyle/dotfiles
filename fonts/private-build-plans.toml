@@ -2,16 +2,17 @@
 family = "Iosevka Custom"
 spacing = "term"
 serifs = "sans"
-no-cv-ss = true
-export-glyph-names = true
+noCvSs = true
+exportGlyphNames = true
 
   [buildPlans.iosevka-custom.variants]
   inherits = "ss20"
 
     [buildPlans.iosevka-custom.variants.design]
-    asterisk = "flip-penta-low"
+    asterisk = "penta-low"
     ampersand = "upper-open"
     percent = "rings-continuous-slash"
+    lig-neq = "slightly-slanted"
     lig-equal-chain = "without-notch"
     lig-hyphen-chain = "without-notch"
     lig-double-arrow-bar = "without-notch"
