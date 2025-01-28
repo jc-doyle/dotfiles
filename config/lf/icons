@@ -26,8 +26,9 @@ CMakeLists.txt* 󰒓
 .dockerignore*  
 .env*           󱕴
 lfrc*           󰒓
-config*           󰒓
+config*         󰒓
 authorized_keys*  󱕴
+.Xauthority*    󱕴
 
 # Directories
 .git/           
