@@ -43,7 +43,7 @@ cmd open ${{
         video/*) mpv $fx;;
         text/*) nvim $fx;;
         */*) nvim $fx;;
-    esac 
+    esac
     }}
 
 # General Settings
@@ -75,7 +75,7 @@ map P :link
 # View Size
 map zS %du -sh $f
 
-# General 
+# General
 map <esc> quit
 map <enter> shell
 map w quit
@@ -102,7 +102,7 @@ map n push :file<space>
 map <a-n> newfold
 
 # Wallpaper
-map W $zsh setbg $f 
+map W $zsh setbg $f
 
 map A rename # at the very end
 map r push A<c-u> # new rename
