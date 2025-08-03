@@ -7,6 +7,7 @@ crtc 0
 mode 1920x1080
 pos 0x0
 rate 143.86
+x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
 x-prop-max_bpc 16
 x-prop-non_desktop 0
@@ -19,7 +20,8 @@ output HDMI-A-0
 crtc 1
 mode 1920x1080
 pos 1920x0
-rate 60.00
+rate 74.97
+x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
 x-prop-max_bpc 16
 x-prop-non_desktop 0

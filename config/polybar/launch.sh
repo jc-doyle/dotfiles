@@ -10,7 +10,6 @@ if [[ $HOST = "box" ]]; then
   polybar -q wsleft &
   polybar -q wsright &
   polybar -q music &
-  polybar -q network &
 elif [[ $HOST = "notebook" ]]; then
   polybar -q music-laptop &
   polybar -q wsleft-laptop &

@@ -1,0 +1,75 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[[keyboard.bindings]]
+chars = "\u001B[13;2u"
+key = "Return"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Return"
+mods = "Control"
+
+[colors.bright]
+black = "#3A4458"
+blue = "#B7E1FF"
+cyan = "#A0AECB"
+green = "#9CA6FF"
+magenta = "#5E6A83"
+red = "#9CABDF"
+white = "#F4F8FF"
+yellow = "#E8FFA6"
+
+[colors.cursor]
+cursor = "#D7E1F5"
+text = "#2E3647"
+
+[colors.normal]
+black = "#2E3647"
+blue = "#9ADBFF"
+cyan = "#94F2FF"
+green = "#8FFFBC"
+magenta = "#FDAFFF"
+red = "#FF79C2"
+white = "#D7E1F5"
+yellow = "#FF92AC"
+
+[colors.primary]
+background = "#2E3647"
+foreground = "#F4F8FF"
+
+[cursor]
+vi_mode_style = "Block"
+
+[cursor.style]
+shape = "Beam"
+
+[font]
+size = 15
+
+[font.bold]
+family = "Iosevka Custom"
+style = "Semibold"
+
+[font.bold_italic]
+family = "Iosevka Custom"
+style = "Semibold Italic"
+
+[font.italic]
+family = "Iosevka Custom"
+style = "Oblique"
+
+[font.normal]
+family = "Iosevka Custom"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[window.padding]
+x = 15
+y = 14
+
+[keyboard]
