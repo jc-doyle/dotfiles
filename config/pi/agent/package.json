@@ -1,0 +1,14 @@
+{
+	"name": "pi-agent-config",
+	"private": true,
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"check": "tsc --noEmit",
+		"clean": "rm -rf node_modules"
+	},
+	"devDependencies": {
+		"@mariozechner/pi-coding-agent": "^0.67.68",
+		"typescript": "^5.8.0"
+	}
+}

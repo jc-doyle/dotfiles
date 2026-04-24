@@ -2,7 +2,7 @@
 
 # PlayerCtl Commands
 super + ctrl + {space,comma,period}
-	playerctl {play-pause,previous,next} -p spotify
+	supersonic-desktop -{play-pause,previous,next}
 
 # Brightness
 XF86MonBrightnessUp
@@ -35,7 +35,7 @@ super + shift + c
 # Sheets
 super + w
    chromium --app="https://docs.google.com/spreadsheets/" &
-  
+
 
 # Calendar
 # super + c

@@ -61,6 +61,7 @@ set font "Iosevka Custom 16"
 set adjust-open "width"
 set guioptions ""
 set statusbar-basename false
+set database "sqlite"
 
 # Mappings
-map <C-s> toggle_statusbar 
+map <C-s> toggle_statusbar

@@ -72,6 +72,7 @@ export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nvidia/compute
 export MYSQL_HISTFILE="$XDG_DATA_HOME"/.mysql_history
 export SQLITE_HISTORY=$XDG_CACHE_HOME/.sqlite_history
 export MYCLI_HISTFILE=$XDG_CACHE_HOME/.mycli_history
+export CLAUDE_CONFIG_DIR=$XDG_CONFIG_HOME/claude
 
 # LF Icons
 LF_ICONS=$(sed ~/.config/lf/icons \

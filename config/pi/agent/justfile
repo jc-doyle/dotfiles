@@ -1,0 +1,19 @@
+set positional-arguments
+
+# Install dependencies (root + extensions/*)
+install:
+    npm install
+    cd ./extensions/lsp && npm install
+    cd ./extensions/meridian && npm install
+    cd ./extensions/mermaid && npm install
+
+# Remove all node_modules
+clean:
+    rm -rf node_modules extensions/*/node_modules
+
+# Type-check all TS
+check:
+    npm run check
+
+# Full clean + reinstall
+rebuild: clean install

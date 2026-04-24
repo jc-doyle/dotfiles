@@ -1,0 +1,164 @@
+#!/usr/bin/env bash
+# sandbox-agent — bubblewrap wrapper for AI coding agents (pi, Claude Code, etc.)
+# Provides filesystem, process, and optional network isolation.
+#
+# Usage:
+#   sandbox-agent [OPTIONS] -- <command> [args...]
+#   sandbox-agent [OPTIONS] <command> [args...]
+#
+# Options:
+#   --no-net          Block all network access (default: share host network)
+#   --allow-ssh       Bind SSH agent socket (default: excluded)
+#   --project <path>  Additional rw-bind path (can be repeated)
+#   --ro <path>       Additional ro-bind path (can be repeated)
+#   --rw <path>       Additional rw-bind path (can be repeated)
+#   --dry-run         Print bwrap command without executing
+set -euo pipefail
+# ── Already isolated? ────────────────────────────────────────────────────────
+if [[ -n "${SANDBOX_AGENT_ENV:-}" ]]; then
+    >&2 echo "warning: already inside sandbox, exec-ing directly"
+    exec "$@"
+fi
+# ── Parse options ─────────────────────────────────────────────────────────────
+SHARE_NET=true
+DRY_RUN=false
+EXTRA_RO=()
+EXTRA_RW=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --no-net)    SHARE_NET=false; shift ;;
+        --dry-run)   DRY_RUN=true;    shift ;;
+        --ro)        EXTRA_RO+=("$(realpath "$2")"); shift 2 ;;
+        --rw)        EXTRA_RW+=("$(realpath "$2")"); shift 2 ;;
+        --project)   EXTRA_RW+=("$(realpath "$2")"); shift 2 ;;
+        --)          shift; break ;;
+        *)           break ;;
+    esac
+done
+if [[ $# -eq 0 ]]; then
+    >&2 echo "usage: sandbox-agent [OPTIONS] -- <command> [args...]"
+    exit 1
+fi
+# ── Security checks ───────────────────────────────────────────────────────────
+tiocsti_path="/proc/sys/dev/tty/legacy_tiocsti"
+if [[ -f "$tiocsti_path" && "$(cat "$tiocsti_path")" != "0" ]]; then
+    >&2 echo "warning: TIOCSTI not disabled — consider: echo 0 | sudo tee $tiocsti_path"
+fi
+# ── Build args ────────────────────────────────────────────────────────────────
+args=()
+# ── Namespace isolation ───────────────────────────────────────────────────────
+args+=(
+    --unshare-pid
+    --unshare-ipc
+    --unshare-uts
+    --hostname "sandbox"
+)
+if [[ "$SHARE_NET" == false ]]; then
+    args+=(--unshare-net)
+else
+    args+=(--share-net)
+fi
+# ── Process hardening ─────────────────────────────────────────────────────────
+args+=(
+    --new-session
+    --die-with-parent
+)
+# ── Mounts ────────────────────────────────────────────────────────────────────
+args+=(
+    --dev-bind /dev /dev
+    --proc /proc
+    --tmpfs /tmp
+    --tmpfs /run
+)
+# ── Restore /run paths blanked by --tmpfs /run ───────────────────────────────
+# systemd-resolved NSS module needs its socket for DNS resolution.
+for p in \
+    /run/systemd/resolve \
+    /run/dbus \
+    /run/user/${UID:-$(id -u)} \
+    ; do
+    [[ -e "$p" ]] && args+=(--ro-bind "$p" "$p")
+done
+# ── Read-only binds
+for p in \
+    /bin /sbin \
+    /usr/bin /usr/sbin /usr/lib /usr/lib64 /usr/libexec /usr/share \
+    /lib /lib64 \
+    /etc/alternatives \
+    /etc/ssl/certs \
+    /etc/ca-certificates \
+    /etc/resolv.conf \
+    /etc/nsswitch.conf \
+    /etc/hosts \
+    /etc/passwd \
+    /etc/group \
+    /etc/localtime \
+    /etc/os-release \
+    ; do
+    [[ -e "$p" ]] && args+=(--ro-bind "$p" "$p")
+done
+# ── Read-write binds: bun + node package caches and global installs
+for p in \
+    "$HOME/.cache/bun" \
+    "$HOME/.cache/npm" \
+    "$HOME/.local/share/bun" \
+    "$HOME/.local/share/npm" \
+    "$HOME/.cache/librarian" \
+    "$HOME/.cache/node-gyp" \
+    ; do
+    [[ -e "$p" ]] && args+=(--bind "$p" "$p")
+done
+
+# ── pi config: bind $HOME/.config/pi -> $HOME/.pi inside sandbox
+[[ -e "$HOME/other/dotfiles/config/pi" ]] && args+=(--bind "$HOME/other/dotfiles/config/pi" "$HOME/.pi")
+
+# # ── Meridian: Claude auth + session cache
+[[ -e "$HOME/.config/claude" ]] && args+=(--bind "$HOME/.config/claude" "$HOME/.claude")
+
+# ── Project directory ─────────────────────────────────────────────────────────
+args+=(--bind "$(pwd)" "$(pwd)")
+args+=(--chdir "$(pwd)")
+
+# ── Extra paths from CLI flags ────────────────────────────────────────────────
+for p in "${EXTRA_RO[@]+"${EXTRA_RO[@]}"}"; do
+    if [[ -e "$p" ]]; then
+        args+=(--ro-bind "$p" "$p")
+    else
+        >&2 echo "warning: --ro path not found: $p"
+    fi
+done
+for p in "${EXTRA_RW[@]+"${EXTRA_RW[@]}"}"; do
+    if [[ -e "$p" ]]; then
+        args+=(--bind "$p" "$p")
+    else
+        >&2 echo "warning: --rw path not found: $p"
+    fi
+done
+# ── Environment ───────────────────────────────────────────────────────────────
+args+=(
+    --clearenv
+    --setenv PATH     "${PATH}"
+    --setenv HOME     "$HOME"
+    --setenv USER     "${USER:-$(id -un)}"
+    --setenv TERM     "${TERM:-xterm-256color}"
+    --setenv LANG     "${LANG:-en_US.UTF-8}"
+    --setenv SANDBOX_AGENT_ENV "$(pwd)"
+    --setenv PROMPT_ENV_INDICATOR "sandboxed"
+)
+for var in \
+    COLORTERM DISPLAY XDG_RUNTIME_DIR \
+    EDITOR VISUAL PAGER \
+    ; do
+    [[ -n "${!var:-}" ]] && args+=(--setenv "$var" "${!var}")
+done
+# ── Execute ───────────────────────────────────────────────────────────────────
+if [[ "$DRY_RUN" == true ]]; then
+    >&2 echo "=== dry run: bwrap command ==="
+    printf 'bwrap' >&2
+    printf ' %q' "${args[@]}" >&2
+    printf ' %q' "$@" >&2
+    printf '\n' >&2
+    exit 0
+fi
+
+exec bwrap "${args[@]}" "$@"

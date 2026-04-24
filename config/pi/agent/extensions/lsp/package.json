@@ -1,0 +1,13 @@
+{
+	"name": "pi-lsp",
+	"version": "1.0.0",
+	"type": "module",
+	"dependencies": {
+		"@typescript/native-preview": "^7.0.0-dev.20260420.1",
+		"typescript-language-server": "^4.3.0",
+		"vscode-jsonrpc": "^8.2.1"
+	},
+	"devDependencies": {
+		"@types/node": "^25.6.0"
+	}
+}

@@ -1,7 +1,7 @@
 # ALIASES
 alias A="cat -s ~/.config/zsh/alias.zsh"
 
-# Key Files 
+# Key Files
 alias todo='nvim ~/university/TODO.md'
 alias hist='nvim ~/.cache/zsh/history'
 alias af='nvim ~/.config/zsh/alias.zsh'
@@ -31,6 +31,7 @@ alias mixer='pulsemixer'
 alias rsync='rsync --info=progress2'
 alias m='mysql -uroot --auto-rehash'
 alias poweroff='sudo systemctl poweroff'
+alias xprop-hover='echo "Hover over the target window... capturing in 3 seconds" && sleep 3 && xprop -id $(xdotool getmouselocation --shell | grep WINDOW | cut -d= -f2)'
 # alias lf='/usr/share/lf/lfcd.sh'
 
 # Fonts
@@ -38,12 +39,12 @@ alias fonts='fc-list -f "%{family[0]} - %{style}\n" | sort | uniq | fzf'
 
 # Browser Apps
 alias notebook='jupyter notebook --browser="/usr/bin/chromium --app=%s"'
-alias diagram='chromium --app="https://app.diagrams.net"'
-alias docs='chromium --app="https://docs.google.com/document/u/0/"'
-alias sheets='chromium --app="https://docs.google.com/spreadsheets/"'
-alias figma='chromium --app="https://www.figma.com/"'
-alias via='sudo chown $USER:$USER /dev/hidraw2 && chromium --app="https://usevia.app/"'
-alias rss='chromium --app="http://192.168.88.121:7070/"'
+alias diagram='helium-browser --app="https://app.diagrams.net"'
+alias docs='helium-browser --app="https://docs.google.com/document/u/0/"'
+alias sheets='helium-browser --app="https://docs.google.com/spreadsheets/"'
+alias figma='helium-browser --app="https://www.figma.com/"'
+alias via='sudo chown $USER:$USER /dev/hidraw2 && helium-browser --app="https://usevia.app/"'
+alias rss='helium-browser --app="http://192.168.88.121:7070/"'
 
 # Npm
 alias npi="npm install -g"

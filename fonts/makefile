@@ -14,15 +14,16 @@ build:
 	npm run build -- contents::iosevka-custom
 
 patch:
-	curl -L $(PATCH_URL) > $(PATCH_ZIP)
-	unzip $(PATCH_ZIP) -d patcher
-	rm $(PATCH_ZIP)
-	./patcher/font-patcher $(IOSEVKA_DIR)/dist/iosevka-custom/TTF/iosevka-custom-regular.ttf -s -c -out $(PATCHED_DIR) --makegroups 6
-	rm -rf ./patcher
+	# curl -L $(PATCH_URL) > $(PATCH_ZIP)
+	# unzip $(PATCH_ZIP) -d patcher
+	# rm $(PATCH_ZIP)
+	# ./patcher/font-patcher $(IOSEVKA_DIR)/dist/iosevka-custom/TTF/iosevka-custom-regular.ttf -s -c -out $(PATCHED_DIR) --makegroups 6
+	sudo docker run --rm -v $(IOSEVKA_DIR)/dist/iosevka-custom/TTF:/in:Z -v $(PATCHED_DIR):/out:Z nerdfonts/patcher -s --mdi
+	# rm -rf ./patcher
 
 install:
 	mkdir -p $(FONT_DIR)
 	cp -rf $(IOSEVKA_DIR)/dist/* $(FONT_DIR)
 	cp -rf $(PATCHED_DIR) $(FONT_DIR)
-	rm -rf $(PATCHED_DIR)
+	# rm -rf $(PATCHED_DIR)
 	fc-cache

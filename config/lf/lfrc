@@ -11,18 +11,22 @@ map gl cd ~/.local/share/
 map gS cd ~/other/dotfiles/scripts/
 map gC cd ~/other/dotfiles/colors/
 
+map gf cd ~/personal/finances
+
 map gd cd ~/downloads
 map gs cd ~/other/dotfiles/colors/
 
 map g<gt> cd ~/.config
 map g. cd ~/other/dotfiles/config
 map gN cd ~/.config/nvim/lua
-map gP cd ~/.local/share/nvim/site/pack/packer
+map gP cd ~/other/dotfiles/config/pi/agent/
 map gD cd ~/.config/dwm
 
 # Work
-map gc cd ~/co2e/console
-map gb cd ~/co2e/backend
+map gc cd ~/co2e/base/apps/console
+map gb cd ~/co2e/base/apps/backend
+map gw cd ~/co2e/base/apps/worker
+map gz cd ~/co2e/base/apps/zodiac
 
 # Source Commands
 source ~/.config/lf/commands
@@ -38,6 +42,7 @@ cmd open ${{
         */pdf) zathura $fx;;
         */epub*) zathura $fx;;
         */x-blender) blender $fx;;
+        audio/*) mpv $fx;;
         image/gif) mpv --loop $fx;;
         image/*) sxiv -b $fx;;
         video/*) mpv $fx;;
@@ -109,14 +114,14 @@ map r push A<c-u> # new rename
 map I push A<c-a> # at the very beginning
 map i push A<a-b><a-b><a-f> # before extention
 map a push A<a-b> # after extention
-map R bulk-rename
-
-# Delete Restore
+map R bulk-rename # Delete Restore
 map D trash
 map U restore
 
-# Yank paths
+# Yank tools
 map Yy yank-dirname
 map YY yank-path
 map Yi yank-basename
 map YI yank-basename-without-extension
+map Yf yank-file
+map f fzf_select

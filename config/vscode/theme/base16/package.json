@@ -1,0 +1,21 @@
+{
+  "name": "base16",
+  "displayName": "base16",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "base16",
+        "uiTheme": "vs-dark",
+        "path": "./themes/base16-color-theme.json"
+      }
+    ]
+  }
+}

@@ -25,6 +25,7 @@ CMakeLists.txt* 󰒓
 .gitignore*     
 .dockerignore*  
 .env*           󱕴
+.env.example*  󱕴
 lfrc*           󰒓
 config*         󰒓
 authorized_keys*  󱕴
@@ -51,12 +52,16 @@ authorized_keys*  󱕴
 *.psb     
 *.psd     
 *.xlsx    󰧷
+*.xlsm    󰧷
+*.doc     󰈙
+*.docx    󰈙
 *.csv     󰱾
 *.key     󰌋
 *.csr     󰌋
 *.pem     󰌋
 *.service 󰒓
 *.diff    󰕜
+*.vcf     󰛋
 
 # Languages
 *.c       
@@ -90,7 +95,7 @@ authorized_keys*  󱕴
 *.py      
 *.rb      
 *.rs      
-*.r       ﳒ
+*.r       
 *.scala   
 *.sqlite  
 *.swift   
@@ -104,6 +109,7 @@ authorized_keys*  󱕴
 
 # Other (Text Related)
 *.rss       󰑫
+*.just      
 *.toml      󰒓
 *.yaml      󰒓
 *.yml       󰒓
@@ -165,6 +171,7 @@ authorized_keys*  󱕴
 # Fonts
 *.otf   
 *.ttf   
+*.woff2 
 
 # Other media
 *.asf   󰈟
