@@ -1,29 +1,21 @@
 ROOT_DIR    := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 IOSEVKA_DIR := $(ROOT_DIR)/Iosevka
-PATCHED_DIR := $(ROOT_DIR)/iosevka-nerd
-BUILD_PLANS := private-build-plans.toml
+PATCHED_DIR := $(IOSEVKA_DIR)/iosevka-custom
+BUILD_PLAN  := build.toml
 FONT_DIR    := ~/.local/share/fonts
-PATCH_URL   := https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FontPatcher.zip
-PATCH_ZIP   := patcher.zip
 
 build:
 	if [ ! -d $(IOSEVKA_DIR) ]; then git clone --depth 1 https://github.com/be5invis/Iosevka.git; fi
-	cp -f $(BUILD_PLANS) $(IOSEVKA_DIR)/$(BUILD_PLANS)
+	cp -f $(BUILD_PLAN) $(IOSEVKA_DIR)/private-build-plans.toml
 	cd $(IOSEVKA_DIR); \
 	npm install; \
 	npm run build -- contents::iosevka-custom
 
 patch:
-	# curl -L $(PATCH_URL) > $(PATCH_ZIP)
-	# unzip $(PATCH_ZIP) -d patcher
-	# rm $(PATCH_ZIP)
-	# ./patcher/font-patcher $(IOSEVKA_DIR)/dist/iosevka-custom/TTF/iosevka-custom-regular.ttf -s -c -out $(PATCHED_DIR) --makegroups 6
-	sudo docker run --rm -v $(IOSEVKA_DIR)/dist/iosevka-custom/TTF:/in:Z -v $(PATCHED_DIR):/out:Z nerdfonts/patcher -s --mdi
-	# rm -rf ./patcher
+	sudo rm -rf $(PATCHED_DIR)
+	sudo docker run --rm -v $(IOSEVKA_DIR)/dist/iosevka-custom/TTF:/in:Z -v $(PATCHED_DIR):/out:Z -e "PN=5" nerdfonts/patcher -s --mdi --makegroups -1
 
 install:
 	mkdir -p $(FONT_DIR)
-	cp -rf $(IOSEVKA_DIR)/dist/* $(FONT_DIR)
 	cp -rf $(PATCHED_DIR) $(FONT_DIR)
-	# rm -rf $(PATCHED_DIR)
 	fc-cache
