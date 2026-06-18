@@ -1,0 +1,136 @@
+spawn-at-startup "sunsetr"
+spawn-at-startup "noctalia"
+
+input {
+    keyboard {
+        xkb {
+            options "caps:swapescape,altwin:menu_win"
+        }
+
+        numlock
+        repeat-delay 220
+        repeat-rate 40
+    }
+
+    touchpad {
+        tap
+        accel-profile "flat"
+        click-method "clickfinger"
+    }
+
+    focus-follows-mouse
+}
+
+layout {
+    gaps 5
+
+    center-focused-column "never"
+    background-color "transparent"
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    default-column-width {
+        proportion 0.5
+    }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        off
+    }
+
+    shadow {
+        on
+        draw-behind-window true
+        softness 3
+        spread 0
+        offset x=0 y=1
+        color "#000000"
+    }
+
+    struts {
+        top 27
+    }
+}
+
+
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 23
+
+    hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
+hotkey-overlay {
+    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
+    // skip-at-startup
+}
+
+prefer-no-csd
+screenshot-path null
+
+window-rule {
+    match is-active=false
+    match is-focused=false
+    opacity 0.9
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// browsers
+window-rule {
+    // This app-id regular expression will work for both:
+    match app-id=r#"firefox$"#
+    match app-id=r#"helium$"#
+    default-column-width {
+        proportion 1.0
+    }
+}
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    geometry-corner-radius 5
+    clip-to-geometry true
+}
+
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+    // This is for swaybg; change for other wallpaper tools.
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
+}
+
+include "keybinds.kdl"
+include "config.local.kdl"
