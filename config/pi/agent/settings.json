@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.73.0",
+  "lastChangelogVersion": "0.80.3",
   "theme": "base16-dark",
   "defaultProvider": "zai",
-  "defaultModel": "glm-5.1",
-  "defaultThinkingLevel": "off",
+  "defaultModel": "glm-5.2",
+  "defaultThinkingLevel": "low",
   "packages": []
 }

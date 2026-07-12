@@ -4,3 +4,4 @@ extensions/*/node_modules/
 auth.json
 models.json
 .old/
+*.log

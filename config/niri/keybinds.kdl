@@ -65,20 +65,21 @@ binds {
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 
-    Mod+Shift+Left  { focus-monitor-left; }
-    Mod+Shift+Down  { focus-monitor-down; }
-    Mod+Shift+Up    { focus-monitor-up; }
-    Mod+Shift+Right { focus-monitor-right; }
-    // Mod+Shift+L     { focus-monitor-right; }
+    // Mod+Shift+Left  { focus-monitor-left; }
+    // Mod+Shift+Down  { focus-monitor-down; }
+    // Mod+Shift+Up    { focus-monitor-up; }
+    Mod+Comma       { focus-monitor-left; }
+    Mod+Period      { focus-monitor-right; }
 
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+Shift+Comma         { move-window-to-monitor-left; }
+    Mod+Shift+Period        { move-window-to-monitor-right; }
+
+    // Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -178,9 +179,9 @@ binds {
     Mod+BracketRight { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Mod+Comma  { consume-window-into-column; }
+    // Mod+Comma  { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Mod+Period { expel-window-from-column; }
+    // Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.

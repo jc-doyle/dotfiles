@@ -4,7 +4,6 @@ set positional-arguments
 install:
     npm install
     cd ./extensions/lsp && npm install
-    cd ./extensions/meridian && npm install
     cd ./extensions/mermaid && npm install
 
 # Remove all node_modules

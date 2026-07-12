@@ -14,11 +14,12 @@ input {
 
     touchpad {
         tap
+        dwt
         accel-profile "flat"
         click-method "clickfinger"
     }
 
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="30%"
 }
 
 layout {
@@ -58,13 +59,19 @@ layout {
     }
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 
 cursor {
     xcursor-theme "Bibata-Modern-Ice"
     xcursor-size 23
 
     hide-when-typing
-    hide-after-inactive-ms 1000
+    hide-after-inactive-ms 5000
 }
 
 hotkey-overlay {

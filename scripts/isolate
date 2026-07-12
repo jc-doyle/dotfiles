@@ -8,7 +8,6 @@
 #
 # Options:
 #   --no-net          Block all network access (default: share host network)
-#   --allow-ssh       Bind SSH agent socket (default: excluded)
 #   --project <path>  Additional rw-bind path (can be repeated)
 #   --ro <path>       Additional ro-bind path (can be repeated)
 #   --rw <path>       Additional rw-bind path (can be repeated)
@@ -60,7 +59,6 @@ else
 fi
 # ── Process hardening ─────────────────────────────────────────────────────────
 args+=(
-    --new-session
     --die-with-parent
 )
 # ── Mounts ────────────────────────────────────────────────────────────────────
@@ -109,11 +107,11 @@ for p in \
     [[ -e "$p" ]] && args+=(--bind "$p" "$p")
 done
 
-# ── pi config: bind $HOME/.config/pi -> $HOME/.pi inside sandbox
-[[ -e "$HOME/other/dotfiles/config/pi" ]] && args+=(--bind "$HOME/other/dotfiles/config/pi" "$HOME/.pi")
+# ── Home directory skeleton (required before any sub-mounts into $HOME) ───────
+args+=(--dir "$HOME")
 
-# # ── Meridian: Claude auth + session cache
-[[ -e "$HOME/.config/claude" ]] && args+=(--bind "$HOME/.config/claude" "$HOME/.claude")
+# ── pi config: bind dotfiles/config/pi -> $HOME/.pi ──────────────────────────
+[[ -e "$HOME/other/dotfiles/config/pi" ]] && args+=(--bind "$HOME/other/dotfiles/config/pi" "$HOME/.pi")
 
 # ── Project directory ─────────────────────────────────────────────────────────
 args+=(--bind "$(pwd)" "$(pwd)")
