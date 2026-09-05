@@ -1,4 +1,4 @@
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const messages = [
   // Short
@@ -460,7 +460,7 @@ const messages = [
 ];
 
 function pickRandom(): string {
-  return messages[Math.floor(Math.random() * messages.length)];
+  return messages[Math.floor(Math.random() * messages.length)] ?? "Thinking...";
 }
 
 export default function (pi: ExtensionAPI) {

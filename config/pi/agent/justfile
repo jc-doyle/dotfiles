@@ -1,10 +1,9 @@
 set positional-arguments
 
-# Install dependencies (root + extensions/*)
+# Install dependencies (root + extensions/lsp)
 install:
     npm install
     cd ./extensions/lsp && npm install
-    cd ./extensions/mermaid && npm install
 
 # Remove all node_modules
 clean:

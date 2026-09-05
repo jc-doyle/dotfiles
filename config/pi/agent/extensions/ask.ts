@@ -3,23 +3,15 @@
  *
  * Two complementary question-answering tools:
  *
- * 1. `questionnaire` tool — the LLM calls this to ask YOU clarifying questions
- *    before doing work. Single question shows a simple option list. Multiple
- *    questions show a tab-based UI. Each option can have a description, and
- *    there's always a "Type something" free-text fallback.
- *
- * 2. `/qna` command — YOU call this to extract questions from the last assistant
- *    message and load them into the editor pre-formatted for answers. Useful
- *    when the model listed questions inline in prose rather than using the tool.
- *
- * Based on the official pi-mono examples (questionnaire.ts, qna.ts).
+ * The `questionnaire` tool — the LLM calls this to ask YOU clarifying questions
+ * before doing work. Single question shows a simple option list. Multiple
+ * questions show a tab-based UI. Each option can have a description, and
+ * there's always a "Type something" free-text fallback.
  */
 
-import { complete, type UserMessage } from "@mariozechner/pi-ai";
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { BorderedLoader } from "@mariozechner/pi-coding-agent";
-import { Editor, type EditorTheme, Key, matchesKey, Text, truncateToWidth } from "@mariozechner/pi-tui";
-import { Type } from "@sinclair/typebox";
+import { type ExtensionAPI, type Theme } from "@earendil-works/pi-coding-agent";
+import { Editor, type EditorTheme, Key, matchesKey, Text, truncateToWidth } from "@earendil-works/pi-tui";
+import { Type } from "typebox";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -60,7 +52,7 @@ interface QuestionnaireResult {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const QuestionOptionSchema = Type.Object({
-	value: Type.String({ description: "The value returned when this option is selected" }),
+	value: Type.Optional(Type.String({ description: "The value returned when this option is selected (defaults to label)" })),
 	label: Type.String({ description: "Display label shown to the user" }),
 	description: Type.Optional(Type.String({ description: "Optional hint shown below the label" })),
 });
@@ -80,32 +72,10 @@ const QuestionnaireParams = Type.Object({
 		description: "One or more questions to ask the user before proceeding",
 	}),
 });
-
-// ─────────────────────────────────────────────────────────────────────────────
-// QnA extraction system prompt
-// ─────────────────────────────────────────────────────────────────────────────
-
-const QNA_SYSTEM_PROMPT = `You are a question extractor. Given text from a conversation, extract any questions that need answering and format them for the user to fill in.
-
-Output format:
-- List each question on its own line, prefixed with "Q: "
-- After each question, add a blank line for the answer prefixed with "A: "
-- If no questions are found, output "No questions found in the last message."
-
-Example output:
-Q: What is your preferred database?
-A: 
-
-Q: Should we use TypeScript or JavaScript?
-A: 
-
-Keep questions in the order they appeared. Be concise.`;
-
-// ─────────────────────────────────────────────────────────────────────────────
 // Editor theme (shared between tools)
 // ─────────────────────────────────────────────────────────────────────────────
 
-function makeEditorTheme(theme: Parameters<Parameters<ReturnType<ExtensionAPI["on"]>>[1]>[1]): EditorTheme {
+function makeEditorTheme(theme: Theme): EditorTheme {
 	return {
 		borderColor: (s) => theme.fg("accent", s),
 		selectList: {
@@ -162,6 +132,7 @@ export default function (pi: ExtensionAPI) {
 			const questions: Question[] = params.questions.map((q, i) => ({
 				...q,
 				label: q.label || `Q${i + 1}`,
+				options: q.options.map((o) => ({ ...o, value: o.value ?? o.label })),
 				allowOther: q.allowOther !== false,
 			}));
 
@@ -269,6 +240,7 @@ export default function (pi: ExtensionAPI) {
 
 					if (matchesKey(data, Key.enter) && q) {
 						const opt = opts[optionIndex];
+						if (!opt) return;
 						if (opt.isOther) {
 							inputMode = true;
 							inputQuestionId = q.id;
@@ -297,10 +269,12 @@ export default function (pi: ExtensionAPI) {
 					if (isMulti) {
 						const tabs: string[] = ["  "];
 						for (let i = 0; i < questions.length; i++) {
+							const question = questions[i];
+							if (!question) continue;
 							const isActive = i === currentTab;
-							const isAnswered = answers.has(questions[i].id);
+							const isAnswered = answers.has(question.id);
 							const box = isAnswered ? "■" : "□";
-							const text = ` ${box} ${questions[i].label} `;
+							const text = ` ${box} ${question.label} `;
 							tabs.push(isActive
 								? theme.bg("selectedBg", theme.fg("text", text)) + " "
 								: theme.fg(isAnswered ? "success" : "muted", text) + " ");
@@ -318,6 +292,7 @@ export default function (pi: ExtensionAPI) {
 					function renderOptions() {
 						for (let i = 0; i < opts.length; i++) {
 							const opt = opts[i];
+							if (!opt) continue;
 							const selected = i === optionIndex;
 							const prefix = selected ? theme.fg("accent", "> ") : "  ";
 							const color = selected ? "accent" : "text";
@@ -416,91 +391,6 @@ export default function (pi: ExtensionAPI) {
 				return `${theme.fg("success", "✓ ")}${theme.fg("accent", a.id)}: ${prefix}${display}`;
 			});
 			return new Text(lines.join("\n"), 0, 0);
-		},
-	});
-
-	// ──────────────────────────────────────────────────────────────────────────
-	// /qna command — extract inline questions from the last assistant message
-	// ──────────────────────────────────────────────────────────────────────────
-
-	pi.registerCommand("qna", {
-		description: "Extract questions from the last assistant message into the editor",
-		handler: async (_args, ctx) => {
-			if (!ctx.hasUI) {
-				ctx.ui.notify("/qna requires interactive mode", "error");
-				return;
-			}
-			if (!ctx.model) {
-				ctx.ui.notify("No model selected", "error");
-				return;
-			}
-
-			// Find the last assistant message on the current branch
-			const branch = ctx.sessionManager.getBranch();
-			let lastAssistantText: string | undefined;
-
-			for (let i = branch.length - 1; i >= 0; i--) {
-				const entry = branch[i];
-				if (entry.type !== "message") continue;
-				const msg = entry.message;
-				if (!("role" in msg) || msg.role !== "assistant") continue;
-
-				if (msg.stopReason !== "stop") {
-					ctx.ui.notify(`Last assistant message is incomplete (${msg.stopReason})`, "error");
-					return;
-				}
-
-				const textParts = msg.content
-					.filter((c): c is { type: "text"; text: string } => c.type === "text")
-					.map((c) => c.text);
-
-				if (textParts.length > 0) {
-					lastAssistantText = textParts.join("\n");
-					break;
-				}
-			}
-
-			if (!lastAssistantText) {
-				ctx.ui.notify("No assistant messages found on this branch", "error");
-				return;
-			}
-
-			// Use the current model to extract questions, show a spinner while working
-			const extracted = await ctx.ui.custom<string | null>((tui, theme, _kb, done) => {
-				const loader = new BorderedLoader(tui, theme, `Extracting questions using ${ctx.model!.id}...`);
-				loader.onAbort = () => done(null);
-
-				(async () => {
-					const apiKey = await ctx.modelRegistry.getApiKey(ctx.model!);
-					const userMessage: UserMessage = {
-						role: "user",
-						content: [{ type: "text", text: lastAssistantText! }],
-						timestamp: Date.now(),
-					};
-					const response = await complete(
-						ctx.model!,
-						{ systemPrompt: QNA_SYSTEM_PROMPT, messages: [userMessage] },
-						{ apiKey, signal: loader.signal },
-					);
-					if (response.stopReason === "aborted") { done(null); return; }
-					done(
-						response.content
-							.filter((c): c is { type: "text"; text: string } => c.type === "text")
-							.map((c) => c.text)
-							.join("\n"),
-					);
-				})().catch(() => done(null));
-
-				return loader;
-			});
-
-			if (extracted === null) {
-				ctx.ui.notify("Cancelled", "info");
-				return;
-			}
-
-			ctx.ui.setEditorText(extracted);
-			ctx.ui.notify("Questions loaded into editor — fill in your answers and submit", "info");
 		},
 	});
 }

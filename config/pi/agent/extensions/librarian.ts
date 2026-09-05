@@ -13,8 +13,8 @@
  * safety gate on every fetch.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { Type } from "@sinclair/typebox";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { Type } from "typebox";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
@@ -52,7 +52,8 @@ function parseRepoUrl(input: string): ParsedRepo {
   let s = input.trim();
 
   // Strip query string and fragment
-  s = s.split("?")[0].split("#")[0].trim();
+  s = (s.split("?")[0] ?? s).split("#")[0] ?? s;
+  s = s.trim();
 
   let host: string;
   let path: string;
@@ -75,7 +76,7 @@ function parseRepoUrl(input: string): ParsedRepo {
     host = rest.slice(0, slashIdx < 0 ? undefined : slashIdx);
     path = slashIdx < 0 ? "" : rest.slice(slashIdx + 1);
   } else if (s.includes("/")) {
-    const firstSegment = s.split("/")[0];
+    const firstSegment = s.split("/")[0] ?? s;
     if (firstSegment.includes(".") || firstSegment === "localhost") {
       // github.com/owner/repo
       host = firstSegment;
@@ -94,7 +95,8 @@ function parseRepoUrl(input: string): ParsedRepo {
 
   // Strip deep-link suffixes: owner/repo/tree/main/... → owner/repo
   const parts = path.split("/");
-  if (parts.length >= 3 && DEEP_LINK_SEGMENTS.has(parts[2])) {
+  const deepSegment = parts[2];
+  if (parts.length >= 3 && deepSegment !== undefined && DEEP_LINK_SEGMENTS.has(deepSegment)) {
     path = parts.slice(0, 2).join("/");
   }
 
@@ -106,7 +108,7 @@ function parseRepoUrl(input: string): ParsedRepo {
   return {
     host,
     org: finalParts.slice(0, -1).join("/"),
-    repo: finalParts[finalParts.length - 1],
+    repo: finalParts[finalParts.length - 1] ?? "",
   };
 }
 
@@ -340,7 +342,7 @@ export default function (pi: ExtensionAPI) {
       if (!existsSync(CACHE_ROOT)) {
         return {
           content: [{ type: "text", text: "Cache is empty. Run repo_checkout first." }],
-          details: {},
+          details: { matchCount: 0, searchRoots: [] as string[] },
         };
       }
 

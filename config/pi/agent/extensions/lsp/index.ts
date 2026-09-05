@@ -10,9 +10,9 @@
 
 import * as fsp from "node:fs/promises";
 import * as path from "node:path";
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
-import { Type } from "@sinclair/typebox";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
+import { Type } from "typebox";
 import { getServersForFile } from "./lsp/servers.js";
 import { LSPService } from "./lsp/service.js";
 
@@ -46,10 +46,10 @@ export default function (pi: ExtensionAPI) {
 		label: "LSP Diagnostics",
 		description:
 			"Run LSP type-checking on a file and return diagnostics (errors/warnings). " +
-			"Use after editing TypeScript/JavaScript files to catch errors.",
+			"Use after editing TypeScript/JavaScript, Go, justfile, or docker-compose files to catch errors.",
 		promptSnippet: "Check a file for LSP type errors",
 		promptGuidelines: [
-			"Use lsp_diagnostics after editing .ts/.tsx/.js/.jsx files to verify type correctness.",
+			"After ANY change to .ts/.tsx/.js/.jsx files — including edits made via bash (sed/awk/redirect) — run lsp_diagnostics on that file. Prefer lsp_diagnostics over invoking tsc/npm-check through bash for per-file verification; reserve a full tsc run for a final project-wide check.",
 		],
 		parameters: Type.Object({
 			path: Type.String({ description: "Path to the file to check" }),
@@ -144,16 +144,6 @@ export default function (pi: ExtensionAPI) {
 
 	pi.on("session_start", async (_event, ctx) => {
 		service = new LSPService(ctx.cwd);
-		service.onStatus((id, _name, alive) => {
-			if (alive) {
-				ctx.ui.setStatus(
-					`lsp-${id}`,
-					ctx.ui.theme.fg("dim", ctx.ui.theme.bold(`⚙ ${id}`)),
-				);
-			} else {
-				ctx.ui.setStatus(`lsp-${id}`, undefined);
-			}
-		});
 		log("LSP service started");
 	});
 

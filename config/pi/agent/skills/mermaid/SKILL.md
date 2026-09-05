@@ -1,6 +1,6 @@
 ---
 name: mermaid
-description: Use a Mermaid diagram to explain structure, flow, or relationships when prose would be long or ambiguous. Emit a fenced ```mermaid block and the pi-mermaid extension renders it inline in the TUI. The parser runs on every block — invalid diagrams surface their error back to you next turn, so fix the reported syntax and retry.
+description: Use a Mermaid diagram to explain structure, flow, or relationships when prose would be long or ambiguous. Emit a fenced ```mermaid block and pi's built-in renderer draws it inline in the TUI (setting `markdown.mermaid`, default `streaming`). Parse failures are never reported back to you — validate syntax before emitting.
 ---
 
 # Diagrams as thought
@@ -34,6 +34,8 @@ Don't diagram for the sake of diagramming. Skip it when:
 
 ## Choosing a type
 
+The terminal renderer supports **exactly these five types** — `journey`, `gantt`, `pie`, etc. render as raw code:
+
 | Thing you're showing                     | Mermaid type           |
 | ---------------------------------------- | ---------------------- |
 | Decisions, branches, generic flow        | `flowchart` / `graph`  |
@@ -41,14 +43,12 @@ Don't diagram for the sake of diagramming. Skip it when:
 | Types and their relationships            | `classDiagram`         |
 | Tables and joins                         | `erDiagram`            |
 | States and transitions                   | `stateDiagram-v2`      |
-| User journey, tasks over phases          | `journey`              |
-| Scheduling / time blocks                 | `gantt`                |
 
 Prefer `flowchart TD` (top-down) for pipelines and lifecycles, `flowchart LR` (left-right) for request/response and ETL. `sequenceDiagram` is almost always the right call for "A then B then C across services."
 
 ## Emitting diagrams
 
-Put the diagram in a fenced `mermaid` block **inside** your normal response — don't preface it with "here's a diagram:"; just talk around it like you would a code snippet. The extension catches the fence and renders it below the prose.
+Put the diagram in a fenced `mermaid` block **inside** your normal response — don't preface it with "here's a diagram:"; just talk around it like you would a code snippet. The TUI catches the fence and renders it below the prose.
 
 ````md
 The auth flow has three redirects before we get a session:
@@ -73,13 +73,7 @@ The cookie is HttpOnly, so the SPA can't see it — that's why step 6 is server-
 
 ## Keeping diagrams valid
 
-The extension runs `mermaid.parse()` on every block. If it fails:
-
-1. A red panel appears under your message with the parser error.
-2. The error is injected back into your context as `[mermaid:error][hash:…] <message>`.
-3. **On the next turn, read that error and emit a corrected diagram.** Don't repeat the broken one.
-
-Common parser gotchas:
+The renderer does **not** report parse failures back into your context. If a diagram fails, the user sees a "Mermaid diagram not rendered: …" warning, but you never learn about it and get no retry — so get it right the first time. Common gotchas:
 
 - Label text with `(`, `)`, `:`, `{`, `}` — wrap it in quotes: `A["label (v2)"]`.
 - `end` is a reserved keyword — don't use it as a node id.
@@ -90,6 +84,7 @@ Common parser gotchas:
 ## Style
 
 - **Node labels short and nouny.** "Cache miss", not "The request did not find a cached entry".
+- **The diagram must fit the terminal width (~100 columns).** Anything wider silently renders as raw code with no feedback to anyone. Prefer `TD` (vertical) over `LR`, keep labels under ~15 chars, and if the layout still runs wide, split into two focused diagrams.
 - **Use subgraphs sparingly** — they help group but quickly clutter ASCII output. Two focused diagrams beat one cluttered one.
 - **Pick a direction and commit** — don't mix `TD` and `LR` across related diagrams in the same response.
 - **Edge labels are real estate** — use them for the decision ("yes", "error") not the mechanism ("http call").

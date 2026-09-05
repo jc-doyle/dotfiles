@@ -4,6 +4,8 @@
  */
 
 import { EventEmitter } from "node:events";
+import * as fsp from "node:fs/promises";
+import * as path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
 	createMessageConnection,
@@ -35,6 +37,7 @@ interface ClientEntry {
 	alive: boolean;
 	openDocs: Set<string>;
 	versions: Map<string, number>;
+	syncTimes: Map<string, number>;
 	diagnostics: Map<string, LSPDiagnostic[]>;
 	diagEmitter: EventEmitter;
 	hasDiagnosticProvider: boolean;
@@ -62,9 +65,13 @@ const LANG_IDS: Record<string, string> = {
 	".css": "css",
 	".scss": "scss",
 	".html": "html",
+	".just": "just",
 };
 
 function getLangId(filePath: string): string {
+	const base = path.basename(filePath).toLowerCase();
+	if (base === "justfile" || base === ".justfile") return "just";
+	if (/^(docker-)?compose\.ya?ml$/.test(base)) return "yaml";
 	const ext = filePath.substring(filePath.lastIndexOf("."));
 	return LANG_IDS[ext] ?? "plaintext";
 }
@@ -79,21 +86,9 @@ function pathKey(filePath: string): string {
 
 // --- Service ---
 
-export type LSPStatusListener = (serverId: string, serverName: string, alive: boolean) => void;
-
 export class LSPService {
 	private clients = new Map<string, ClientEntry>(); // "serverId:root"
-	private statusListener?: LSPStatusListener;
 	constructor(_cwd: string) {}
-
-	/** Register a callback for server start/stop events. */
-	onStatus(fn: LSPStatusListener) {
-		this.statusListener = fn;
-	}
-
-	private notifyStatus(id: string, name: string, alive: boolean) {
-		this.statusListener?.(id, name, alive);
-	}
 
 	/** Try each registered server in priority order, return first one that can spawn. */
 	private async getFirstAliveServer(filePath: string): Promise<LSPServerDef | undefined> {
@@ -135,6 +130,9 @@ export class LSPService {
 			const client = await this.ensureClient(server, root);
 			if (!client) return [];
 
+			// Re-sync open docs changed on disk since their last sync (bash edits bypass syncFile)
+			await this.resyncStaleDocs(client);
+
 			if (client.hasDiagnosticProvider) {
 				// Pull-based: send textDocument/diagnostic request
 				const uri = pathToFileURL(filePath).href;
@@ -153,9 +151,19 @@ export class LSPService {
 				}
 			}
 
-			// Push-based (typescript-language-server): wait for publishDiagnostics
+			// Push-based: wait for publishDiagnostics
 			client.diagnostics.delete(pathKey(filePath));
-			await this.waitForDiags(client, filePath, timeoutMs);
+			const published = await this.waitForDiags(client, filePath, timeoutMs);
+			if (!published) {
+				// Race: a fast server (just-lsp ~1ms) may publish before we start listening.
+				// Nudge with a didChange (content from disk) to force a fresh publish cycle.
+				await this.openOrUpdate(
+					client,
+					filePath,
+					await fsp.readFile(filePath, "utf-8"),
+				);
+				await this.waitForDiags(client, filePath, timeoutMs);
+			}
 			return client.diagnostics.get(pathKey(filePath)) ?? [];
 		} catch { return []; }
 	}
@@ -222,6 +230,7 @@ export class LSPService {
 			alive: true,
 			openDocs: new Set(),
 			versions: new Map(),
+			syncTimes: new Map(),
 			diagnostics: new Map(),
 			diagEmitter: new EventEmitter(),
 			hasDiagnosticProvider: false,
@@ -257,15 +266,12 @@ export class LSPService {
 		// Lifecycle
 		connection.onError(() => {
 			client.alive = false;
-			this.notifyStatus(server.id, server.name, false);
 		});
 		connection.onClose(() => {
 			client.alive = false;
-			this.notifyStatus(server.id, server.name, false);
 		});
 		spawned.process.process.on("exit", () => {
 			client.alive = false;
-			this.notifyStatus(server.id, server.name, false);
 		});
 
 		connection.listen();
@@ -293,7 +299,7 @@ export class LSPService {
 			}
 
 			try {
-				connection.sendNotification("initialized" as never);
+				connection.sendNotification("initialized" as never, {});
 			} catch {
 				/* stream died after init response */
 			}
@@ -313,7 +319,6 @@ export class LSPService {
 		}
 
 		this.clients.set(key, client);
-		this.notifyStatus(server.id, server.name, true);
 		return client;
 	}
 
@@ -344,14 +349,32 @@ export class LSPService {
 			}
 		} catch {
 			client.alive = false;
+			return;
+		}
+		client.syncTimes.set(key, Date.now());
+	}
+
+	/** Re-sync open docs whose on-disk mtime is newer than their last sync, so
+	 * tsserver never project-checks against stale buffers after bash edits. */
+	private async resyncStaleDocs(client: ClientEntry): Promise<void> {
+		for (const key of client.openDocs) {
+			try {
+				const st = await fsp.stat(key);
+				if (st.mtimeMs > (client.syncTimes.get(key) ?? 0)) {
+					await this.openOrUpdate(client, key, await fsp.readFile(key, "utf-8"));
+				}
+			} catch {
+				/* file gone — leave last known buffer */
+			}
 		}
 	}
 
+	/** Resolves true if a publishDiagnostics event arrived, false on timeout. */
 	private waitForDiags(
 		client: ClientEntry,
 		filePath: string,
 		timeoutMs: number,
-	): Promise<void> {
+	): Promise<boolean> {
 		const key = pathKey(filePath);
 
 		return new Promise((resolve) => {
@@ -370,14 +393,14 @@ export class LSPService {
 				if (debounceTimer) clearTimeout(debounceTimer);
 				debounceTimer = setTimeout(() => {
 					cleanup();
-					resolve();
+					resolve(true);
 				}, DEBOUNCE_MS);
 			};
 
 			const deadline = setTimeout(() => {
 				client.diagEmitter.off("diag", onDiag);
 				if (debounceTimer) clearTimeout(debounceTimer);
-				resolve();
+				resolve(false);
 			}, timeoutMs);
 
 			// Already cached? Still listen for a fresh round

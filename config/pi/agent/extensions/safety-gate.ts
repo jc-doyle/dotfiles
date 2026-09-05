@@ -20,7 +20,7 @@
  *   - Everything else reads silently
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { normalize } from "node:path";
 
 export default function (pi: ExtensionAPI) {
@@ -53,7 +53,7 @@ export default function (pi: ExtensionAPI) {
 					} else if (ch === '"' && !inSingle && prev !== "\\") {
 						inDouble = !inDouble;
 					} else if (ch === "#" && !inSingle && !inDouble) {
-						if (i === 0 || /\s/.test(line[i - 1])) {
+						if (i === 0 || /\s/.test(line[i - 1] ?? "")) {
 							return line.slice(0, i).trimEnd();
 						}
 					}
