@@ -2,7 +2,10 @@ ROOT_DIR    := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 IOSEVKA_DIR := $(ROOT_DIR)/Iosevka
 PATCHED_DIR := $(IOSEVKA_DIR)/iosevka-custom
 BUILD_PLAN  := build.toml
-FONT_DIR    := ~/.local/share/fonts
+FONT_DIR    := $(HOME)/.local/share/fonts
+INSTALL_DIR := $(FONT_DIR)/iosevka-custom
+
+.PHONY: build patch install
 
 build:
 	if [ ! -d $(IOSEVKA_DIR) ]; then git clone --depth 1 https://github.com/be5invis/Iosevka.git; fi
@@ -16,6 +19,7 @@ patch:
 	sudo docker run --rm -v $(IOSEVKA_DIR)/dist/iosevka-custom/TTF:/in:Z -v $(PATCHED_DIR):/out:Z -e "PN=5" nerdfonts/patcher -s --mdi --makegroups -1
 
 install:
-	mkdir -p $(FONT_DIR)
-	cp -rf $(PATCHED_DIR) $(FONT_DIR)
-	fc-cache
+	rm -rf $(INSTALL_DIR)
+	mkdir -p $(INSTALL_DIR)
+	find $(PATCHED_DIR) -type f -name '*.ttf' -exec cp -f {} $(INSTALL_DIR)/ \;
+	fc-cache -f

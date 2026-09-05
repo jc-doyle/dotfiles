@@ -100,6 +100,7 @@ for p in \
     "$HOME/.cache/bun" \
     "$HOME/.cache/npm" \
     "$HOME/.local/share/bun" \
+    "$HOME/.local/share/nvim" \
     "$HOME/.local/share/npm" \
     "$HOME/.cache/librarian" \
     "$HOME/.cache/node-gyp" \
@@ -112,6 +113,15 @@ args+=(--dir "$HOME")
 
 # ── pi config: bind dotfiles/config/pi -> $HOME/.pi ──────────────────────────
 [[ -e "$HOME/other/dotfiles/config/pi" ]] && args+=(--bind "$HOME/other/dotfiles/config/pi" "$HOME/.pi")
+
+# ── gh CLI auth config, read-only ────────────────────────────────────────────
+[[ -e "$HOME/.config/gh" ]] && args+=(--ro-bind "$HOME/.config/gh" "$HOME/.config/gh")
+
+# ── herdr agent-state socket; rw because unix-socket connect(2) needs write ---
+if [[ -n "${HERDR_SOCKET_PATH:-}" ]]; then
+    sock_dir="$(dirname "$HERDR_SOCKET_PATH")"
+    [[ -d "$sock_dir" ]] && args+=(--bind "$sock_dir" "$sock_dir")
+fi
 
 # ── Project directory ─────────────────────────────────────────────────────────
 args+=(--bind "$(pwd)" "$(pwd)")
@@ -146,6 +156,9 @@ args+=(
 for var in \
     COLORTERM DISPLAY XDG_RUNTIME_DIR \
     EDITOR VISUAL PAGER \
+    GH_TOKEN GITHUB_TOKEN \
+    HERDR_ENV HERDR_SESSION HERDR_SOCKET_PATH \
+    HERDR_PANE_ID HERDR_TAB_ID HERDR_WORKSPACE_ID \
     ; do
     [[ -n "${!var:-}" ]] && args+=(--setenv "$var" "${!var}")
 done

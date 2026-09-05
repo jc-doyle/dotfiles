@@ -23,7 +23,7 @@ map gP cd ~/other/dotfiles/config/pi/agent/
 map gD cd ~/.config/dwm
 
 # Work
-map gc cd ~/co2e/base/apps/console
+map ga cd ~/co2e/base/apps/
 map gb cd ~/co2e/base/apps/backend
 map gw cd ~/co2e/base/apps/worker
 map gz cd ~/co2e/base/apps/zodiac

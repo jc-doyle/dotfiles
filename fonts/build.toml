@@ -1,7 +1,7 @@
 [buildPlans.iosevka-custom]
 family = "Iosevka Custom"
 spacing = "term"
-serifs = "slab"
+serifs = "sans"
 noCvSs = true
 exportGlyphNames = true
 

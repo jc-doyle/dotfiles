@@ -64,3 +64,6 @@ alias java='java $(echo $JAVA_OPTIONS)'
 alias hl='hledger --color=always --pretty=yes'
 alias income-statement='hl is --tree'
 alias balance-sheet='hl bs --tree'
+
+# Pi
+alias p='isolate pi'
