@@ -1,0 +1,35 @@
+onboarding = false
+# Custom base16 theme (dark navy, pastel accents), overriding a dark base.
+[theme]
+name = "catppuccin"
+
+[theme.custom]
+
+panel_bg = "#2E3647"
+sidebar_bg = "#2E3647"
+surface0 = "#3A4458"
+surface1 = "#5E6A83"
+surface_dim = "#343D50"
+active_row_bg = "#343D50"
+selection_bg = "#5E6A83"
+
+overlay0 = "#5E6A83"
+overlay1 = "#A0AECB"
+subtext0 = "#D7E1F5"
+
+text = "#F4F8FF"
+accent = "#9ADBFF"
+blue = "#9ADBFF"
+teal = "#94F2FF"
+green = "#8FFFBC"
+yellow = "#E8FFA6"
+red = "#FF92AC"
+peach = "#FDAFFF"
+mauve = "#9CABDF"
+
+[ui]
+agent_panel_sort = "spaces"
+show_agent_labels_on_pane_borders = true
+
+[ui.sound]
+enabled = false
